@@ -1,0 +1,210 @@
+# ========================================
+# LYN Housing AI App - Main .gitignore
+# ========================================
+
+# ==================
+# PYTHON / DJANGO
+# ==================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Django stuff
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+static/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Virtual environments
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ==================
+# NODE.JS / REACT
+# ==================
+
+# Dependencies
+node_modules/
+.npm
+.pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Production builds
+build/
+dist/
+dist-ssr/
+*.local
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# ==================
+# DEVELOPMENT TOOLS
+# ==================
+
+# IDE and Editors
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ESLint cache
+.eslintcache
+
+# Prettier
+.prettierignore
+
+# ==================
+# OPERATING SYSTEM
+# ==================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# ==================
+# SECURITY & SECRETS
+# ==================
+
+# Secret keys and credentials
+*.pem
+*.key
+secrets.json
+.secrets/
+
+# Database backups
+*.sql
+*.dump
+*.backup
+
+# ==================
+# TEMPORARY FILES
+# ==================
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Logs
+logs/
+*.log
+
+# ==================
+# PROJECT SPECIFIC
+# ==================
+
+# AI/ML models (if you add them later)
+*.pkl
+*.model
+*.h5
+*.joblib
+
+# Data files (if sensitive)
+*.csv
+*.json
+!package.json
+!package-lock.json
+
+# Documentation builds
+docs/_build/
+docs/build/
+
+# Deployment
+.vercel/
+.netlify/
+.aws/
+
+# Cache
+.cache/
+.parcel-cache/
