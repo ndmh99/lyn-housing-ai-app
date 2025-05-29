@@ -77,7 +77,14 @@ class PriceHistory(models.Model):
     """
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
     price_values = models.JSONField(default=list)  # e.g., [450000, 460000, 470000]
-    date_recorded = models.DateTimeField(auto_now_add=True)
+    date_recorded = models.DateField(blank=True, null=True)  # Removed auto_now_add=True
+
+    def save(self, *args, **kwargs):
+        # Auto-populate date_recorded if not set
+        if not self.date_recorded:
+            from django.utils import timezone
+            self.date_recorded = timezone.now()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         """
