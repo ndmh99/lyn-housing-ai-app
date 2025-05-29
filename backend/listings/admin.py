@@ -3,7 +3,7 @@ from .models import Listing, PriceHistory
 
 @admin.register(Listing)
 class ListingAdmin(admin.ModelAdmin):
-    list_display = ['title', 'city', 'province', 'current_price', 'bedrooms', 'bathrooms']
+    list_display = ['id','title', 'city', 'province', 'current_price', 'bedrooms', 'bathrooms']
     list_filter = ['city', 'province', 'bedrooms', 'bathrooms']
     search_fields = ['title', 'street_address', 'city', 'description']
     
@@ -18,6 +18,6 @@ class ListingAdmin(admin.ModelAdmin):
 
 @admin.register(PriceHistory)
 class PriceHistoryAdmin(admin.ModelAdmin):
-    list_display = ['listing', 'date_recorded']
+    list_display = ['id','listing', 'date_recorded']
     list_filter = ['date_recorded']
     search_fields = ['listing__title']

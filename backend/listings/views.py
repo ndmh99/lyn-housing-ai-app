@@ -65,6 +65,37 @@ def search_listings(request):
         city (str, optional): The city name to filter listings by. Performs a case-insensitive search.
     Returns:
         Response: A JSON response containing a list of serialized listings matching the search criteria.
+    
+    The response will look like this if listings are found:
+    [
+        {
+            "id": 1,
+            "title": "Beautiful Family Home",
+            "street_address": "123 Main St",
+            "city": "Springfield",
+            "province": "IL",
+            "description": "A lovely family home with a spacious backyard.",
+            "current_price": "250000.00",
+            "bedrooms": 4,
+            "bathrooms": 3,
+            "square_feet": 2500,
+            "image_url": "https://example.com/property-image.jpg"
+        },
+        {
+            "id": 2,
+            "title": "Modern Apartment",
+            "street_address": "456 Elm St",
+            "city": "Springfield",
+            "province": "IL",
+            "description": "A modern apartment in the city center.",
+            "current_price": "180000.00",
+            "bedrooms": 2,
+            "bathrooms": 1,
+            "square_feet": 1200,
+            "image_url": "https://example.com/apartment-image.jpg"
+        }
+        ...
+    ]    
     """
     city = request.GET.get('city')  # Get the 'city' parameter from the query string, if provided
     
@@ -83,36 +114,3 @@ def search_listings(request):
             {"message": "No listings found matching the search criteria."}, 
             status=status.HTTP_404_NOT_FOUND
         )
-    """ The response will look like this if listings are found:
-    [
-        {
-            "id": 1,
-            "title": "Beautiful Family Home",
-            "street_address": "123 Main St",
-            "city": "Springfield",
-            "province": "IL",
-            "description": "A lovely family home with a spacious backyard.",
-            "current_price": "250000.00",
-            "bedrooms": 4,
-            "bathrooms": 3,
-            "square_feet": 2500,
-            "image_url": "https://example.com/property-image.jpg",
-            "price_histories": []
-        },
-        {
-            "id": 2,
-            "title": "Modern Apartment",
-            "street_address": "456 Elm St",
-            "city": "Springfield",
-            "province": "IL",
-            "description": "A modern apartment in the city center.",
-            "current_price": "180000.00",
-            "bedrooms": 2,
-            "bathrooms": 1,
-            "square_feet": 1200,
-            "image_url": "https://example.com/apartment-image.jpg",
-            "price_histories": []
-        }
-        ...
-    ]    
-    """

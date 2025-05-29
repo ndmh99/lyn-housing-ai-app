@@ -4,13 +4,12 @@ from .models import Listing, PriceHistory
 class PriceHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = PriceHistory
-        fields = ['price_values', 'date_recorded']
-
+        fields = ['id', 'price_values', 'date_recorded']
+        read_only_fields = ['id', 'date_recorded']
+        
 class ListingSerializer(serializers.ModelSerializer):
-    # The price_histories field is read-only because price history data is managed automatically
-    # and should not be updated directly through the ListingSerializer.
-    price_histories = PriceHistorySerializer(many=True, read_only=True)
 
+    price_histories = PriceHistorySerializer(source='pricehistory_set', many=True, read_only=True)
     class Meta:
         model = Listing
         fields = [
