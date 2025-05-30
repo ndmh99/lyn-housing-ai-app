@@ -1,0 +1,120 @@
+.login-page {
+  min-height: 100vh;
+  background: #0f0c29; /* Fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif; /* A more modern font */
+}
+
+.login-page .login-container {
+  width: 100%;
+  max-width: 420px; /* Slightly wider card */
+}
+
+.login-page .login-card {
+  background: rgba(255, 255, 255, 0.05); /* Frosted glass effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px; /* More rounded */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.login-page .login-card h2 {
+  color: #e0e0e0; /* Lighter text for dark background */
+  margin-bottom: 15px;
+  font-size: 2rem; /* Slightly larger */
+  font-weight: 600;
+}
+
+.login-page .login-card p {
+  color: #b0b0b0; /* Lighter subtitle text */
+  margin-bottom: 30px;
+}
+
+.login-page .login-form {
+  text-align: left;
+}
+
+.login-page .form-group {
+  margin-bottom: 20px;
+}
+
+.login-page .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #c0c0c0; /* Lighter label text */
+  font-weight: 500;
+}
+
+.login-page .form-group input {
+  width: 100%;
+  padding: 14px; /* Slightly more padding */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px; /* More rounded inputs */
+  font-size: 16px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #e0e0e0; /* Lighter input text */
+}
+
+.login-page .form-group input::placeholder {
+  color: #888;
+}
+
+.login-page .form-group input:focus {
+  outline: none;
+  border-color: #00aaff; /* Bright accent color on focus */
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.login-page .login-btn {
+  width: 100%;
+  background: #00aaff; /* Solid accent color */
+  color: white;
+  padding: 14px; /* Match input padding */
+  border: none;
+  border-radius: 10px; /* Match input radius */
+  font-size: 17px; /* Slightly larger button text */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  letter-spacing: 0.5px;
+}
+
+.login-page .login-btn:hover {
+  background: #0088cc; /* Darker shade on hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 170, 255, 0.3);
+}
+
+.login-page .login-footer {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.login-page .login-footer p {
+  margin-bottom: 10px;
+  color: #b0b0b0; /* Lighter footer text */
+}
+
+.login-page .login-footer a {
+  color: #00aaff; /* Accent color for links */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-page .login-footer a:hover {
+  text-decoration: underline;
+}
+
+.login-page .forgot-password {
+  font-size: 14px;
+  color: #909090; /* Lighter forgot password text */
+}

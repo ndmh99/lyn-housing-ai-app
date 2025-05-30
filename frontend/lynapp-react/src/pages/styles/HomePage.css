@@ -1,5 +1,5 @@
 /* Hero Section */
-.hero {
+.home-page .hero {
     height: 80vh;
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://raw.githubusercontent.com/ndmh99/lyonplatform/refs/heads/main/img/index/banner.png');
     background-size: cover;
@@ -10,23 +10,23 @@
     text-align: center;
 }
 
-.hero-content {
+.home-page .hero-content {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
 }
 
-.hero h1 {
+.home-page .hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
 }
 
-.hero p {
+.home-page .hero p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
 }
 
-.btn {
+.home-page .btn {
     display: inline-block;
     background: #4CAF50;
     color: white;
@@ -39,14 +39,14 @@
     transition: all 0.3s ease;
 }
 
-.btn:hover {
+.home-page .btn:hover {
     background: #45a049;
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 /* Search Form */
-.search-form {
+.home-page .search-form {
     background: white;
     padding: 2rem;
     border-radius: 8px;
@@ -59,29 +59,29 @@
     border: 2px solid green;
 }
 
-.search-form:hover {
+.home-page .search-form:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
 
-.form-row {
+.home-page .form-row {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
 }
 
-.form-group {
+.home-page .form-group {
     flex: 1 1 200px;
 }
 
-.form-group label {
+.home-page .form-group label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
 }
 
-.form-group input,
-.form-group select {
+.home-page .form-group input,
+.home-page .form-group select {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid #ddd;
@@ -92,19 +92,19 @@
 }
 
 /* Features Section */
-.features {
+.home-page .features {
     padding: 4rem 0 0 0;
     background-color: #f9f9f9;
 }
 
-.features-grid {
+.home-page .features-grid {
     display: grid;
     grid-template-columns: repeat(3, auto);
     gap: 2rem;
     padding: 50px 200px 50px 200px;
 }
 
-.feature-card {
+.home-page .feature-card {
     background: white;
     padding: 2rem;
     border-radius: 8px;
@@ -113,12 +113,12 @@
     transition: all 0.3s ease;
 }
 
-.feature-card:hover {
+.home-page .feature-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
 
-.feature-icon {
+.home-page .feature-icon {
     background-color: #e6f7e6;
     width: 70px;
     height: 70px;
@@ -130,26 +130,54 @@
     color: #4CAF50;
 }
 
-.feature-card h3 {
+.home-page .feature-card h3 {
     margin-bottom: 1rem;
     color: #333;
 }
 
 /* Properties Section */
-.section-header {
+.home-page .section-header {
     text-align: center;
     padding-top: 2rem;
 }
 
-.section-header h2 {
+.home-page .section-header h2 {
     font-size: 2rem;
     color: #333;
     margin-bottom: 1rem;
     padding-top: 10px;
 }
 
-.property-grid {
+.home-page .property-grid {
     display: grid;
     grid-template-columns: repeat(3, auto);
     gap: 4rem;
+    justify-content: center;
+}
+
+/* Autocomplete dropdown */
+.autocomplete-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-top: none;
+  max-height: 180px;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.autocomplete-suggestions li {
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.autocomplete-suggestions li:hover {
+  background: #f0f0f0;
 }

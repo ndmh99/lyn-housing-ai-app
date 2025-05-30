@@ -1,0 +1,33 @@
+.properties-page .property-grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 4rem;
+    justify-content: center;
+}
+
+/* Autocomplete dropdown */
+.autocomplete-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-top: none;
+  max-height: 180px;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.autocomplete-suggestions li {
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.autocomplete-suggestions li:hover {
+  background: #f0f0f0;
+}

@@ -12,6 +12,24 @@ const api = axios.create({
 // Simple function that App.jsx expects
 export const getListings = () => api.get('/listings/').then(res => res.data);
 
+// Search listings by city (if city provided), else get all
+export const searchListings = (city) => {
+  if (!city) return getListings();
+  return api.get(`/listings/search/?city=${encodeURIComponent(city)}`).then(res => res.data);
+};
+
+// Get city suggestions for autocomplete (unique cities from listings)
+export const getCitySuggestions = async (query) => {
+  // Fetch all listings, extract unique cities matching the query
+  const listings = await getListings();
+  const cities = Array.from(new Set(
+    listings
+      .map(l => l.city)
+      .filter(city => city && city.toLowerCase().includes(query.toLowerCase()))
+  ));
+  return cities;
+};
+
 // API endpoints object (for future use)
 export const listingsAPI = {
   getAllListings: () => api.get('/listings/'),
