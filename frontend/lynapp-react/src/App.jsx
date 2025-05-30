@@ -1,10 +1,30 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import PropertiesPage from './pages/PropertiesPage';
 import AboutPage from './pages/AboutPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import './App.css';
+
+function Navigation() {
+  const location = useLocation();
+  
+  const isActive = (path) => {
+    return location.pathname === path ? 'active' : '';
+  };
+
+  return (
+    <nav className="main-nav">
+      <ul>
+        <li><Link to="/" className={isActive('/')}>Home</Link></li>
+        <li><Link to="/properties" className={isActive('/properties')}>Properties</Link></li>
+        <li><Link to="/about" className={isActive('/about')}>About</Link></li>
+        <li><Link to="/login" className={isActive('/login')}>Login</Link></li>
+        <li><Link to="/register" className={isActive('/register')}>Register</Link></li>
+      </ul>
+    </nav>
+  );
+}
 
 function App() {
   return (
@@ -15,15 +35,7 @@ function App() {
             <Link to="/"><img src="https://raw.githubusercontent.com/ndmh99/lyonplatform/refs/heads/main/img/logo.png" alt="LYON AI Logo" /></Link>
             <span>LYN AI Housing Investment</span>
           </div>
-          <nav className="main-nav">
-            <ul>
-              <li><Link to="/" className="active">Home</Link></li>
-              <li><Link to="/properties">Properties</Link></li>
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/login">Login</Link></li>
-              <li><Link to="/register">Register</Link></li>
-            </ul>
-          </nav>
+          <Navigation />
         </div>
       </header>
 

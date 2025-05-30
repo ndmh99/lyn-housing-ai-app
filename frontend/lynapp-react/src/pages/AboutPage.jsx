@@ -1,4 +1,5 @@
 import './styles/AboutPage.css';
+import { Link } from 'react-router-dom';
 
 const AboutPage = () => {
   return (
@@ -135,8 +136,12 @@ const AboutPage = () => {
             <h2>Ready to Find Your Perfect Home?</h2>
             <p>Join thousands of smart homebuyers using AI to make better housing decisions.</p>
             <div className="cta-buttons">
+              <Link to="/properties">
               <button className="btn-primary">Start Your Search</button>
+              </Link>
+              <Link to="/register">
               <button className="btn-secondary">Register</button>
+              </Link>
             </div>
           </div>
         </div>
