@@ -1,17 +1,29 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useListings } from '../hooks/useListings';
 import { getCitySuggestions } from '../services/api';
 import ListingCard from '../components/ListingCard';
 import './styles/PropertiesPage.css';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const PropertiesPage = () => {
-  const [city, setCity] = useState('');
-  const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Always get city from URL
+  const params = new URLSearchParams(location.search);
+  const cityParam = params.get('city') || '';
+
+  const [inputValue, setInputValue] = useState(cityParam);
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const inputRef = useRef(null);
 
-  const { listings, loading, error } = useListings(city);
+  // Keep inputValue in sync with URL changes
+  useEffect(() => {
+    setInputValue(cityParam);
+  }, [cityParam]);
+
+  const { listings, loading, error } = useListings(cityParam);
 
   const handleInputChange = async (e) => {
     const value = e.target.value;
@@ -27,15 +39,16 @@ const PropertiesPage = () => {
 
   const handleSuggestionClick = (suggestion) => {
     setInputValue(suggestion);
-    setCity(suggestion);
     setSuggestions([]);
     setShowSuggestions(false);
+    navigate(`/properties/?city=${encodeURIComponent(suggestion)}`);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCity(inputValue.trim());
+    const trimmed = inputValue.trim();
     setShowSuggestions(false);
+    navigate(trimmed ? `/properties/?city=${encodeURIComponent(trimmed)}` : '/properties');
   };
 
   const handleBlur = () => {

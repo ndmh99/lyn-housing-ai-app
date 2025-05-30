@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getListings } from '../services/api';
+import { getListings, searchListings } from '../services/api';
 
 /**
  * Custom hook to manage listings data fetching and state
@@ -9,7 +9,7 @@ import { getListings } from '../services/api';
  * @returns {boolean} returns.loading - Loading state indicator
  * @returns {string|null} returns.error - Error message or null
  */
-export const useListings = () => {
+export const useListings = (city = '') => {
   // This creates a box to store our house listings (starts empty)
   const [listings, setListings] = useState([]);
   
@@ -23,16 +23,21 @@ export const useListings = () => {
   useEffect(() => {
     // This is a function that gets our house data from the internet
     const fetchData = async () => {
+      setLoading(true);
       try {
-        // Ask the internet for house listings
-        const data = await getListings();
+        // Use searchListings if city is provided, else get all
+        const data = await searchListings(city);
         // Put the house listings in our storage box
         setListings(data);
         setError(null); // Clear any previous errors
       } catch (err) {
         // If something went wrong, save an error message
         console.error('Error fetching listings:', err);
-        setError('Failed to load listings');
+        setListings([]);
+        setError(
+          err?.response?.data?.message ||
+          'Failed to load listings'
+        );
       } finally {
         // No matter what happens, we're done loading
         setLoading(false);
@@ -41,7 +46,7 @@ export const useListings = () => {
 
     // Actually run the function to get house data
     fetchData();
-  }, []); // The empty [] means "only run this once when hook loads"
+  }, [city]); // The empty [] means "only run this once when hook loads"
 
   // Return the data so components can use it
   return {

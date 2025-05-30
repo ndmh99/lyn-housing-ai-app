@@ -9,7 +9,7 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <header>
+      <header className="main-header">
         <div className="container header-container">
           <div className="logo">
             <Link to="/"><img src="https://raw.githubusercontent.com/ndmh99/lyonplatform/refs/heads/main/img/logo.png" alt="LYON AI Logo" /></Link>
@@ -18,7 +18,6 @@ function App() {
           <nav className="main-nav">
             <ul>
               <li><Link to="/" className="active">Home</Link></li>
-              <li><Link to="#">Search</Link></li>
               <li><Link to="/properties">Properties</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/login">Login</Link></li>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './ListingCard.css';
 
 const ListingCard = ({ listing }) => {
@@ -48,9 +49,11 @@ const ListingCard = ({ listing }) => {
           {listing.description?.length > 120 ? '...' : ''}
         </p>
         
-        <button className="view-details-btn">
-          View Details
-        </button>
+        <Link to={`/property/${listing.id}`}>
+          <button className="view-details-btn">
+            View Details
+          </button>
+        </Link>
       </div>
     </div>
   );
