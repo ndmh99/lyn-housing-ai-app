@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-sb6vx8b*ol)b!7gzsekgq+ic&-f4^pe5lalv0-1dh-$l2*vxgk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'lyn-housing-ai-app-backend.onrender.com',
+    'localhost',  # Local dev
+    '127.0.0.1',  # Local dev
+]
 
 
 # Application definition
