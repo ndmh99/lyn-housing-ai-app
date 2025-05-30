@@ -190,10 +190,10 @@ REM SERVICE STARTUP SEQUENCE
 REM ============================================================================
 
 REM Restart services in optimal order: backend first, then frontend
-echo [1/2] Restarting Django backend...
+echo [1/2] Starting Django backend...
 call :RESTART_DJANGO_SERVICE              REM Launch Django development server
 
-echo [2/2] Restarting React frontend...
+echo [2/2] Starting React frontend...
 call :RESTART_REACT_SERVICE               REM Launch Vite React development server
 
 echo.
@@ -280,7 +280,6 @@ if !errorlevel! neq 0 (
     exit /b 1
 )
 
-REM PERFORMANCE OPTIMIZATION: Smart waiting for Django initialization
 REM Exits early when service is ready instead of waiting full timeout
 echo Waiting for Django to initialize...
 call :SMART_WAIT Django 8000 10         REM Wait max 10 seconds for port 8000
@@ -304,7 +303,6 @@ if !errorlevel! neq 0 (
     call :CLEANUP_ON_ERROR    exit /b 1
 )
 
-REM PERFORMANCE OPTIMIZATION: Smart waiting for React initialization
 REM Exits early when service is ready instead of waiting full timeout
 echo Waiting for React to initialize...
 call :SMART_WAIT React 5173 15          REM Wait max 15 seconds for port 5173
@@ -435,7 +433,6 @@ set DJANGO_RUNNING=0
 REM React frontend status flag
 set NODE_RUNNING=0
 
-REM PERFORMANCE OPTIMIZATION: Single netstat call for both ports
 REM This replaces multiple separate netstat calls throughout the script
 for /f "skip=4 tokens=2" %%a in ('netstat -an 2^>nul ^| findstr ":8000.*LISTENING :5173.*LISTENING"') do (
     if "%%a"==":8000" set PORT_8000_LISTENING=1
@@ -730,19 +727,6 @@ REM   2. Efficient dual-port availability verification
 REM   3. Sequential service launch (Django first, then React)
 REM   4. Staggered smart waiting with service-specific timeouts
 REM   5. Complete application health verification
-REM
-REM OPTIMIZATION FEATURES:
-REM   - Single netstat call to check both ports simultaneously
-REM   - Sequential startup reduces resource contention
-REM   - Django starts first (faster startup, required by React for API calls)
-REM   - Service-specific timeout values for optimal user experience
-REM   - Comprehensive final status verification
-REM
-REM PERFORMANCE BENEFITS:
-REM   - 40% faster than individual service starts
-REM   - Reduced system resource contention during startup
-REM   - Optimized network port scanning
-REM   - Intelligent service dependency ordering
 :RESTART_ALL
 echo.
 echo Restarting all services...
@@ -1179,7 +1163,6 @@ REM           - Granular control over process termination (Python/Node.js)
 REM           - Safe lock file management with forced removal option
 REM           - Integration with Task Manager for advanced users
 REM           - Comprehensive process information display
-REM Performance: Optimized with single netstat call for port checking
 REM Safety: Multiple confirmation levels and selective termination options
 REM ============================================================================
 
@@ -1194,7 +1177,6 @@ echo Current running processes:
 echo.
 
 REM Check for running Python processes (Django)
-REM Performance: Uses efficient tasklist filtering to minimize overhead
 set PYTHON_FOUND=0
 for /f "tokens=1,2" %%i in ('tasklist /fi "imagename eq python.exe" /fo csv ^| find /i "python.exe" 2^>nul') do (
     echo   🐍 Python process: %%i ^(PID: %%j^)
@@ -1210,7 +1192,6 @@ for /f "tokens=1,2" %%i in ('tasklist /fi "imagename eq node.exe" /fo csv ^| fin
 )
 
 REM Check port usage efficiently
-REM Performance Optimization: Single netstat call for both ports (8000 & 5173)
 REM Feature: Real-time port availability status with visual indicators
 echo.
 echo Port Status:
@@ -1280,7 +1261,6 @@ REM           - Automatic lock file cleanup
 REM           - Safe delay for process cleanup
 REM           - Continuation to normal startup
 REM Safety: Uses /f flag for guaranteed termination
-REM Performance: Batch termination reduces overall cleanup time
 REM ----------------------------------------------------------------------------
 :KILL_ALL_PROCESSES
 echo.
@@ -1356,7 +1336,6 @@ REM           - Detailed port usage with PID mapping
 REM           - Formatted table output for better readability
 REM           - User pause for review before returning to menu
 REM Use Case: Advanced users need detailed system state information
-REM Performance: Efficient filtering reduces output noise
 REM ----------------------------------------------------------------------------
 :SHOW_DETAILED_PROCESSES
 echo.
