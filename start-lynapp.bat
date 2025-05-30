@@ -359,32 +359,43 @@ REM ============================================================================
 
 :MAIN_LOOP
 
-REM Display application control panel header
-echo ============================================
-echo   CONTROL PANEL - LYN Housing AI App
-echo ============================================
+REM Clear screen for clean presentation
+cls
+cls
+
+REM Display modern application header with gradient-style design
+echo.
+echo   ╭───────────────────────❭❯❱ 𝙇𝙀𝙂𝙀𝙉𝘿 ❰❮❬─────────────────────────╮
+echo   │  🤖 PROJECT CONTROL PANEL                                   ⚙️
+echo   │     Professional Development Environment Manager             │
+echo   ╰───────────────────────────❭❯❱⦿❰❮❬────────────────────────────╯
 echo.
 
-REM Show current service status before presenting menu options
-echo Summarized Status:
-call :CHECK_SERVICES                    REM Real-time service status check
-echo 🌐 Frontend: http://localhost:5173
-echo 🔧 Backend: http://localhost:8000
+REM Service status section with visual indicators
+echo   ┌─ SERVICE STATUS ─────────────────────────────────────────────╮
+echo   │                                                              │
+REM Real-time service status check                                                            
+call :CHECK_SERVICES                                                  │
+echo   │  🌐 Frontend: http://localhost:5173                          │ 
+echo   │  🔧 Backend:  http://localhost:8000                          │
+echo   │                                                              │
+echo   └──────────────────────────────────────────────────────────────╯
 echo.
 
-REM Present user with available control options
-echo Main Menu:
-echo   [1] Restart Services
-echo   [2] Stop Services  
-echo   [3] Check Status
-echo   [4] Open URLs in browser
-echo   [5] Help
-echo   [9] 🚨 EMERGENCY STOP ALL (Force kill all services)
-echo   [0] Quit
+REM Main menu with enhanced visual hierarchy
+echo   ┌─ MAIN MENU ──────────────────────────────────────────────────╮
+echo   │                                                              │
+echo   │  [1] 🔄 Restart Services     [4] 🌍 Open URLs in browser     │
+echo   │  [2] ⏹️  Stop Services        [5] ❓ Help                     │
+echo   │  [3] 📊 Check Status                                         │
+echo   │                                                              │
+echo   │  [9] 🚨 EMERGENCY STOP ALL   [0] 🚪 Quit                     │
+echo   │                                                              │
+echo   └──────────────────────────────────────────────────────────────╯
 echo.
 
-REM Safety warning to prevent process orphaning
-echo ⚠️   IMPORTANT: Do NOT use Ctrl+C - it may leave services running. Use menu options instead.
+REM Safety warning with visual emphasis
+echo   ⚠️  IMPORTANT: Do NOT use Ctrl+C - Use menu options for safe control
 echo.
 
 REM Set descriptive window title for user guidance
@@ -428,83 +439,56 @@ REM ============================================================================
 :CHECK_SERVICES
 
 REM Initialize service status flags
-REM Django backend status flag
 set DJANGO_RUNNING=0
-REM React frontend status flag
 set NODE_RUNNING=0
 
-REM This replaces multiple separate netstat calls throughout the script
+REM Check port status efficiently
 for /f "skip=4 tokens=2" %%a in ('netstat -an 2^>nul ^| findstr ":8000.*LISTENING :5173.*LISTENING"') do (
     if "%%a"==":8000" set PORT_8000_LISTENING=1
     if "%%a"==":5173" set PORT_5173_LISTENING=1
 )
 
-REM ============================================================================
-REM DJANGO SERVICE STATUS VERIFICATION
-REM ============================================================================
-
-REM Check if Python processes exist and Django port is listening
+REM Django service status with enhanced visual indicators
 tasklist /fi "imagename eq python.exe" /fo csv 2>nul | find /i "python.exe" >nul
 if !errorlevel! equ 0 (
     if defined PORT_8000_LISTENING (
-        echo ✅ Django Backend: RUNNING on port 8000
+        echo   │  ✅ Django Backend: RUNNING on port 8000                
         set DJANGO_RUNNING=1
     ) else (
-        REM Quick retry once for Django
         timeout /t 1 /nobreak >nul 2>&1
         netstat -an | find ":8000" | find "LISTENING" >nul 2>&1
         if !errorlevel! equ 0 (
-            echo ✅ Django Backend: RUNNING on port 8000
+            echo   │  ✅ Django Backend: RUNNING on port 8000                
             set DJANGO_RUNNING=1
         ) else (
-            echo ⚠️  Django Backend: Process running but port 8000 not listening
+            echo   │  ⚠️  Django Backend: Process running, port not ready    
             set DJANGO_RUNNING=0
         )
     )
 ) else (
-    echo ❌ Django Backend: STOPPED
+    echo   │  ❌ Django Backend: STOPPED                               
     set DJANGO_RUNNING=0
 )
 
-REM ============================================================================
-REM REACT SERVICE STATUS VERIFICATION
-REM ============================================================================
-REM Usage:
-REM   - First check if node.exe process exists using tasklist filter
-REM   - Use cached port information (PORT_5173_LISTENING) when available
-REM   - Single retry with 1-second delay for startup race conditions
-REM   - Differentiate between process running vs port listening states
-REM
-REM React Service Health States:
-REM   ✅ RUNNING: node.exe process active + port 5173 listening
-REM   ❌ STOPPED: No node.exe process detected
-REM   ⚠️  PARTIAL: Process exists but port not listening (startup/error state)
-
-REM Check if Node.js process is running (React/Vite development server)
+REM React service status with enhanced visual indicators
 tasklist /fi "imagename eq node.exe" /fo csv 2>nul | find /i "node.exe" >nul
 if !errorlevel! equ 0 (
-    REM Process exists - check if port is actually listening
     if defined PORT_5173_LISTENING (
-        REM Use cached port status from previous netstat call for efficiency
-        echo ✅ React Frontend: RUNNING on port 5173
+        echo   │  ✅ React Frontend: RUNNING on port 5173                
         set NODE_RUNNING=1
     ) else (
-        REM Port status unknown - perform direct check with retry logic
-        REM Single retry handles React startup timing (Vite can be slow to bind port)
         timeout /t 1 /nobreak >nul 2>&1
         netstat -an | find ":5173" | find "LISTENING" >nul 2>&1
         if !errorlevel! equ 0 (
-            echo ✅ React Frontend: RUNNING on port 5173
+            echo   │  ✅ React Frontend: RUNNING on port 5173                
             set NODE_RUNNING=1
         ) else (
-            REM Process running but port not listening - likely startup phase or error
-            echo ⚠️  React Frontend: Process running but port 5173 not listening
+            echo   │  ⚠️  React Frontend: Process running, port not ready    
             set NODE_RUNNING=0
         )
     )
 ) else (
-    REM No Node.js process found - React service is definitely stopped
-    echo ❌ React Frontend: STOPPED
+    echo   │  ❌ React Frontend: STOPPED                               
     set NODE_RUNNING=0
 )
 
@@ -848,52 +832,61 @@ REM   - Clear prioritization of emergency vs routine issues
 REM   - Direct links to application interfaces
 REM   - User-friendly navigation back to main menu
 :SHOW_HELP
+cls
 echo.
-echo ============================================
-echo              HELP - LYN Housing AI App
-echo ============================================
+echo   ╭──────────────────────────────────────────────────────────────╮
+echo   │  ❓ HELP & TROUBLESHOOTING - LYN Housing AI App           
+echo   │     Complete User Guide                                     
+echo   ╰──────────────────────────────────────────────────────────────╯
 echo.
-REM EMERGENCY PROCEDURES - Critical issue resolution
-echo 🚨 EMERGENCY STOP (if services won't stop):
-echo    1. Use option [9] Emergency Stop from main menu
-echo    2. Alternative: Use option [2] Stop Services → [3] Stop All
-echo    3. If script becomes unresponsive, close the window and restart
-echo    4. Services will be cleaned up automatically on exit
+
+echo   ┌─ 🚨 EMERGENCY PROCEDURES ────────────────────────────────────╮
+echo   │                                                             
+echo   │  If services won't stop:                                   
+echo   │  • Use option [9] Emergency Stop from main menu            
+echo   │  • Alternative: Use option [2] Stop Services → [3] Stop All
+echo   │  • If script becomes unresponsive, close window and restart
+echo   │  • Services will be cleaned up automatically on exit       
+echo   │                                                             
+echo   └──────────────────────────────────────────────────────────────╯
 echo.
-REM COMPREHENSIVE TROUBLESHOOTING GUIDE
-echo Troubleshooting:
+
+echo   ┌─ 🔧 TROUBLESHOOTING GUIDE ───────────────────────────────────╮
+echo   │                                                             
+echo   │  1️⃣  Service won't start:                                  
+echo   │     • Check if Python/Node.js is installed                 
+echo   │     • Verify ports 8000 and 5173 are free                  
+echo   │     • Check service windows for detailed errors            
+echo   │                                                             
+echo   │  2️⃣  Port already in use:                                  
+echo   │     • Use option [9] Emergency Stop                        
+echo   │     • Wait 10 seconds, then restart services               
+echo   │                                                             
+echo   │  3️⃣  Services still running after stopping:               
+echo   │     • Use option [9] Emergency Stop                        
+echo   │     • Check Task Manager for python.exe/node.exe           
+echo   │                                                             
+echo   │  4️⃣  Performance issues:                                   
+echo   │     • Restart individual services from menus               
+echo   │     • Check system resources                                
+echo   │                                                             
+echo   │  5️⃣  Script appears frozen:                                
+echo   │     • Use option [9] Emergency Stop                        
+echo   │     • Close window and restart if unresponsive             
+echo   │                                                             
+echo   └──────────────────────────────────────────────────────────────╯
 echo.
-echo 1. Service won't start:
-echo    - Check if Python/Node.js is installed
-echo    - Verify ports 8000 and 5173 are free
-echo    - Check the service window for detailed errors
+
+echo   ┌─ 🌍 USEFUL URLS ─────────────────────────────────────────────╮
+echo   │                                                             
+echo   │  • Frontend:     http://localhost:5173                     
+echo   │  • Backend API:  http://localhost:8000/api                
+echo   │  • Admin Panel:  http://localhost:8000/admin              
+echo   │                                                             
+echo   └───────────────────────────────────────────────────────────────╯
 echo.
-echo 2. Port already in use:
-echo    - Use option [9] Emergency Stop
-echo    - Wait 10 seconds
-echo    - Restart services again (option 1)
-echo.
-echo 3. Services still running after stopping:
-echo    - Use option [9] Emergency Stop
-echo    - Check Task Manager for python.exe/node.exe processes
-echo    - Use option [2] Stop Services → [3] Stop All Services
-echo.
-echo 4. Performance issues:
-echo    - Restart individual services (options in Restart/Stop menus)
-echo    - Check system resources
-echo.
-echo 5. Script appears frozen:
-echo    - Use option [9] Emergency Stop
-echo    - If unresponsive, close window and restart script
-echo    - Check Task Manager to manually kill processes if needed
-echo.
-REM QUICK ACCESS URLS - Development convenience
-echo Useful URLs:
-echo - Frontend: http://localhost:5173
-echo - Backend Admin: http://localhost:8000/admin
-echo - Backend API: http://localhost:8000/api
-echo.
-echo Press any key to return to main menu...
+
+echo   Press any key to return to main menu...
 pause >nul
 goto MAIN_LOOP
 
@@ -924,24 +917,41 @@ REM   - Single keystroke selection (no Enter required)
 REM   - Invalid choice protection with menu loop-back
 REM   - Consistent navigation patterns
 :RESTART_MENU
+cls
+cls
 echo.
-echo ============================================
-echo      RESTART SERVICES - LYN Housing AI App
-echo ============================================
-echo.
-REM Display current service status for user context
-call :CHECK_SERVICES
-echo.
-echo Restart Menu Options:
-echo   [1] Restart Django Backend only
-echo   [2] Restart React Frontend only
-echo   [3] Restart All Services
-echo   [4] Check Status
-echo   [0] Return to Main Menu
+echo   ╭──────────────────────────────────────────────────────────────╮
+echo   │  🔄 RESTART SERVICES - LYN Housing AI App                 
+echo   │     Selective Service Management                            
+echo   ╰──────────────────────────────────────────────────────────────╯
 echo.
 
-REM Single-key choice selection for improved user experience
+REM Current status display
+echo   ┌─ CURRENT STATUS ─────────────────────────────────────────────╮
+echo   │                                                             
+call :CHECK_SERVICES
+echo   │                                                             
+echo   └──────────────────────────────────────────────────────────────╯
+echo.
+
+REM Restart options with service-specific icons
+echo   ┌─ RESTART OPTIONS ────────────────────────────────────────────╮
+echo   │                                                             
+echo   │  [1] 🐍 Django Backend Only    [3] 🚀 All Services          
+echo   │  [2] ⚛️  React Frontend Only    [4] 📊 Check Status         
+echo   │                                                             
+echo   │  [0] ⬅️  Return to Main Menu                                 
+echo   │                                                             
+echo   └──────────────────────────────────────────────────────────────╯
+echo.
+
+REM Safety warning to prevent process orphaning
+echo ⚠️   IMPORTANT: Do NOT use Ctrl+C - it may leave services running. Use menu options instead.
+echo.
+
+REM Capture user choice using Windows choice command
 choice /c 12340 /n /m "Choose an option (1-4, 0): "
+REM Assign RESTART_CHOICE immediately after choice to preserve errorlevel
 set RESTART_CHOICE=!errorlevel!
 
 REM Route user selection to appropriate service management function
@@ -992,24 +1002,37 @@ REM   - Forced termination with cleanup confirmation
 REM   - Port availability validation after service stops
 REM   - User feedback for successful/failed shutdown attempts
 :STOP_MENU
+cls
+cls
 echo.
-echo ============================================
-echo      STOP SERVICES - LYN Housing AI App
-echo ============================================
-echo.
-REM Display current service status to show what can be stopped
-call :CHECK_SERVICES
-echo.
-echo Stop Menu Options:
-echo   [1] Stop Django Backend only
-echo   [2] Stop React Frontend only
-echo   [3] Stop All Services
-echo   [4] Check Status
-echo   [0] Return to Main Menu
+echo   ╭──────────────────────────────────────────────────────────────╮
+echo   │  ⏹️  STOP SERVICES - LYN Housing AI App                   
+echo   │     Service Shutdown Management                             
+echo   ╰──────────────────────────────────────────────────────────────╯
 echo.
 
-REM Single-key choice selection for efficient navigation
+REM Current status display
+echo   ┌─ CURRENT STATUS ─────────────────────────────────────────────╮
+echo   │                                                             
+call :CHECK_SERVICES
+echo   │                                                             
+echo   └──────────────────────────────────────────────────────────────╯
+echo.
+
+REM Stop options with service-specific icons
+echo   ┌─ STOP OPTIONS ───────────────────────────────────────────────╮
+echo   │                                                             
+echo   │  [1] 🐍 Django Backend Only    [3] 🛑 All Services          
+echo   │  [2] ⚛️  React Frontend Only    [4] 📊 Check Status         
+echo   │                                                             
+echo   │  [0] ⬅️  Return to Main Menu                                 
+echo   │                                                             
+echo   └──────────────────────────────────────────────────────────────╯
+echo.
+
+REM Capture user choice using Windows choice command
 choice /c 12340 /n /m "Choose an option (1-4, 0): "
+REM Assign STOP_CHOICE immediately after choice to preserve errorlevel
 set STOP_CHOICE=!errorlevel!
 
 REM Route user selection to appropriate service shutdown function
@@ -1167,71 +1190,72 @@ REM Safety: Multiple confirmation levels and selective termination options
 REM ============================================================================
 
 :INSTANCE_CONFLICT_MENU
-echo ============================================
-echo    INSTANCE CONFLICT - LYN Housing AI App
-echo ============================================
+cls
+cls
 echo.
-echo Another instance appears to be running. What would you like to do?
+echo   ╭──────────────────────────────────────────────────────────────╮
+echo   │  ⚠️  INSTANCE CONFLICT DETECTED                            
+echo   │     Another LYN Housing AI instance is running             
+echo   ╰──────────────────────────────────────────────────────────────╯
 echo.
-echo Current running processes:
-echo.
+
+echo   ┌─ RUNNING PROCESSES ──────────────────────────────────────────╮
+echo   │                                                             
 
 REM Check for running Python processes (Django)
 set PYTHON_FOUND=0
 for /f "tokens=1,2" %%i in ('tasklist /fi "imagename eq python.exe" /fo csv ^| find /i "python.exe" 2^>nul') do (
-    echo   🐍 Python process: %%i ^(PID: %%j^)
+    echo   │  🐍 Python: %%i ^(PID: %%j^)                               
     set PYTHON_FOUND=1
 )
 
 REM Check for running Node.js processes (React)
-REM Feature: Identifies all Node.js instances that might interfere with frontend
 set NODE_FOUND=0
 for /f "tokens=1,2" %%i in ('tasklist /fi "imagename eq node.exe" /fo csv ^| find /i "node.exe" 2^>nul') do (
-    echo   🟢 Node.js process: %%i ^(PID: %%j^)
+    echo   │  🟢 Node.js: %%i ^(PID: %%j^)                              
     set NODE_FOUND=1
 )
 
-REM Check port usage efficiently
-REM Feature: Real-time port availability status with visual indicators
+echo   │                                                             
+echo   └──────────────────────────────────────────────────────────────╯
 echo.
-echo Port Status:
+
+echo   ┌─ PORT STATUS ────────────────────────────────────────────────╮
+echo   │                                                             
 set PORT_8000_IN_USE=0
 set PORT_5173_IN_USE=0
 
 for /f "tokens=2" %%a in ('netstat -an 2^>nul ^| findstr ":8000.*LISTENING :5173.*LISTENING"') do (
     if "%%a"==":8000" (
-        echo   🔧 Port 8000: IN USE ^(Django Backend^)
+        echo   │  🔧 Port 8000: IN USE ^(Django Backend^)                
         set PORT_8000_IN_USE=1
     )
     if "%%a"==":5173" (
-        echo   🌐 Port 5173: IN USE ^(React Frontend^)
+        echo   │  🌐 Port 5173: IN USE ^(React Frontend^)                
         set PORT_5173_IN_USE=1
     )
 )
 
-REM Display availability status for unused ports
-if !PORT_8000_IN_USE! equ 0 echo   🔧 Port 8000: Available
-if !PORT_5173_IN_USE! equ 0 echo   🌐 Port 5173: Available
-) else (
-    echo   🌐 Port 5173: Available
-)
-
+if !PORT_8000_IN_USE! equ 0 echo   │  🔧 Port 8000: Available                               
+if !PORT_5173_IN_USE! equ 0 echo   │  🌐 Port 5173: Available                               
+echo   │                                                             
+echo   └──────────────────────────────────────────────────────────────╯
 echo.
+
+echo   ┌─ RESOLUTION OPTIONS ─────────────────────────────────────────╮
+echo   │                                                             
+echo   │  [1] 💥 Kill ALL processes      [4] 🔓 Force remove lock file
+echo   │  [2] 🐍 Kill Django only        [5] 📋 Show detailed info   
+echo   │  [3] ⚛️  Kill React only         [6] 🖥️  Open Task Manager  
+echo   │                                                             
+echo   │  [0] 🚪 Exit without changes                                
+echo   │                                                             
+echo   └──────────────────────────────────────────────────────────────╯
+echo.
+
 REM Interactive Menu System - Conflict Resolution Options
 REM Feature: Comprehensive options for different conflict resolution scenarios
 REM Safety: Clear descriptions and granular control options
-echo Options:
-echo   [1] Kill ALL processes and continue startup
-echo   [2] Kill Django ^(Python^) processes only
-echo   [3] Kill React ^(Node.js^) processes only
-echo   [4] Force remove lock file and continue
-echo   [5] Show detailed process information
-echo   [6] Open Task Manager
-echo   [0] Exit without changes
-echo.
-
-REM User Choice Input with Error-Level Mapping
-REM Feature: Single-key selection without Enter key requirement
 choice /c 1234560 /n /m "Choose an option (1-6, 0): "
 set CONFLICT_CHOICE=!errorlevel!
 
