@@ -75,14 +75,14 @@ lyn-housing-ai-app/
 │       │   │   ├── ListingCard.jsx
 │       │   │   └── PropertySearchBox.jsx
 │       │   ├── pages/                            # Page components
+│       │   │   ├── styles/                       # Page-specific styles
 │       │   │   ├── HomePage.jsx
 │       │   │   ├── AboutPage.jsx
 │       │   │   └── PropertiesPage.jsx
 │       │   ├── services/                         # API services
 │       │   │   └── api.js                        # Axios API configuration
-│       │   ├── hooks/                            # Custom React hooks
-│       │   │   └── useListings.js
-│       │   └── styles/                           # CSS stylesheets
+│       │   └── hooks/                            # Custom React hooks
+│       │       └── useListings.js
 │       ├── package.json                          # Node.js dependencies
 │       └── index.html                            # Main HTML template
 ├── docs/                                         # Documentation
