@@ -131,8 +131,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Allow React frontend to connect
 CORS_ALLOWED_ORIGINS = [
+
+    # Local development URLs
     "http://127.0.0.1:3000",
     "http://localhost:5173",
+
+    # Vercel frontend deployment URLs
     "https://lyn-housing-ai-app.vercel.app/",
     "https://lyn-housing-ai-app-ndmh99s-projects.vercel.app",
+    "https://lyn-housing-ai-app-git-deployment-ndmh99s-projects.vercel.app",
 ]
