@@ -3,11 +3,6 @@
 ## Overview
 **Lyn Housing AI** is a **full-stack web platform** designed to provide AI-driven insights and assessments to home buyers and real estate professionals. 
 
-- **Key Features:**
-  - Aggregates real estate listings
-  - Offers AI property evaluations
-  - Integrates with modern cloud infrastructure
-
 ---
 
 ## Table of Contents
@@ -75,14 +70,14 @@ lyn-housing-ai-app/
 │       │   │   ├── ListingCard.jsx
 │       │   │   └── PropertySearchBox.jsx
 │       │   ├── pages/                            # Page components
+│       │   │   ├── styles/                       # Page-specific styles
 │       │   │   ├── HomePage.jsx
 │       │   │   ├── AboutPage.jsx
 │       │   │   └── PropertiesPage.jsx
 │       │   ├── services/                         # API services
 │       │   │   └── api.js                        # Axios API configuration
-│       │   ├── hooks/                            # Custom React hooks
-│       │   │   └── useListings.js
-│       │   └── styles/                           # CSS stylesheets
+│       │   └── hooks/                            # Custom React hooks
+│       │       └── useListings.js
 │       ├── package.json                          # Node.js dependencies
 │       └── index.html                            # Main HTML template
 ├── docs/                                         # Documentation
@@ -127,11 +122,6 @@ npm run dev
 ---
 
 ## API Endpoints
-- `/api/listings/`  
-  Planned for property search data
-- `/api/listings/<id>/`  
-  Planned for property details
-
 *Refer to [docs/](./docs/) for detailed API documentation.*
 
 ---
@@ -139,19 +129,11 @@ npm run dev
 ## Development
 - Production-ready code in the `main` branch.
 - Develop using `develop` and `test` branches.
-- Frontend is deployed on Vercel, Backend on Render.
+- Cloud deployment via `deployment` branch.
 
 ---
 
 ## Contributing
-- Fork the repository and create a feature branch:
-```bash
-git checkout -b feature/YourFeature
-```
-- Commit your changes and push:
-```bash
-git push origin feature/YourFeature
-```
 - Open a Pull Request and describe your changes.
 - *All contributors welcome! Guidelines in [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md) (TBD).*
 
