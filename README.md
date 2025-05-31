@@ -24,10 +24,10 @@
 ---
 
 ## Features
-- 🌐 **Location-based listings** through APIs (e.g., Zillow, Realtor.ca)
+- 🌐 **Location-based listings** through APIs (e.g., Zillow, Realtor.ca, local server, etc.)
 - 🤖 **AI investment assessments** (cached for efficiency)
 - 🔐 **User authentication** with JWT/session
-- ⚡ **High-performance backend** using Django REST API and AWS
+- ⚡ **High-performance backend** using Django REST API and AWS Database solution.
 - 🐳 **Dockerized deployment** for easy setup
 - 📋 **Extensible modular codebase** with API documentation
 
@@ -37,11 +37,11 @@
 | Layer       | Technology                                                  |
 |-------------|------------------------------------------------------------|
 | **Frontend**    | [ReactJS](https://react.dev/) ([Vite](https://vitejs.dev/))|
-| **Backend**     | [Django](https://www.djangoproject.com/)<br/>[Django REST Framework](https://www.django-rest-framework.org/) |
-| **Cloud/DB**    | [AWS DynamoDB](https://aws.amazon.com/dynamodb/), [Amazon RDS](https://aws.amazon.com/rds/) |
-| **DevOps**      | [Docker](https://www.docker.com/), [GitHub Actions](https://github.com/features/actions), [AWS](https://aws.amazon.com/) |
-| **Source Ctrl** | [Git/GitHub](https://github.com/)                          |
-
+| **Backend**     | [Django](https://www.djangoproject.com/)  ([REST Framework](https://www.django-rest-framework.org/))|
+| **Cloud/DB**    | [Amazon RDS](https://aws.amazon.com/rds/) |
+| **Container**      | [Docker](https://www.docker.com/)|
+| **Source Ctrl** | [Git/GitHub](https://github.com/)|
+| **Deployment**    | [Vercel](https://vercel.com/) (FE)<br>[Render](https://render.com/) (BE) |
 ---
 
 ## Architecture
@@ -49,13 +49,13 @@
 ReactJS (Frontend)
       │
       ▼
-Django REST API (Backend) ── External APIs (Zillow/Realtor.ca)
+Django REST API (Backend) ── External APIs ── Zillow/Realtor.ca
       │
       ▼
-DynamoDB / Amazon RDS (Data storage)
+Amazon RDS (Data storage)
       │
       ▼
-AI API (e.g., OpenAI) for insights
+AI API (e.g., OpenAI) for insights (On Development)
 ```
 
 ---
@@ -79,35 +79,34 @@ lyn-housing-ai-app/
 ---
 
 ## Getting Started
-### 1. Clone the Repository
+
+### Quick Start
 ```bash
+# 1. Clone the repository
 git clone https://github.com/ndmh99/lyn-housing-ai-app.git
 cd lyn-housing-ai-app
-```
 
-### 2. Backend Setup
-```bash
+# 2. Setup backend (Django)
 cd backend
 python -m venv venv
-# Activate on Windows
-venv\Scripts\activate
-# Or (Linux/MacOS/Git Bash)
-source venv/bin/activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
-# API runs at http://127.0.0.1:8000
-```
 
-### 3. Frontend Setup
-```bash
-cd ../frontend
+# 3. Setup frontend (React) - Open new terminal
+cd frontend/lynapp-react
 npm install
 npm run dev
-# App runs at http://localhost:5173 (default Vite)
 ```
 
-*Note: Ensure both backend and frontend servers are running.*
+**Prerequisites:** Python 3.8+, Node.js 16+
+
+📖 **New to development?** Check our [detailed installation guide](./docs/INSTALLATION.md) for step-by-step instructions for Windows, macOS, and Linux.
+
+**Access the app:**
+- Frontend: http://localhost:5173
+- Backend API: http://127.0.0.1:8000
 
 ---
 
@@ -116,18 +115,14 @@ npm run dev
   Planned for property search data
 - `/api/listings/<id>/`  
   Planned for property details
-- `/api/ai-assessment/`  
-  On-demand AI property analysis
 
 *Refer to [docs/](./docs/) for detailed API documentation.*
 
 ---
 
 ## Development
-- Develop using `develop` and feature branches.
 - Production-ready code in the `main` branch.
-- Pull requests and code reviews are mandatory.
-- *Docker Compose for local development experience coming soon.*
+- Develop using `develop` and `test` branches.
 
 ---
 
@@ -150,4 +145,4 @@ git push origin feature/YourFeature
 
 ---
 
-> *lyn-housing-ai-app: AI-powered property investment insights, built for speed, scale, and next-generation real estate.* 🏡✨
+> *lyn-housing-ai-app* 🏡✨ 2025
