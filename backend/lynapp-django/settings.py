@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-sb6vx8b*ol)b!7gzsekgq+ic&-f4^pe5lalv0-1dh-$l2*vxgk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'lyn-housing-ai-app-backend.onrender.com',
+]
 
 
 # Application definition
@@ -127,7 +131,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Allow React frontend to connect
 CORS_ALLOWED_ORIGINS = [
-    # Local development URLs
     "http://127.0.0.1:3000",
     "http://localhost:5173",
+    "https://lyn-housing-ai-app.vercel.app/",
+    "https://lyn-housing-ai-app-ndmh99s-projects.vercel.app",
 ]
