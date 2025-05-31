@@ -63,17 +63,33 @@ AI API (e.g., OpenAI) for insights (On Development)
 ## Project Structure
 ```
 lyn-housing-ai-app/
-├── backend/            # Django project & API
-│   ├── lynapp-django/  # Main Django app
-│   └── api/            # Example API
-├── frontend/           
-│   └── lynapp-react    # ReactJS app
-├── docs/               # Developer & API documentation
-├── infrastructure/     # Docker configs and scripts
-├── tests/              # Unit & integration tests
-├── .gitignore
-├── LICENSE
-└── README.md
+├── backend/                                      # Django REST API backend
+│   ├── listings/                                 # Django app for property listings API
+│   ├── lynapp-django/                            # Main Django application
+│   ├── requirements.txt                          # Python dependencies
+│   └── manage.py                                 # Django management script
+├── frontend/                                     # React frontend application
+│   └── lynapp-react/                             # ReactJS app (Vite)
+│       ├── src/                                  # Source code
+│       │   ├── components/                       # Reusable UI components
+│       │   │   ├── ListingCard.jsx
+│       │   │   └── PropertySearchBox.jsx
+│       │   ├── pages/                            # Page components
+│       │   │   ├── HomePage.jsx
+│       │   │   ├── AboutPage.jsx
+│       │   │   └── PropertiesPage.jsx
+│       │   ├── services/                         # API services
+│       │   │   └── api.js                        # Axios API configuration
+│       │   ├── hooks/                            # Custom React hooks
+│       │   │   └── useListings.js
+│       │   └── styles/                           # CSS stylesheets
+│       ├── package.json                          # Node.js dependencies
+│       └── index.html                            # Main HTML template
+├── docs/                                         # Documentation
+│   ├── INSTALLATION.md                           # Setup instructions
+│   └── CONTRIBUTING.md                           # Contribution guidelines
+├── LICENSE                                       # MIT License
+└── README.md                                     # README file
 ```
 
 ---
@@ -123,6 +139,7 @@ npm run dev
 ## Development
 - Production-ready code in the `main` branch.
 - Develop using `develop` and `test` branches.
+- Frontend is deployed on Vercel, Backend on Render.
 
 ---
 
