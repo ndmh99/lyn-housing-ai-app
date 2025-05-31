@@ -26,7 +26,6 @@ SECRET_KEY = 'django-insecure-sb6vx8b*ol)b!7gzsekgq+ic&-f4^pe5lalv0-1dh-$l2*vxgk
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'lyn-housing-ai-app-backend.onrender.com',
     'localhost',  # Local dev
     '127.0.0.1',  # Local dev
 ]
@@ -133,5 +132,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:5173",
-    "https://lyn-housing-ai-app.vercel.app/"
 ]
