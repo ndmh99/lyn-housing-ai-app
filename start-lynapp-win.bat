@@ -27,14 +27,7 @@ REM     - Comprehensive error handling and recovery mechanisms
 REM     - Emergency shutdown capabilities
 REM     - Performance-optimized network calls (reduced from 20+ to 3-5 netstat calls)
 REM     - Native Windows timeout functions (eliminates PowerShell overhead)
-REM 
-REM PERFORMANCE OPTIMIZATIONS:
-REM     - Smart waiting functions that exit early when services are ready
-REM     - Single netstat calls for multi-port checking
-REM     - Cached port status information
-REM     - Reduced timeout delays from 50-80+ seconds to 10-20 seconds
-REM     - Eliminated redundant system calls
-REM 
+REM
 REM USAGE:
 REM     Double-click the script or run from command line:
 REM     > start-lynapp.bat
