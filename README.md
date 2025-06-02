@@ -1,12 +1,17 @@
 # 🏡 Lyn Housing AI App 
 
 ## Overview
-**Lyn Housing AI** is a **full-stack web platform** designed to provide AI-driven insights and assessments to home buyers and real estate professionals. 
+**Lyn Housing AI** is a **full-stack web platform** designed to provide AI-driven insights and assessments to home buyers and real estate professionals.
 
-- **Key Features:**
-  - Aggregates real estate listings
-  - Offers AI property evaluations
-  - Integrates with modern cloud infrastructure
+<p align="center">
+  <img src="https://raw.githubusercontent.com/github/explore/main/topics/react/react.png" alt="React" width="48" height="48"/>
+  <img src="https://www.svgrepo.com/show/353657/django-icon.svg" alt="Django" width="48" height="48"/>
+  <img src="https://vitejs.dev/logo.svg" alt="Vite" width="48" height="48"/>
+  <img src="https://raw.githubusercontent.com/github/explore/main/topics/postgresql/postgresql.png" alt="PostgreSQL" width="48" height="48"/>
+  <img src="https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" alt="Vercel" width="48" height="48"/>
+  <img src="https://us1.discourse-cdn.com/flex016/uploads/render/original/2X/1/11352202c8503f736bea5efb59684f678d7c860c.svg" alt="Render" width="48" height="48"/>
+  <img src="https://static-00.iconduck.com/assets.00/docker-icon-1024x876-69aqwp3k.png" alt="Render" width="48"/>
+</p>
 
 ---
 
@@ -24,10 +29,10 @@
 ---
 
 ## Features
-- 🌐 **Location-based listings** through APIs (e.g., Zillow, Realtor.ca)
+- 🌐 **Location-based listings** through APIs (e.g., Zillow, Realtor.ca, local server, etc.)
 - 🤖 **AI investment assessments** (cached for efficiency)
 - 🔐 **User authentication** with JWT/session
-- ⚡ **High-performance backend** using Django REST API and AWS
+- ⚡ **High-performance backend** using Django REST API and AWS Database solution.
 - 🐳 **Dockerized deployment** for easy setup
 - 📋 **Extensible modular codebase** with API documentation
 
@@ -37,11 +42,11 @@
 | Layer       | Technology                                                  |
 |-------------|------------------------------------------------------------|
 | **Frontend**    | [ReactJS](https://react.dev/) ([Vite](https://vitejs.dev/))|
-| **Backend**     | [Django](https://www.djangoproject.com/)<br/>[Django REST Framework](https://www.django-rest-framework.org/) |
-| **Cloud/DB**    | [AWS DynamoDB](https://aws.amazon.com/dynamodb/), [Amazon RDS](https://aws.amazon.com/rds/) |
-| **DevOps**      | [Docker](https://www.docker.com/), [GitHub Actions](https://github.com/features/actions), [AWS](https://aws.amazon.com/) |
-| **Source Ctrl** | [Git/GitHub](https://github.com/)                          |
-
+| **Backend**     | [Django](https://www.djangoproject.com/)  ([REST Framework](https://www.django-rest-framework.org/))|
+| **Cloud/DB**    | [Amazon RDS](https://aws.amazon.com/rds/) |
+| **Container**      | [Docker](https://www.docker.com/)|
+| **Source Ctrl** | [Git/GitHub](https://github.com/)|
+| **Deployment**    | [Vercel](https://vercel.com/) (FE)<br>[Render](https://render.com/) (BE) |
 ---
 
 ## Architecture
@@ -49,13 +54,13 @@
 ReactJS (Frontend)
       │
       ▼
-Django REST API (Backend) ── External APIs (Zillow/Realtor.ca)
+Django REST API (Backend) ── External APIs ── Zillow/Realtor.ca
       │
       ▼
-DynamoDB / Amazon RDS (Data storage)
+Amazon RDS (Data storage)
       │
       ▼
-AI API (e.g., OpenAI) for insights
+AI API (e.g., OpenAI) for insights (On Development)
 ```
 
 ---
@@ -63,83 +68,82 @@ AI API (e.g., OpenAI) for insights
 ## Project Structure
 ```
 lyn-housing-ai-app/
-├── backend/            # Django project & API
-│   ├── lynapp-django/  # Main Django app
-│   └── api/            # Example API
-├── frontend/           
-│   └── lynapp-react    # ReactJS app
-├── docs/               # Developer & API documentation
-├── infrastructure/     # Docker configs and scripts
-├── tests/              # Unit & integration tests
-├── .gitignore
-├── LICENSE
-└── README.md
+├── backend/                                      # Django REST API backend
+│   ├── listings/                                 # Django app for property listings API
+│   ├── lynapp-django/                            # Main Django application
+│   ├── requirements.txt                          # Python dependencies
+│   └── manage.py                                 # Django management script
+├── frontend/                                     # React frontend application
+│   └── lynapp-react/                             # ReactJS app (Vite)
+│       ├── src/                                  # Source code
+│       │   ├── components/                       # Reusable UI components
+│       │   │   ├── ListingCard.jsx
+│       │   │   └── PropertySearchBox.jsx
+│       │   ├── pages/                            # Page components
+│       │   │   ├── styles/                       # Page-specific styles
+│       │   │   ├── HomePage.jsx
+│       │   │   ├── AboutPage.jsx
+│       │   │   └── PropertiesPage.jsx
+│       │   ├── services/                         # API services
+│       │   │   └── api.js                        # Axios API configuration
+│       │   └── hooks/                            # Custom React hooks
+│       │       └── useListings.js
+│       ├── package.json                          # Node.js dependencies
+│       └── index.html                            # Main HTML template
+├── docs/                                         # Documentation
+│   ├── INSTALLATION.md                           # Setup instructions
+│   └── CONTRIBUTING.md                           # Contribution guidelines
+├── LICENSE                                       # MIT License
+└── README.md                                     # README file
 ```
 
 ---
 
 ## Getting Started
-### 1. Clone the Repository
+
+### Quick Start
 ```bash
+# 1. Clone the repository
 git clone https://github.com/ndmh99/lyn-housing-ai-app.git
 cd lyn-housing-ai-app
-```
 
-### 2. Backend Setup
-```bash
+# 2. Setup backend (Django)
 cd backend
 python -m venv venv
-# Activate on Windows
-venv\Scripts\activate
-# Or (Linux/MacOS/Git Bash)
-source venv/bin/activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
-# API runs at http://127.0.0.1:8000
-```
 
-### 3. Frontend Setup
-```bash
-cd ../frontend
+# 3. Setup frontend (React) - Open new terminal
+cd frontend/lynapp-react
 npm install
 npm run dev
-# App runs at http://localhost:5173 (default Vite)
 ```
 
-*Note: Ensure both backend and frontend servers are running.*
+**Prerequisites:** Python 3.8+, Node.js 16+
+
+📖 **New to development?** Check our [detailed installation guide](./docs/INSTALLATION.md) for step-by-step instructions for Windows, macOS, and Linux.
+
+**Access the app:**
+- Frontend: http://localhost:5173
+- Backend API: http://127.0.0.1:8000
 
 ---
 
 ## API Endpoints
-- `/api/listings/`  
-  Planned for property search data
-- `/api/listings/<id>/`  
-  Planned for property details
-- `/api/ai-assessment/`  
-  On-demand AI property analysis
-
 *Refer to [docs/](./docs/) for detailed API documentation.*
 
 ---
 
 ## Development
-- Develop using `develop` and feature branches.
 - Production-ready code in the `main` branch.
-- Pull requests and code reviews are mandatory.
-- *Docker Compose for local development experience coming soon.*
+- Develop using `develop` and `test` branches.
+- Cloud deployment via `deployment` branch.
 
 ---
 
 ## Contributing
-- Fork the repository and create a feature branch:
-```bash
-git checkout -b feature/YourFeature
-```
-- Commit your changes and push:
-```bash
-git push origin feature/YourFeature
-```
 - Open a Pull Request and describe your changes.
 - *All contributors welcome! Guidelines in [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md) (TBD).*
 
@@ -150,4 +154,4 @@ git push origin feature/YourFeature
 
 ---
 
-> *lyn-housing-ai-app: AI-powered property investment insights, built for speed, scale, and next-generation real estate.* 🏡✨
+> *lyn-housing-ai-app* 🏡✨ 2025
