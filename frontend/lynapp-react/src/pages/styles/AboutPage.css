@@ -1,6 +1,6 @@
 .about-page {
     min-height: 100vh;
-    background: linear-gradient(200deg, #002f13 0%, #764ba2 100%);
+    background: var(--gradient-secondary);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -11,7 +11,7 @@ body:has(.about-page) .main-header {
 
 /* Hero Section */
 .about-page .hero-section {
-    padding: 100px 20px;
+    padding: var(--space-20) var(--space-5);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,13 +28,13 @@ body:has(.about-page) .main-header {
 .about-page .hero-title {
     font-size: 3.5rem;
     font-weight: 800;
-    color: white;
+    color: var(--neutral-white);
     line-height: 1.1;
-    margin-bottom: 24px;
+    margin-bottom: var(--space-6);
 }
 
 .about-page .gradient-text {
-    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    background: var(--gradient-gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -44,7 +44,7 @@ body:has(.about-page) .main-header {
     font-size: 1.25rem;
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
-    margin-bottom: 32px;
+    margin-bottom: var(--space-8);
 }
 
 .about-page .hero-visual {
@@ -64,9 +64,10 @@ body:has(.about-page) .main-header {
     position: absolute;
     width: 60px;
     height: 60px;
-    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-    border-radius: 50%;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-full);
     animation: pulse 2s infinite;
+    box-shadow: var(--shadow-primary);
 }
 
 .about-page .neural-node:nth-child(1) {
@@ -88,7 +89,6 @@ body:has(.about-page) .main-header {
 }
 
 @keyframes pulse {
-
     0%,
     100% {
         transform: scale(1);
@@ -106,13 +106,13 @@ body:has(.about-page) .main-header {
     font-size: 2.5rem;
     font-weight: 700;
     text-align: center;
-    margin-bottom: 60px;
-    color: white;
+    margin-bottom: var(--space-16);
+    color: var(--neutral-white);
 }
 
 /* Mission Section */
 .about-page .mission-section {
-    padding: 100px 0;
+    padding: var(--space-20) 0;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
 }
@@ -120,76 +120,86 @@ body:has(.about-page) .main-header {
 .about-page .mission-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    gap: var(--space-10);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-5);
 }
 
 .about-page .mission-card {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 40px 30px;
-    border-radius: 20px;
+    background: var(--card-bg);
+    padding: var(--space-10) var(--space-8);
+    border-radius: var(--radius-2xl);
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-lg);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--card-border);
 }
 
 .about-page .mission-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-2xl);
 }
 
 .about-page .mission-icon {
     font-size: 3rem;
-    margin-bottom: 20px;
+    margin-bottom: var(--space-5);
+    color: var(--primary-green);
 }
 
 .about-page .mission-card h3 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #2d3748;
-    margin-bottom: 16px;
+    color: var(--neutral-text-dark);
+    margin-bottom: var(--space-4);
 }
 
 .about-page .mission-card p {
-    color: #4a5568;
+    color: var(--neutral-text-medium);
     line-height: 1.6;
 }
 
 /* Technology Section */
 .about-page .tech-section {
-    padding: 100px 0;
+    padding: var(--space-20) 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: var(--space-5);
+    padding-right: var(--space-5);
 }
 
 .about-page .tech-features {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: var(--space-8);
 }
 
 .about-page .tech-feature {
     background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 15px;
-    border-left: 4px solid #ff6b6b;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    border-left: 4px solid var(--primary-green);
+    backdrop-filter: blur(5px);
 }
 
 .about-page .feature-header {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
 }
 
 .about-page .feature-tag {
-    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-    color: white;
-    padding: 5px 12px;
-    border-radius: 20px;
+    background: var(--gradient-gold);
+    color: var(--neutral-white);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
     font-size: 0.8rem;
     font-weight: 600;
 }
 
 .about-page .tech-feature h4 {
-    color: white;
+    color: var(--neutral-white);
     font-size: 1.25rem;
     font-weight: 600;
 }
@@ -201,7 +211,7 @@ body:has(.about-page) .main-header {
 
 /* Stats Section */
 .about-page .stats-section {
-    padding: 100px 0;
+    padding: var(--space-20) 0;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
 }
@@ -209,7 +219,10 @@ body:has(.about-page) .main-header {
 .about-page .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
+    gap: var(--space-10);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-5);
 }
 
 .about-page .stat-item {
@@ -219,107 +232,116 @@ body:has(.about-page) .main-header {
 .about-page .stat-number {
     font-size: 3rem;
     font-weight: 800;
-    color: #ffd93d;
-    margin-bottom: 10px;
+    color: var(--accent-gold);
+    margin-bottom: var(--space-2);
 }
 
 .about-page .stat-label {
-    color: white;
+    color: var(--neutral-white);
     font-size: 1.1rem;
     font-weight: 500;
 }
 
 /* Team Section */
 .about-page .team-section {
-    padding: 100px 0;
+    padding: var(--space-20) 0;
 }
 
 .about-page .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    gap: var(--space-10);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-5);
 }
 
 .about-page .team-member {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 40px 30px;
-    border-radius: 20px;
+    background: var(--card-bg);
+    padding: var(--space-10) var(--space-8);
+    border-radius: var(--radius-2xl);
     text-align: center;
     transition: transform 0.3s ease;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--card-border);
 }
 
 .about-page .team-member:hover {
     transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
 .about-page .member-avatar {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    color: white;
+    border-radius: var(--radius-full);
+    background: var(--gradient-primary);
+    color: var(--neutral-white);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
     font-weight: 600;
-    margin: 0 auto 20px;
+    margin: 0 auto var(--space-5);
 }
 
 .about-page .team-member h4 {
-    color: #2d3748;
+    color: var(--neutral-text-dark);
     font-size: 1.3rem;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: var(--space-2);
 }
 
 .about-page .member-role {
-    color: #667eea;
+    color: var(--primary-green);
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: var(--space-4);
 }
 
 .about-page .member-bio {
-    color: #4a5568;
+    color: var(--neutral-text-medium);
     line-height: 1.6;
     font-size: 0.95rem;
 }
 
 /* CTA Section */
 .about-page .cta-section {
-    padding: 100px 0;
-    background: rgba(255, 255, 255, 0.1);
+    padding: var(--space-20) 0;
+    background: #1A5C5F;
     backdrop-filter: blur(10px);
 }
 
 .about-page .cta-content {
     text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--space-5);
 }
 
 .about-page .cta-content h2 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: white;
-    margin-bottom: 20px;
+    color: var(--neutral-white);
+    margin-bottom: var(--space-5);
 }
 
 .about-page .cta-content p {
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 40px;
+    margin-bottom: var(--space-10);
 }
 
 .about-page .cta-buttons {
     display: flex;
-    gap: 20px;
+    gap: var(--space-5);
     justify-content: center;
     flex-wrap: wrap;
 }
 
 .about-page .btn-primary,
 .about-page .btn-secondary {
-    padding: 15px 30px;
-    border-radius: 30px;
+    padding: var(--space-4) var(--space-8);
+    border-radius: var(--radius-full);
     font-weight: 600;
     font-size: 1rem;
     border: none;
@@ -329,24 +351,25 @@ body:has(.about-page) .main-header {
 }
 
 .about-page .btn-primary {
-    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-    color: white;
+    background: rgba(var(--accent-gold-rgb));
+    color: var(--btn-primary-text);
+    box-shadow: var(--shadow-primary);
 }
 
 .about-page .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+    box-shadow: var(--shadow-primary-lg);
 }
 
 .about-page .btn-secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
+    background: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+    border: 2px solid var(--btn-secondary-border);
 }
 
 .about-page .btn-secondary:hover {
-    background: white;
-    color: #667eea;
+    background: var(--btn-secondary-hover);
+    transform: translateY(-2px);
 }
 
 /* Responsive Design */
@@ -354,7 +377,7 @@ body:has(.about-page) .main-header {
     .about-page .hero-section {
         flex-direction: column;
         text-align: center;
-        padding: 60px 20px;
+        padding: var(--space-16) var(--space-5);
     }
 
     .about-page .hero-title {

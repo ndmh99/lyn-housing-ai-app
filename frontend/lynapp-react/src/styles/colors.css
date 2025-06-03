@@ -1,0 +1,418 @@
+/* =============================================================================
+   LYN HOUSING AI - COMPREHENSIVE COLOR SYSTEM DOCUMENTATION
+   
+   📋 OVERVIEW:
+   This is the master color system for Lyn Housing AI application. It provides
+   a complete design language for consistent, professional real estate UI.
+   
+   🎨 DESIGN PHILOSOPHY:
+   - Trust and professionalism in real estate industry
+   - High readability and accessibility (WCAG 2.1 AA compliant)
+   - Modern, clean aesthetic with subtle sophistication
+   - Consistent branding across all components and pages
+   
+   🔧 USAGE INSTRUCTIONS:
+   1. Import this file: @import url('./styles/colors.css');
+   2. Use CSS custom properties: color: var(--primary-green);
+   3. Use utility classes: <div class="bg-primary text-white">
+   4. Reference semantic colors: background: var(--card-bg);
+   
+   📖 AI ANALYSIS GUIDE:
+   When analyzing this file for styling other pages, focus on:
+   - Component-specific color assignments (lines 150-200)
+   - Semantic color usage patterns (lines 120-150)
+   - Utility class naming conventions (lines 350-400)
+   - Spacing and visual hierarchy systems (lines 250-320)
+   
+   🏗️ ARCHITECTURE:
+   Primary Colors → Accent Colors → Semantic Colors → Component Colors → Utilities
+   
+   💡 BEST PRACTICES:
+   - Always use semantic color variables instead of raw hex values
+   - Follow the established opacity scale (05, 10, 20, 40, 60, 80)
+   - Use component-specific colors for consistency
+   - Apply utility classes for quick styling
+   
+============================================================================= */
+
+:root {
+  /* =============================================================================
+     🟢 PRIMARY BRAND COLORS
+     
+     Core brand identity colors that represent trust, growth, and professionalism.
+     Use these for main CTAs, headers, and primary interactive elements.
+     
+     USAGE EXAMPLES:
+     - Primary buttons: var(--primary-green)
+     - Header backgrounds: var(--gradient-primary)
+     - Active states: var(--primary-green-80)
+     - Focus rings: var(--primary-green-10)
+     - Hover backgrounds: var(--primary-green-05)
+  ============================================================================= */
+  
+  --primary-green: #00781A;           /* 🎯 Main brand color - use for primary actions */
+  --primary-green-rgb: 0, 120, 26;   /* 📊 RGB values for rgba() calculations */
+  --primary-green-80: rgba(0, 120, 26, 0.8);   /* 🔘 Hover states for buttons */
+  --primary-green-60: rgba(0, 120, 26, 0.6);   /* ⏸️ Disabled/inactive states */
+  --primary-green-40: rgba(0, 120, 26, 0.4);   /* 🔳 Subtle background accents */
+  --primary-green-20: rgba(0, 120, 26, 0.2);   /* 📄 Very light section backgrounds */
+  --primary-green-10: rgba(0, 120, 26, 0.1);   /* 🔍 Focus rings and highlights */
+  --primary-green-05: rgba(0, 120, 26, 0.05);  /* 👆 Subtle hover effects */
+
+  /* =============================================================================
+     ⚪ NEUTRAL COLORS
+     
+     Foundation colors for text, backgrounds, and structural elements.
+     These create the visual hierarchy and ensure excellent readability.
+     
+     USAGE EXAMPLES:
+     - Page backgrounds: var(--neutral-soft)
+     - Card backgrounds: var(--neutral-white)
+     - Primary text: var(--neutral-text-dark)
+     - Secondary text: var(--neutral-text-medium)
+     - Borders: var(--neutral-border)
+  ============================================================================= */
+  
+  --neutral-light: #F5F5F5;          /* 🏠 Main page background, search areas */
+  --neutral-soft: #FAFAFA;           /* 📖 Comfortable reading backgrounds */
+  --neutral-divider: #EAEAEA;        /* ➖ Section dividers, secondary UI elements */
+  --neutral-border: #E5E7EB;         /* 🔲 Standard borders for inputs, cards */
+  --neutral-text-dark: #333333;      /* 📝 Primary text content */
+  --neutral-text-medium: #6B7280;    /* 💬 Secondary text, captions */
+  --neutral-text-light: #9CA3AF;     /* 💭 Placeholder text, muted content */
+  --neutral-white: #FFFFFF;          /* 🏢 Cards, containers, form backgrounds */
+  --neutral-black: #000000;          /* ⚫ High contrast elements (rare usage) */
+
+  /* =============================================================================
+     ✨ ACCENT COLORS
+     
+     Supporting colors that add sophistication and highlight specific content types.
+     Use sparingly to create visual interest and premium feel.
+     
+     USAGE EXAMPLES:
+     - Premium features: var(--accent-gold)
+     - Property prices: var(--accent-gold)
+     - Navigation elements: var(--accent-navy)
+     - Structural labels: var(--accent-navy)
+  ============================================================================= */
+  
+  --accent-gold: #eec200;            /* 💰 Premium highlights, pricing, exclusive features */
+  --accent-gold-rgb: 198, 163, 0;    /* 📊 RGB values for rgba() calculations */
+  --accent-gold-80: rgba(198, 163, 0, 0.8);    /* 🔘 Hover states */
+  --accent-gold-60: rgba(198, 163, 0, 0.6);    /* ⏸️ Disabled states */
+  --accent-gold-40: rgba(198, 163, 0, 0.4);    /* 🔳 Subtle backgrounds */
+  --accent-gold-20: rgba(198, 163, 0, 0.2);    /* 📄 Light highlights */
+  --accent-gold-10: rgba(198, 163, 0, 0.1);    /* 🔍 Focus states */
+
+  --accent-navy: #003C5A;            /* 🧭 Navigation, structure, professional contrast */
+  --accent-navy-rgb: 0, 60, 90;      /* 📊 RGB values for rgba() calculations */
+  --accent-navy-80: rgba(0, 60, 90, 0.8);      /* 🔘 Hover states */
+  --accent-navy-60: rgba(0, 60, 90, 0.6);      /* ⏸️ Disabled states */
+  --accent-navy-40: rgba(0, 60, 90, 0.4);      /* 🔳 Subtle backgrounds */
+  --accent-navy-20: rgba(0, 60, 90, 0.2);      /* 📄 Light highlights */
+  --accent-navy-10: rgba(0, 60, 90, 0.1);      /* 🔍 Focus states */
+
+  /* =============================================================================
+     🚀 CALL-TO-ACTION COLORS
+     
+     High-energy colors for buttons, alerts, and important interactive elements.
+     Use to guide user attention and create urgency.
+     
+     USAGE EXAMPLES:
+     - "Apply Now" buttons: var(--cta-green)
+     - Success messages: var(--cta-green)
+     - Price drops: var(--cta-coral)
+     - Urgent notifications: var(--cta-coral)
+  ============================================================================= */
+  
+  --cta-green: #00A84C;              /* ✅ Energetic green for primary CTAs, success states */
+  --cta-green-rgb: 0, 168, 76;       /* 📊 RGB values for rgba() calculations */
+  --cta-green-80: rgba(0, 168, 76, 0.8);       /* 🔘 Hover states */
+  --cta-green-60: rgba(0, 168, 76, 0.6);       /* ⏸️ Disabled states */
+  --cta-green-40: rgba(0, 168, 76, 0.4);       /* 🔳 Subtle backgrounds */
+  --cta-green-20: rgba(0, 168, 76, 0.2);       /* 📄 Light highlights */
+  --cta-green-10: rgba(0, 168, 76, 0.1);       /* 🔍 Focus states */
+
+  --cta-coral: #FF6F61;             /* 🚨 Urgent actions, price drops, promotional content */
+  --cta-coral-rgb: 255, 111, 97;    /* 📊 RGB values for rgba() calculations */
+  --cta-coral-80: rgba(255, 111, 97, 0.8);     /* 🔘 Hover states */
+  --cta-coral-60: rgba(255, 111, 97, 0.6);     /* ⏸️ Disabled states */
+  --cta-coral-40: rgba(255, 111, 97, 0.4);     /* 🔳 Subtle backgrounds */
+  --cta-coral-20: rgba(255, 111, 97, 0.2);     /* 📄 Light highlights */
+  --cta-coral-10: rgba(255, 111, 97, 0.1);     /* 🔍 Focus states */
+
+  /* =============================================================================
+     🏷️ SEMANTIC COLORS
+     
+     Colors with specific meaning for consistent user experience.
+     Use these for status indicators, alerts, and feedback.
+     
+     USAGE PATTERNS:
+     - Success: Green tones for completed actions, available properties
+     - Warning: Gold tones for pending states, important notices
+     - Error: Coral tones for errors, sold properties, urgent alerts
+     - Info: Navy tones for informational content, tips
+  ============================================================================= */
+
+  /* ✅ Success States - Completed actions, available properties, positive feedback */
+  --success-green: var(--primary-green);       /* Main success color */
+  --success-bg: var(--primary-green-10);       /* Success background */
+  --success-border: var(--primary-green-40);   /* Success borders */
+
+  /* ⚠️ Warning States - Pending actions, important notices, caution */
+  --warning-gold: var(--accent-gold);          /* Main warning color */
+  --warning-bg: var(--accent-gold-10);         /* Warning background */
+  --warning-border: var(--accent-gold-40);     /* Warning borders */
+
+  /* ❌ Error States - Failed actions, sold properties, urgent alerts */
+  --error-coral: var(--cta-coral);             /* Main error color */
+  --error-bg: var(--cta-coral-10);             /* Error background */
+  --error-border: var(--cta-coral-40);         /* Error borders */
+
+  /* ℹ️ Info States - Informational content, tips, neutral notices */
+  --info-navy: var(--accent-navy);             /* Main info color */
+  --info-bg: var(--accent-navy-10);            /* Info background */
+  --info-border: var(--accent-navy-40);        /* Info borders */
+
+  /* =============================================================================
+     🧩 COMPONENT-SPECIFIC COLOR ASSIGNMENTS
+     
+     Pre-configured color combinations for common UI patterns.
+     Use these to ensure consistency across components.
+     
+     🎯 HOW TO USE FOR NEW PAGES:
+     1. Buttons: Use --btn-primary-* for main actions, --btn-secondary-* for secondary
+     2. Cards: Use --card-* for containers, listings, content blocks
+     3. Forms: Use --input-* for all form elements
+     4. Navigation: Use --nav-* for headers, menus, breadcrumbs
+     5. Listings: Use --listing-* for property cards, search results
+     6. Filters: Use --filter-* for search controls, sorting options
+     7. Status: Use --status-* for property availability, user states
+  ============================================================================= */
+
+  /* 🔘 BUTTON SYSTEM - Consistent button styling across the application */
+  --btn-primary-bg: var(--primary-green);      /* Primary action buttons */
+  --btn-primary-hover: var(--primary-green-80); /* Hover state */
+  --btn-primary-active: var(--cta-green);      /* Active/pressed state */
+  --btn-primary-text: var(--neutral-white);    /* Button text color */
+  --btn-primary-shadow: var(--primary-green-40); /* Button shadow */
+
+  --btn-secondary-bg: var(--neutral-white);    /* Secondary buttons */
+  --btn-secondary-hover: var(--neutral-light); /* Hover state */
+  --btn-secondary-active: var(--neutral-divider); /* Active state */
+  --btn-secondary-text: var(--primary-green);  /* Text color */
+  --btn-secondary-border: var(--primary-green); /* Border color */
+
+  --btn-danger-bg: var(--cta-coral);           /* Destructive actions */
+  --btn-danger-hover: var(--cta-coral-80);     /* Hover state */
+  --btn-danger-text: var(--neutral-white);     /* Text color */
+
+  /* 📦 CARD SYSTEM - For property listings, content containers */
+  --card-bg: var(--neutral-white);             /* Card background */
+  --card-border: var(--neutral-border);        /* Card borders */
+  --card-shadow: rgba(0, 0, 0, 0.06);         /* Default shadow */
+  --card-shadow-hover: rgba(0, 0, 0, 0.12);   /* Hover shadow */
+
+  /* 📝 FORM SYSTEM - Consistent form styling */
+  --input-bg: var(--neutral-white);            /* Input backgrounds */
+  --input-border: var(--neutral-border);       /* Default borders */
+  --input-border-focus: var(--primary-green);  /* Focus state borders */
+  --input-text: var(--neutral-text-dark);      /* Input text */
+  --input-placeholder: var(--neutral-text-medium); /* Placeholder text */
+  --input-focus-ring: var(--primary-green-10); /* Focus ring color */
+
+  /* 🧭 NAVIGATION SYSTEM - Headers, menus, breadcrumbs */
+  --nav-bg: var(--neutral-white);              /* Navigation background */
+  --nav-text: var(--neutral-text-dark);        /* Navigation text */
+  --nav-text-hover: var(--primary-green);      /* Hover state */
+  --nav-text-active: var(--primary-green);     /* Active/current page */
+  --nav-border: var(--neutral-divider);        /* Navigation borders */
+
+  /* 🏠 PROPERTY LISTING SYSTEM - Property cards, search results */
+  --listing-bg: var(--neutral-white);          /* Property card background */
+  --listing-border: var(--neutral-border);     /* Property card borders */
+  --listing-price: var(--accent-gold);         /* Price display */
+  --listing-featured: var(--primary-green);    /* Featured property indicator */
+  --listing-urgent: var(--cta-coral);          /* Urgent/hot property indicator */
+
+  /* 🔍 FILTER & SEARCH SYSTEM - Search controls, filtering options */
+  --filter-bg: var(--neutral-soft);            /* Filter section background */
+  --filter-active: var(--primary-green);       /* Active filter state */
+  --filter-hover: var(--primary-green-05);     /* Filter hover state */
+  --search-bg: var(--neutral-white);           /* Search input background */
+  --search-border: var(--neutral-border);      /* Search input border */
+
+  /* 🏷️ STATUS INDICATOR SYSTEM - Property and user states */
+  --status-available: var(--cta-green);        /* Available properties */
+  --status-pending: var(--accent-gold);        /* Pending applications */
+  --status-sold: var(--neutral-text-medium);   /* Sold/unavailable */
+  --status-featured: var(--primary-green);     /* Featured/highlighted */
+  --status-urgent: var(--cta-coral);           /* Price drops, limited time */
+
+  /* =============================================================================
+     🌈 GRADIENT SYSTEM
+     
+     Pre-defined gradient combinations for modern, sophisticated UI elements.
+     Use for headers, call-to-action sections, and premium features.
+     
+     GRADIENT USAGE GUIDE:
+     - Primary: Main brand gradients for headers, hero sections
+     - Secondary: Alternative gradients for variety and depth
+     - Gold: Premium feature highlights, pricing sections
+     - Coral: Urgent actions, promotional banners
+     - Glass: Glassmorphism effects, overlays
+  ============================================================================= */
+
+  --gradient-primary: linear-gradient(135deg, var(--primary-green) 0%, var(--cta-green) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--accent-navy) 0%, var(--primary-green) 100%);
+  --gradient-gold: linear-gradient(135deg, var(--accent-gold) 0%, #D4B500 100%);
+  --gradient-coral: linear-gradient(135deg, var(--cta-coral) 0%, #FF8A7B 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%);
+
+  /* =============================================================================
+     💫 SHADOW SYSTEM
+     
+     Consistent shadow system for depth and visual hierarchy.
+     Use to create elevation and focus in the interface.
+     
+     SHADOW USAGE GUIDE:
+     - XS/SM: Subtle elements like buttons, inputs
+     - MD/LG: Cards, modals, important sections
+     - XL/2XL: Major components, hero sections
+     - Colored: Brand-specific shadows for CTAs and highlights
+  ============================================================================= */
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);    /* Subtle button shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);    /* Input field shadows */
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);    /* Card shadows */
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.10);   /* Modal shadows */
+  --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.12);  /* Hero section shadows */
+  --shadow-2xl: 0 24px 48px rgba(0, 0, 0, 0.14); /* Major component shadows */
+
+  /* 🎨 Brand-colored shadows for enhanced visual appeal */
+  --shadow-primary: 0 4px 16px var(--primary-green-20);    /* Primary button shadows */
+  --shadow-primary-lg: 0 8px 24px var(--primary-green-40); /* Large primary shadows */
+  --shadow-gold: 0 4px 16px var(--accent-gold-20);         /* Premium feature shadows */
+  --shadow-coral: 0 4px 16px var(--cta-coral-20);          /* Urgent action shadows */
+
+  /* =============================================================================
+     📏 SPACING SYSTEM
+     
+     Consistent spacing values based on 8px grid system.
+     Use for margins, padding, and layout consistency.
+     
+     SPACING GUIDE:
+     - space-1 to space-3: Small elements (buttons, icons, tight spacing)
+     - space-4 to space-6: Medium elements (cards, sections, comfortable spacing)
+     - space-8 to space-12: Large elements (major sections, page margins)
+     - space-16 to space-20: Extra large (hero sections, major layouts)
+  ============================================================================= */
+
+  --space-1: 0.25rem;  /* 4px - Icon spacing, tight borders */
+  --space-2: 0.5rem;   /* 8px - Small padding, button spacing */
+  --space-3: 0.75rem;  /* 12px - Input padding, small margins */
+  --space-4: 1rem;     /* 16px - Standard padding, comfortable spacing */
+  --space-5: 1.25rem;  /* 20px - Medium spacing, card padding */
+  --space-6: 1.5rem;   /* 24px - Section spacing, larger padding */
+  --space-8: 2rem;     /* 32px - Major section spacing */
+  --space-10: 2.5rem;  /* 40px - Large section margins */
+  --space-12: 3rem;    /* 48px - Hero section spacing */
+  --space-16: 4rem;    /* 64px - Major layout spacing */
+  --space-20: 5rem;    /* 80px - Extra large hero margins */
+
+  /* =============================================================================
+     📐 BORDER RADIUS SYSTEM
+     
+     Consistent border radius for modern, cohesive design language.
+     Use to create visual harmony across all components.
+     
+     RADIUS GUIDE:
+     - SM/MD: Subtle rounding for inputs, small buttons
+     - LG/XL: Modern cards, containers, medium buttons
+     - 2XL/3XL: Hero sections, large components, prominent features
+     - FULL: Pills, badges, circular elements
+  ============================================================================= */
+
+  --radius-sm: 0.375rem;   /* 6px - Small inputs, minor elements */
+  --radius-md: 0.5rem;     /* 8px - Standard inputs, small buttons */
+  --radius-lg: 0.75rem;    /* 12px - Cards, medium buttons */
+  --radius-xl: 1rem;       /* 16px - Large cards, prominent buttons */
+  --radius-2xl: 1.25rem;   /* 20px - Hero sections, major components */
+  --radius-3xl: 1.5rem;    /* 24px - Extra large components */
+  --radius-full: 9999px;   /* Full rounded - Pills, badges, avatars */
+
+  /* =============================================================================
+     📱 RESPONSIVE BREAKPOINTS
+     
+     Standard breakpoints for consistent responsive design across the application.
+     Use these in media queries for device-specific styling.
+     
+     BREAKPOINT GUIDE:
+     - SM (640px): Large phones, small tablets
+     - MD (768px): Tablets, small laptops
+     - LG (1024px): Laptops, small desktops
+     - XL (1280px): Large desktops, monitors
+     - 2XL (1536px): Ultra-wide screens, large monitors
+  ============================================================================= */
+
+  --breakpoint-sm: 640px;   /* Large phones, small tablets */
+  --breakpoint-md: 768px;   /* Tablets, small laptops */
+  --breakpoint-lg: 1024px;  /* Laptops, small desktops */
+  --breakpoint-xl: 1280px;  /* Large desktops, monitors */
+  --breakpoint-2xl: 1536px; /* Ultra-wide screens */
+}
+
+/* =============================================================================
+   🛠️ UTILITY CLASSES
+   
+   Ready-to-use CSS classes for rapid development and consistent styling.
+   Apply directly to HTML elements for quick styling without custom CSS.
+   
+   🎯 UTILITY USAGE PATTERNS:
+   
+   TEXT COLORS:
+   <h1 class="text-primary">Primary Heading</h1>
+   <p class="text-secondary">Secondary text</p>
+   <span class="text-muted">Muted caption</span>
+   
+   BACKGROUND COLORS:
+   <div class="bg-primary">Primary background</div>
+   <section class="bg-light">Light section</section>
+   <article class="bg-white">White container</article>
+   
+   BORDER COLORS:
+   <div class="border-primary">Primary border</div>
+   <input class="border-light">Light border input</input>
+   
+   STATE COMBINATIONS:
+   <div class="bg-success text-white">Success message</div>
+   <div class="bg-warning text-dark">Warning notice</div>
+   <div class="bg-error text-white">Error alert</div>
+============================================================================= */
+
+/* 🎨 TEXT COLOR UTILITIES */
+.text-primary { color: var(--primary-green) !important; }      /* Main brand text */
+.text-secondary { color: var(--neutral-text-medium) !important; } /* Secondary content */
+.text-muted { color: var(--neutral-text-light) !important; }   /* Muted, less important text */
+.text-success { color: var(--success-green) !important; }      /* Success messages */
+.text-warning { color: var(--warning-gold) !important; }       /* Warning text */
+.text-error { color: var(--error-coral) !important; }          /* Error messages */
+.text-info { color: var(--info-navy) !important; }             /* Informational text */
+
+/* 🎨 BACKGROUND COLOR UTILITIES */
+.bg-primary { background-color: var(--primary-green) !important; }    /* Primary sections */
+.bg-light { background-color: var(--neutral-light) !important; }      /* Light backgrounds */
+.bg-soft { background-color: var(--neutral-soft) !important; }        /* Soft reading areas */
+.bg-white { background-color: var(--neutral-white) !important; }      /* White containers */
+.bg-success { background-color: var(--success-bg) !important; }       /* Success sections */
+.bg-warning { background-color: var(--warning-bg) !important; }       /* Warning sections */
+.bg-error { background-color: var(--error-bg) !important; }           /* Error sections */
+.bg-info { background-color: var(--info-bg) !important; }             /* Info sections */
+
+/* 🎨 BORDER COLOR UTILITIES */
+.border-primary { border-color: var(--primary-green) !important; }    /* Primary borders */
+.border-light { border-color: var(--neutral-border) !important; }     /* Standard borders */
+.border-success { border-color: var(--success-border) !important; }   /* Success borders */
+.border-warning { border-color: var(--warning-border) !important; }   /* Warning borders */
+.border-error { border-color: var(--error-border) !important; }       /* Error borders */
+.border-info { border-color: var(--info-border) !important; }         /* Info borders */

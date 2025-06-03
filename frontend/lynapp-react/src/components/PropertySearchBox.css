@@ -1,45 +1,89 @@
+/* Import centralized color system */
+@import url('../styles/colors.css');
+
+/* =============================================================================
+   PROPERTY SEARCH BOX COMPONENT STYLES - UPDATED WITH COLOR SYSTEM
+   
+   A modern, glassmorphic property search component with:
+   - Glassmorphic design with backdrop blur using design system colors
+   - Smooth animations and transitions
+   - Autocomplete suggestions dropdown
+   - Responsive design for mobile/desktop
+   - Accessibility considerations
+   
+   Structure:
+   - Base container (.property-search-box)
+   - Search form wrapper (.search-form) 
+   - Input controls (.form-group, .input-container)
+   - Action button (.btn)
+   - Autocomplete dropdown (.autocomplete-suggestions)
+============================================================================= */
+
+/* =============================================================================
+   BASE CONTAINER & LAYOUT
+============================================================================= */
+
 .property-search-box {
   max-width: 680px;
-  margin: 80px auto;
-  padding: 0 20px;
+  margin: var(--space-10) auto;  
+  padding: 0 var(--space-5);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+/* =============================================================================
+   SEARCH FORM - GLASSMORPHIC CONTAINER
+   
+   Creates a modern glass effect using design system colors:
+   - Semi-transparent background with card colors
+   - Backdrop blur for glassmorphic effect
+   - Brand-colored borders and shadows
+   - Smooth transform animations on interaction
+============================================================================= */
 
 .property-search-box .search-form {
   position: relative;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 24px;
-  padding: 6px;
+  border: 2px solid var(--primary-green);
+  border-radius: var(--radius-3xl);
+  padding: var(--space-2);
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.06),
+    var(--shadow-lg),
     0 1px 0 rgba(255, 255, 255, 0.8) inset,
     0 -1px 0 rgba(0, 0, 0, 0.02) inset;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   overflow: visible;
 }
 
+/* Form hover state - subtle lift effect */
 .property-search-box .search-form:hover {
   transform: translateY(-2px);
   box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.08),
+    var(--shadow-xl),
+    var(--shadow-primary),
     0 1px 0 rgba(255, 255, 255, 0.9) inset;
 }
 
+/* Form focus state - enhanced shadow with brand color */
 .property-search-box .search-form:focus-within {
   transform: translateY(-1px);
+  border-color: var(--cta-green);
   box-shadow: 
-    0 16px 48px rgba(124, 58, 237, 0.12),
-    0 0 0 2px rgba(124, 58, 237, 0.1),
+    var(--shadow-2xl),
+    var(--shadow-primary-lg),
+    0 0 0 3px var(--input-focus-ring),
     0 1px 0 rgba(255, 255, 255, 0.9) inset;
 }
+
+/* =============================================================================
+   FORM CONTROLS LAYOUT
+============================================================================= */
 
 .property-search-box .form-group {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .property-search-box .input-container {
@@ -47,40 +91,60 @@
   flex: 1;
 }
 
+/* =============================================================================
+   INPUT FIELD STYLING - USING DESIGN SYSTEM
+   
+   Clean, borderless input with design system colors:
+   - Transparent background to show glassmorphic effect
+   - Design system text colors and spacing
+   - Focus state enhancements using brand colors
+============================================================================= */
+
 .property-search-box .input-container input {
   width: 100%;
   border: none;
   background: transparent;
-  padding: 20px 24px;
-  font-size: 16px;
+  padding: var(--space-5) var(--space-6);
+  font-size: 1rem;
   font-weight: 400;
-  color: #1a1a1a;
-  border-radius: 20px;
+  color: var(--input-text);
+  border-radius: var(--radius-2xl);
   outline: none;
   transition: all 0.3s ease;
   font-family: inherit;
   letter-spacing: 0.01em;
 }
 
+/* Placeholder styling */
 .property-search-box .input-container input::placeholder {
-  color: #6b7280;
+  color: var(--input-placeholder);
   font-weight: 400;
   transition: all 0.3s ease;
 }
 
+/* Animated placeholder on focus */
 .property-search-box .input-container input:focus::placeholder {
-  color: #9ca3af;
+  color: var(--neutral-text-light);
   transform: translateX(4px);
 }
 
+/* =============================================================================
+   SEARCH BUTTON - USING DESIGN SYSTEM BUTTON STYLES
+   
+   Premium gradient button with design system colors:
+   - Brand gradient background
+   - Design system shadows and spacing
+   - Smooth press animation with brand colors
+============================================================================= */
+
 .property-search-box .form-group .btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--gradient-primary);
   border: none;
-  border-radius: 18px;
-  padding: 16px 32px;
-  color: white;
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-8);
+  color: var(--btn-primary-text);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
@@ -89,10 +153,11 @@
   overflow: hidden;
   min-width: 120px;
   box-shadow: 
-    0 4px 16px rgba(102, 126, 234, 0.24),
+    var(--shadow-primary),
     0 1px 0 rgba(255, 255, 255, 0.2) inset;
 }
 
+/* Shimmer effect overlay */
 .property-search-box .form-group .btn::before {
   content: '';
   position: absolute;
@@ -104,42 +169,55 @@
   transition: left 0.6s ease;
 }
 
+/* Button hover state */
 .property-search-box .form-group .btn:hover {
+  background: var(--btn-primary-hover);
   transform: translateY(-2px);
   box-shadow: 
-    0 8px 24px rgba(102, 126, 234, 0.32),
+    var(--shadow-primary-lg),
     0 1px 0 rgba(255, 255, 255, 0.3) inset;
 }
 
+/* Animate shimmer on hover */
 .property-search-box .form-group .btn:hover::before {
   left: 100%;
 }
 
+/* Button press state */
 .property-search-box .form-group .btn:active {
   transform: translateY(0px);
+  background: var(--btn-primary-active);
 }
+
+/* =============================================================================
+   AUTOCOMPLETE DROPDOWN - USING DESIGN SYSTEM
+   
+   Floating suggestions dropdown with design system styling:
+   - Card background and borders
+   - Design system shadows and spacing
+   - Brand color interactions
+============================================================================= */
 
 .property-search-box .autocomplete-suggestions {
   position: absolute;
-  top: calc(100% + 12px);
-  left: 6px;
-  right: 6px;
-  background: rgba(255, 255, 255, 0.95);
+  top: calc(100% + var(--space-3));
+  left: var(--space-2);
+  right: var(--space-2);
+  background: var(--card-bg);
   backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-2xl);
   max-height: 280px;
   overflow: hidden;
-  box-shadow: 
-    0 16px 64px rgba(0, 0, 0, 0.08),
-    0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  box-shadow: var(--shadow-xl);
   z-index: 9999;
   list-style: none;
   margin: 0;
-  padding: 8px 0;
+  padding: var(--space-2) 0;
   animation: slideDown 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* Dropdown slide-down animation */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -151,6 +229,10 @@
   }
 }
 
+/* =============================================================================
+   CUSTOM SCROLLBAR FOR DROPDOWN - USING DESIGN SYSTEM COLORS
+============================================================================= */
+
 .property-search-box .autocomplete-suggestions::-webkit-scrollbar {
   width: 6px;
 }
@@ -160,29 +242,39 @@
 }
 
 .property-search-box .autocomplete-suggestions::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
+  background: var(--neutral-border);
+  border-radius: var(--radius-sm);
 }
 
 .property-search-box .autocomplete-suggestions::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--neutral-text-light);
 }
 
+/* =============================================================================
+   DROPDOWN LIST ITEMS - USING DESIGN SYSTEM
+   
+   Interactive suggestion items with design system colors:
+   - Brand color hover effects
+   - Design system text colors
+   - Smooth animations with brand accent
+============================================================================= */
+
 .property-search-box .autocomplete-suggestions li {
-  padding: 16px 24px;
-  font-size: 15px;
+  padding: var(--space-4) var(--space-6);
+  font-size: 0.9375rem;
   font-weight: 400;
-  color: #374151;
+  color: var(--neutral-text-dark);
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
-  border-radius: 12px;
-  margin: 0 8px;
+  border-radius: var(--radius-lg);
+  margin: 0 var(--space-2);
   display: flex;
   align-items: center;
   letter-spacing: 0.01em;
 }
 
+/* Left accent indicator using brand color */
 .property-search-box .autocomplete-suggestions li::before {
   content: '';
   position: absolute;
@@ -191,95 +283,133 @@
   transform: translateY(-50%);
   width: 4px;
   height: 0;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-radius: 2px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-sm);
   transition: height 0.3s ease;
 }
 
+/* List item hover state */
 .property-search-box .autocomplete-suggestions li:hover {
-  background: rgba(102, 126, 234, 0.05);
-  color: #1f2937;
-  transform: translateX(8px);
+  background: var(--filter-hover);
+  color: var(--primary-green);
+  transform: translateX(var(--space-2));
 }
 
+/* Animate accent indicator on hover */
 .property-search-box .autocomplete-suggestions li:hover::before {
-  height: 20px;
+  height: var(--space-5);
 }
 
-/* Mobile responsive */
+/* Active/selected state */
+.property-search-box .autocomplete-suggestions li.active {
+  background: var(--primary-green-10);
+  color: var(--primary-green);
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN - MOBILE OPTIMIZATIONS
+   
+   Mobile-first responsive adjustments using design system spacing:
+   - Design system margins and padding
+   - Responsive spacing adjustments
+   - Mobile-optimized touch targets
+============================================================================= */
+
 @media (max-width: 768px) {
   .property-search-box {
-    margin: 40px auto;
-    padding: 0 16px;
+    margin: var(--space-10) auto;
+    padding: 0 var(--space-4);
   }
   
   .property-search-box .search-form {
-    padding: 4px;
-    border-radius: 20px;
+    padding: var(--space-1);
+    border-radius: var(--radius-2xl);
   }
   
+  /* Stack form controls vertically on mobile */
   .property-search-box .form-group {
     flex-direction: column;
-    gap: 12px;
+    gap: var(--space-3);
   }
   
   .property-search-box .input-container {
     width: 100%;
   }
   
+  /* Larger touch targets for mobile */
   .property-search-box .input-container input {
-    padding: 18px 20px;
+    padding: var(--space-5) var(--space-5);
     text-align: center;
-    border-radius: 16px;
+    border-radius: var(--radius-xl);
   }
   
   .property-search-box .form-group .btn {
     width: 100%;
-    padding: 18px 24px;
-    border-radius: 16px;
-    font-size: 15px;
+    padding: var(--space-5) var(--space-6);
+    border-radius: var(--radius-xl);
+    font-size: 0.9375rem;
   }
   
+  /* Static dropdown positioning for mobile */
   .property-search-box .autocomplete-suggestions {
     position: static;
-    margin-top: 16px;
-    border-radius: 16px;
+    margin-top: var(--space-4);
+    border-radius: var(--radius-xl);
     max-height: 240px;
   }
   
   .property-search-box .autocomplete-suggestions li {
-    padding: 14px 20px;
-    margin: 0 4px;
-    font-size: 14px;
+    padding: var(--space-4) var(--space-5);
+    margin: 0 var(--space-1);
+    font-size: 0.875rem;
   }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .property-search-box .search-form {
-    background: rgba(17, 24, 39, 0.85);
-    border-color: rgba(255, 255, 255, 0.1);
+@media (max-width: 480px) {
+  .property-search-box {
+    padding: 0 var(--space-3);
   }
   
-  .property-search-box .form-group input {
-    color: #f9fafb;
+  .property-search-box .input-container input {
+    padding: var(--space-4) var(--space-4);
   }
   
-  .property-search-box .form-group input::placeholder {
-    color: #9ca3af;
+  .property-search-box .form-group .btn {
+    padding: var(--space-4) var(--space-5);
+  }
+}
+
+/* =============================================================================
+   ACCESSIBILITY ENHANCEMENTS
+============================================================================= */
+
+.property-search-box .form-group .btn:focus-visible {
+  outline: 2px solid var(--primary-green);
+  outline-offset: 2px;
+}
+
+.property-search-box .input-container input:focus-visible {
+  box-shadow: 0 0 0 2px var(--input-border-focus);
+}
+
+.property-search-box .autocomplete-suggestions li:focus {
+  background: var(--filter-hover);
+  color: var(--primary-green);
+  outline: 2px solid var(--primary-green);
+  outline-offset: -2px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .property-search-box .search-form,
+  .property-search-box .form-group .btn,
+  .property-search-box .autocomplete-suggestions li {
+    transition: none;
   }
   
   .property-search-box .autocomplete-suggestions {
-    background: rgba(17, 24, 39, 0.95);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  .property-search-box .autocomplete-suggestions li {
-    color: #e5e7eb;
-  }
-  
-  .property-search-box .autocomplete-suggestions li:hover {
-    background: rgba(102, 126, 234, 0.1);
-    color: #f3f4f6;
+    animation: none;
   }
 }
+
+
