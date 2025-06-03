@@ -11,7 +11,7 @@ const AboutPage = () => {
             Revolutionizing Housing with <span className="gradient-text">AI Intelligence</span>
           </h1>
           <p className="hero-subtitle">
-            Lyn Housing AI transforms the way you discover, analyze, and secure your perfect home 
+            Lyn Housing AI transforms the way you discover, analyze, and secure your perfect home
             through cutting-edge artificial intelligence and predictive analytics.
           </p>
         </div>
@@ -108,16 +108,16 @@ const AboutPage = () => {
           <h2 className="section-title">Meet the Innovators</h2>
           <div className="team-grid">
             <div className="team-member">
-              <div className="member-avatar">HN</div>
-              <h4>Hieu Nguyen</h4>
-              <p className="member-role">Front-End Lead</p>
-              <p className="member-bio">Work on app design and technical support.</p>
-            </div>
-            <div className="team-member">
               <div className="member-avatar">YF</div>
               <h4>Yanfan Lin</h4>
               <p className="member-role">Back-End Lead</p>
-              <p className="member-bio">Implement back-end features for front-end, establish databases.</p>
+              <p className="member-bio">Implement back-end features and AI integration.</p>
+            </div>
+            <div className="team-member">
+              <div className="member-avatar">HN</div>
+              <h4>Hieu Nguyen</h4>
+              <p className="member-role">Front-End Lead</p>
+              <p className="member-bio">Work on App UX/UI and System Design.</p>
             </div>
             <div className="team-member">
               <div className="member-avatar">FY</div>
@@ -137,10 +137,10 @@ const AboutPage = () => {
             <p>Join thousands of smart homebuyers using AI to make better housing decisions.</p>
             <div className="cta-buttons">
               <Link to="/properties">
-              <button className="btn-primary">Start Your Search</button>
+                <button className="btn-primary">Start Your Search</button>
               </Link>
               <Link to="/register">
-              <button className="btn-secondary">Register</button>
+                <button className="btn-secondary">Register</button>
               </Link>
             </div>
           </div>
