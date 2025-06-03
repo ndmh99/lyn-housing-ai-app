@@ -3,6 +3,7 @@ import ListingCard from '../components/ListingCard';
 import './styles/HomePage.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PropertySearchBox from '../components/PropertySearchBox';
 
 const HomePage = () => {
     const { listings, loading, error } = useListings();
@@ -18,32 +19,13 @@ const HomePage = () => {
                 <div className="hero-content">
                     <h1>Find Your Next Investment Property</h1>
                     <p>Use our AI-powered predictions to discover high-appreciation real estate opportunities</p>
-                    <form
-                        className="search-form"
-                        onSubmit={e => {
-                            e.preventDefault();
-                            if (search.trim()) {
-                                navigate(`/properties/?city=${encodeURIComponent(search.trim())}`);
-                            } else {
-                                navigate('/properties');
-                            }
-                        }}
-                    >
-                        <div className="form-row">
-                            <div className="form-group">
-                                <input
-                                    type="text"
-                                    name="location"
-                                    placeholder="City, Neighborhood, or Postal Code"
-                                    value={search}
-                                    onChange={e => setSearch(e.target.value)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <button type="submit" className="btn">Search Properties</button>
-                            </div>
-                        </div>
-                    </form>
+      <PropertySearchBox
+        initialValue={""}
+        onSubmit={city => {
+          const trimmed = city.trim();
+          navigate(trimmed ? `/properties/?city=${encodeURIComponent(trimmed)}` : '/properties');
+        }}
+      />
                 </div>
             </section>
 
