@@ -24,14 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-sb6vx8b*ol)b!7gzsekgq+ic&-f4^pe5lalv0-1dh-$l2*vxgk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+DEBUG = True
 
-ALLOWED_HOSTS = [
-    'lyn-housing-ai-app-backend.onrender.com',
-    'localhost',
-    '127.0.0.1',
-    '0.0.0.0',
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -133,7 +128,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Allow React frontend to connect (update with your frontend URL)
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:3000",
-    "http://localhost:5173",
-]

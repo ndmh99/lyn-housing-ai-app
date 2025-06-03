@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import HomePage from './pages/HomePage';
 import PropertiesPage from './pages/PropertiesPage';
 import AboutPage from './pages/AboutPage';
@@ -8,21 +9,24 @@ import './App.css';
 
 // Navigation component for the main navigation bar
 function Navigation() {
-  const location = useLocation(); // Get current location
+  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
 
-  // Helper to set 'active' class for the current page link
   const isActive = (path) => {
     return location.pathname === path ? 'active' : '';
   };
 
   return (
     <nav className="main-nav">
-      <ul>
-        <li><Link to="/" className={isActive('/')}>Home</Link></li>
-        <li><Link to="/properties" className={isActive('/properties')}>Properties</Link></li>
-        <li><Link to="/about" className={isActive('/about')}>About</Link></li>
-        <li><Link to="/login" className={isActive('/login')}>Login</Link></li>
-        <li><Link to="/register" className={isActive('/register')}>Register</Link></li>
+      <button className="hamburger" onClick={() => setIsOpen(!isOpen)}>
+        ☰
+      </button>
+      <ul className={isOpen ? 'nav-open' : ''}>
+        <li><Link to="/" className={isActive('/')} onClick={() => setIsOpen(false)}>Home</Link></li>
+        <li><Link to="/properties" className={isActive('/properties')} onClick={() => setIsOpen(false)}>Properties</Link></li>
+        <li><Link to="/about" className={isActive('/about')} onClick={() => setIsOpen(false)}>About</Link></li>
+        <li><Link to="/login" className={isActive('/login')} onClick={() => setIsOpen(false)}>Login</Link></li>
+        <li><Link to="/register" className={isActive('/register')} onClick={() => setIsOpen(false)}>Register</Link></li>
       </ul>
     </nav>
   );
@@ -41,7 +45,7 @@ function App() {
       <header className="main-header">
         <div className="container header-container">
           <div className="logo">
-            <Link to="/"><img src="./src/assets/images/logo.png" alt="LYON AI Logo" /></Link>
+            <Link to="/"><img src="./logo.png" alt="LYN AI Logo" /></Link>
             <span>LYN AI Housing Investment</span>
           </div>
           <Navigation />
