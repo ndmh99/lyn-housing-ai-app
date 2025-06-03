@@ -1,8 +1,13 @@
+/* =============================================================================
+   PROPERTIES PAGE STYLES
+   Main stylesheet for PropertiesPage component with organized sections
+============================================================================= */
+
 /* Import centralized color system */
 @import url('../../styles/colors.css');
 
 /* =============================================================================
-   PROPERTIES PAGE STYLES
+   MAIN PAGE CONTAINER
 ============================================================================= */
 
 .properties-page {
@@ -19,6 +24,7 @@
 
 /* =============================================================================
    FILTERS SECTION
+   Styles for the property filtering interface
 ============================================================================= */
 
 .properties-page .filters-section {
@@ -29,6 +35,7 @@
   box-shadow: var(--shadow-sm);
 }
 
+/* Filters Header */
 .properties-page .filters-header {
   display: flex;
   justify-content: space-between;
@@ -54,6 +61,7 @@
   border-radius: var(--radius-full);
 }
 
+/* Filters Grid Layout */
 .properties-page .filters-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -74,7 +82,12 @@
   letter-spacing: 0.5px;
 }
 
-/* Form Controls */
+/* =============================================================================
+   FORM CONTROLS
+   Shared styles for input elements, selects, and form interactions
+============================================================================= */
+
+/* Input and Select Base Styles */
 .properties-page .filter-group select,
 .properties-page .filter-group input {
   padding: var(--space-3) var(--space-4);
@@ -93,7 +106,7 @@
   box-shadow: 0 0 0 3px var(--input-focus-ring);
 }
 
-/* Price Range Inputs */
+/* Price Range Controls */
 .properties-page .price-range {
   display: flex;
   align-items: center;
@@ -110,7 +123,7 @@
   font-weight: 500;
 }
 
-/* Bedroom Pills */
+/* Bedroom Selection Pills */
 .properties-page .bedroom-pills {
   display: flex;
   gap: var(--space-2);
@@ -140,6 +153,7 @@
 
 /* =============================================================================
    SECTION HEADER
+   Hero section with title, description, and property statistics
 ============================================================================= */
 
 .properties-page .section-header {
@@ -155,6 +169,7 @@
   overflow: hidden;
 }
 
+/* Header Decorative Background Element */
 .properties-page .section-header::before {
   content: '';
   position: absolute;
@@ -167,6 +182,7 @@
   transform: translate(50%, -50%);
 }
 
+/* Header Text Content */
 .properties-page .header-content h2 {
   font-size: 2rem;
   font-weight: 800;
@@ -184,7 +200,7 @@
   z-index: 2;
 }
 
-/* Property Stats */
+/* Property Statistics Display */
 .properties-page .property-stats {
   display: flex;
   gap: var(--space-8);
@@ -213,6 +229,7 @@
 
 /* =============================================================================
    VIEW CONTROLS
+   Toggle buttons for grid/map view and layout density options
 ============================================================================= */
 
 .properties-page .view-controls {
@@ -226,6 +243,7 @@
   box-shadow: var(--shadow-sm);
 }
 
+/* View Toggle Buttons (Grid/Map) */
 .properties-page .view-toggle {
   display: flex;
   gap: var(--space-2);
@@ -254,6 +272,7 @@
   box-shadow: var(--shadow-primary);
 }
 
+/* Layout Density Options (2-col/3-col) */
 .properties-page .layout-options {
   display: flex;
   gap: var(--space-2);
@@ -267,6 +286,7 @@
   color: var(--neutral-text-medium);
   cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 0.875rem;
 }
 
 .properties-page .layout-btn:hover {
@@ -274,19 +294,52 @@
   color: var(--primary-green);
 }
 
+.properties-page .layout-btn.active {
+  background: var(--btn-primary-bg);
+  border-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary);
+}
+
 /* =============================================================================
-   PROPERTY GRID
+   PROPERTY GRID LAYOUT
+   Main grid container with responsive layout density options
 ============================================================================= */
 
 .properties-page .property-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  place-items: center; /* Center items in grid */
   gap: var(--space-8);
-  margin-bottom: var(--space-16);
+  transition: all 0.3s ease;
+}
+
+/* Layout Density Options */
+.properties-page .property-grid.two-col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.properties-page .property-grid.three-col {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Responsive Grid Adjustments */
+@media (max-width: 1200px) {
+  .properties-page .property-grid.three-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .properties-page .property-grid.two-col,
+  .properties-page .property-grid.three-col {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* =============================================================================
    LOADING STATES
+   Styles for loading indicators and skeleton placeholders
 ============================================================================= */
 
 .properties-page .loading-container {
@@ -295,6 +348,7 @@
   padding: var(--space-16) 0;
 }
 
+/* Animated Loading Spinner */
 .properties-page .loading-spinner {
   width: 48px;
   height: 48px;
@@ -309,6 +363,7 @@
   to { transform: rotate(360deg); }
 }
 
+/* Skeleton Loading Cards */
 .properties-page .loading-skeleton {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -350,6 +405,7 @@
 
 /* =============================================================================
    ERROR & EMPTY STATES
+   Styles for error messages and empty state displays
 ============================================================================= */
 
 .properties-page .error-container,
@@ -362,6 +418,7 @@
   box-shadow: var(--shadow-lg);
 }
 
+/* Error and Empty State Icons */
 .properties-page .error-icon,
 .properties-page .empty-icon {
   font-size: 4rem;
@@ -369,6 +426,7 @@
   display: block;
 }
 
+/* Error and Empty State Text */
 .properties-page .error-container h3,
 .properties-page .empty-state h3 {
   font-size: 1.5rem;
@@ -384,6 +442,7 @@
   margin: 0 0 var(--space-8) 0;
 }
 
+/* Retry Button */
 .properties-page .retry-btn {
   padding: var(--space-4) var(--space-8);
   background: var(--btn-primary-bg);
@@ -403,23 +462,129 @@
 }
 
 /* =============================================================================
-   RESPONSIVE DESIGN
+   DEVELOPMENT MESSAGE
+   Styles for development/coming soon features
 ============================================================================= */
 
+.properties-page .development-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--space-16) var(--space-8);
+  background: linear-gradient(135deg, var(--card-bg) 0%, var(--neutral-light) 100%);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--primary-green-soft);
+}
+
+.properties-page .development-icon {
+  font-size: 4rem;
+  margin-bottom: var(--space-6);
+  display: block;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.properties-page .development-message h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary-green);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.properties-page .development-message > p {
+  font-size: 1.125rem;
+  color: var(--neutral-text-medium);
+  margin: 0 0 var(--space-8) 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.properties-page .development-features {
+  background: var(--neutral-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin: var(--space-8) 0;
+  text-align: left;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.properties-page .development-features p {
+  font-weight: 600;
+  color: var(--primary-green);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.properties-page .development-features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.properties-page .development-features li {
+  padding: var(--space-2) 0;
+  color: var(--neutral-text-medium);
+  position: relative;
+  padding-left: var(--space-6);
+}
+
+.properties-page .development-features li::before {
+  content: "✨";
+  position: absolute;
+  left: 0;
+  top: var(--space-2);
+}
+
+.properties-page .switch-to-grid-btn {
+  padding: var(--space-4) var(--space-8);
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.properties-page .switch-to-grid-btn:hover {
+  background: var(--btn-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary-lg);
+}
+
+.properties-page .switch-to-grid-btn .icon {
+  font-size: 1.125rem;
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   Media queries for tablet and mobile breakpoints
+============================================================================= */
+
+/* Tablet Breakpoint (768px and below) */
 @media (max-width: 768px) {
   .properties-page {
     padding-top: 0;
   }
   
+  /* Filters Section Mobile Layout */
   .properties-page .filters-grid {
     grid-template-columns: 1fr;
     gap: var(--space-4);
   }
   
+  /* Header Section Mobile Layout */
   .properties-page .section-header {
     flex-direction: column;
     gap: var(--space-6);
     text-align: center;
+    align-items: center;
     padding: var(--space-6);
   }
   
@@ -428,21 +593,30 @@
     gap: var(--space-6);
   }
   
+  /* View Controls Mobile Layout */
   .properties-page .view-controls {
     flex-direction: column;
     gap: var(--space-4);
   }
   
+  /* Force Single Column Grid on Mobile */
   .properties-page .property-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: var(--space-5);
   }
   
+  /* Loading Skeleton Mobile Layout */
   .properties-page .loading-skeleton {
     grid-template-columns: 1fr;
   }
+  
+  /* Hide Layout Options on Mobile */
+  .properties-page .layout-options {
+    display: none;
+  }
 }
 
+/* Mobile Breakpoint (480px and below) */
 @media (max-width: 480px) {
   .properties-page .container {
     padding: 0 var(--space-4);
@@ -452,11 +626,13 @@
     padding: var(--space-4) 0;
   }
   
+  /* Stack Property Stats Vertically */
   .properties-page .property-stats {
     flex-direction: column;
     gap: var(--space-4);
   }
   
+  /* Full Width View Toggle Buttons */
   .properties-page .view-toggle {
     width: 100%;
     justify-content: center;
@@ -464,5 +640,133 @@
   
   .properties-page .view-btn {
     flex: 1;
+  }
+}
+
+/* =============================================================================
+   PAGINATION CONTROLS
+   Styles for page navigation and pagination controls using design system
+============================================================================= */
+
+.properties-page .pagination-container {
+  margin: var(--space-8) auto var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.properties-page .pagination-container button:hover {
+  transform: none;
+}
+
+/* Pagination Information Display */
+.properties-page .pagination-info {
+  color: var(--neutral-text-medium);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Pagination Controls Layout */
+.properties-page .pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-right: var(--space-10);
+}
+
+/* Previous/Next Buttons - Using Secondary Button System */
+.properties-page .pagination-btn {
+  padding: var(--space-3) var(--space-4);
+  background: var(--btn-secondary-bg);
+  border: 2px solid var(--btn-secondary-border);
+  border-radius: var(--radius-lg);
+  color: var(--btn-secondary-text);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  /* transition: all 0.3s ease; */
+  min-width: 80px;
+}
+
+.properties-page .pagination-btn:hover:not(:disabled) {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border-color: var(--btn-primary-bg);
+  box-shadow: 0 4px 12px var(--primary-green-20);
+}
+
+.properties-page .pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--neutral-light);
+  color: var(--neutral-text-light);
+  border-color: var(--neutral-border);
+}
+
+/* Page Number Buttons Container */
+.properties-page .page-numbers {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* Individual Page Number Buttons - Card System */
+.properties-page .page-btn {
+  width: 40px;
+  height: 40px;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  color: var(--neutral-text-dark);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--card-shadow);
+}
+
+.properties-page .page-btn:hover {
+  background: var(--primary-green-05);
+  border-color: var(--primary-green);
+  color: var(--primary-green);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.properties-page .page-btn.active {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border-color: var(--btn-primary-bg);
+  box-shadow: 0 4px 12px var(--primary-green-20);
+}
+
+/* Responsive Pagination Adjustments */
+@media (max-width: 768px) {
+  .properties-page .pagination-container {
+    margin-top: var(--space-12);
+    gap: var(--space-3);
+  }
+  
+  .properties-page .pagination-controls {
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+  
+  .properties-page .pagination-btn {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.75rem;
+    min-width: 70px;
+  }
+  
+  .properties-page .page-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 0.75rem;
+  }
+  
+  .properties-page .pagination-info {
+    font-size: 0.75rem;
   }
 }
