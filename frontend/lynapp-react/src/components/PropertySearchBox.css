@@ -44,7 +44,7 @@
   position: relative;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
-  border: 2px solid var(--primary-green);
+  border: 3px solid transparent;
   border-radius: var(--radius-3xl);
   padding: var(--space-2);
   box-shadow: 
@@ -53,7 +53,17 @@
     0 -1px 0 rgba(0, 0, 0, 0.02) inset;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   overflow: visible;
+  animation: borderFlow 3s infinite linear;
 }
+@keyframes borderFlow {
+  0% { border-color: rgb(0, 200, 0); }
+  25% { border-color: rgb(0, 150, 0); }
+  50% { border-color: rgb(0, 61, 0); }
+  75% { border-color: rgb(0, 150, 0); }
+  100% { border-color: rgb(0, 200, 0); }
+}
+
+
 
 /* Form hover state - subtle lift effect */
 .property-search-box .search-form:hover {
@@ -66,13 +76,7 @@
 
 /* Form focus state - enhanced shadow with brand color */
 .property-search-box .search-form:focus-within {
-  transform: translateY(-1px);
-  border-color: var(--cta-green);
-  box-shadow: 
-    var(--shadow-2xl),
-    var(--shadow-primary-lg),
-    0 0 0 3px var(--input-focus-ring),
-    0 1px 0 rgba(255, 255, 255, 0.9) inset;
+
 }
 
 /* =============================================================================

@@ -102,7 +102,7 @@ header {
 }
 
 /* =============================================================================
-   MINIMAL NAVIGATION DESIGN
+   NAVIGATION DESIGN
 ============================================================================= */
 
 .main-nav ul {
@@ -159,6 +159,66 @@ header {
   width: 1px;
   height: 32px;
   background: var(--neutral-divider);
+}
+
+/* =============================================================================
+   SIMPLE HAMBURGER MENU
+============================================================================= */
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--neutral-text-dark);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+  
+  .main-nav::before {
+    display: none;
+  }
+  
+  .main-nav {
+    padding-left: 0;
+  }
+    .main-nav ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--nav-bg);
+    border: 1px solid var(--nav-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    flex-direction: column;
+    min-width: 150px;
+    z-index: 1000;
+  }
+  
+  .main-nav ul.nav-open {
+    display: flex;
+    padding: 5px;
+  }
+  
+  .main-nav ul li {
+    width: 100%;
+  }
+    .main-nav ul li a {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--neutral-divider);
+    text-transform: none;
+    font-size: 0.9rem;
+  }
+  
+  .main-nav ul li:last-child a {
+    border-bottom: none;
+  }
 }
 
 /* =============================================================================
@@ -474,8 +534,6 @@ footer::after {
 @media (max-width: 768px) {
   .header-container {
     padding: var(--space-3) var(--space-5);
-    flex-direction: column;
-    gap: var(--space-4);
   }
   
   .logo span {
@@ -485,27 +543,7 @@ footer::after {
   .logo img {
     height: 48px;
   }
-  
-  .main-nav {
-    padding-left: 0;
-  }
-  
-  .main-nav::before {
-    display: none;
-  }
-  
-  .main-nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-2);
-  }
-  
-  .main-nav ul li a {
-    padding: var(--space-2) var(--space-3);
-    font-size: 0.75rem;
-  }
-  
-  footer {
+    footer {
     padding: var(--space-12) 0 0 0;
   }
 
@@ -534,9 +572,6 @@ footer::after {
   .contact-info {
     text-align: center;
   }
-
-  .footer-bottom {
-  }
 }
 
 @media (max-width: 480px) {
@@ -550,15 +585,6 @@ footer::after {
   
   .logo img {
     height: 44px;
-  }
-  
-  .main-nav ul {
-    gap: var(--space-1);
-  }
-  
-  .main-nav ul li a {
-    padding: var(--space-2);
-    font-size: 0.7rem;
   }
 
   .footer-container {
@@ -583,294 +609,6 @@ footer::after {
 }
 
 /* =============================================================================
-   MOBILE HAMBURGER NAVIGATION SYSTEM - ENHANCED WITH CLOSE FUNCTIONALITY
-   
-   Features:
-   - CSS-only hamburger toggle (no JS needed)
-   - Smooth slide-out mobile menu
-   - Overlay background with blur effect
-   - Click overlay to close functionality
-   - Visual close button in mobile menu
-   - Enhanced accessibility and user experience
-============================================================================= */
-
-/* Hidden checkbox for CSS-only toggle functionality */
-.mobile-menu-toggle {
-  display: none;
-}
-
-/* Hamburger button styling */
-.hamburger-btn {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  position: relative;
-  z-index: 1001;
-}
-
-.hamburger-btn span {
-  width: 24px;
-  height: 2px;
-  background: var(--neutral-text-dark);
-  border-radius: var(--radius-full);
-  transition: all 0.3s ease;
-  transform-origin: center;
-}
-
-.hamburger-btn span:not(:last-child) {
-  margin-bottom: 4px;
-}
-
-/* Hamburger animation when menu is open */
-.mobile-menu-toggle:checked ~ .header-container .hamburger-btn span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.mobile-menu-toggle:checked ~ .header-container .hamburger-btn span:nth-child(2) {
-  opacity: 0;
-  transform: translateX(20px);
-}
-
-.mobile-menu-toggle:checked ~ .header-container .hamburger-btn span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -6px);
-}
-
-/* Enhanced mobile navigation overlay - clickable to close */
-.mobile-nav-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  z-index: 999;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  cursor: pointer; /* Indicates clickable */
-}
-
-.mobile-menu-toggle:checked ~ .mobile-nav-overlay {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Enhanced mobile navigation menu */
-.mobile-nav {
-  position: fixed;
-  top: 0;
-  right: -300px;
-  width: 280px;
-  height: 100vh;
-  background: var(--neutral-white);
-  border-left: 3px solid var(--primary-green);
-  box-shadow: var(--shadow-2xl);
-  z-index: 1000;
-  padding: var(--space-6);
-  transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  overflow-y: auto;
-  cursor: default; /* Prevents overlay click from propagating */
-}
-
-.mobile-menu-toggle:checked ~ .mobile-nav {
-  right: 0;
-}
-
-/* Mobile nav header with close button */
-.mobile-nav-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--space-8);
-  padding-bottom: var(--space-4);
-  border-bottom: 1px solid var(--neutral-divider);
-}
-
-.mobile-nav-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--neutral-text-dark);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Visual close button */
-.mobile-nav-close {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--neutral-light);
-  border: 1px solid var(--neutral-border);
-  border-radius: var(--radius-lg);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: var(--neutral-text-medium);
-  font-size: 1.2rem;
-  position: relative;
-}
-
-.mobile-nav-close:hover {
-  background: var(--primary-green);
-  color: var(--neutral-white);
-  border-color: var(--primary-green);
-  transform: scale(1.05);
-}
-
-/* Close button X styling */
-.mobile-nav-close::before,
-.mobile-nav-close::after {
-  content: '';
-  position: absolute;
-  width: 14px;
-  height: 2px;
-  background: currentColor;
-  border-radius: var(--radius-full);
-}
-
-.mobile-nav-close::before {
-  transform: rotate(45deg);
-}
-
-.mobile-nav-close::after {
-  transform: rotate(-45deg);
-}
-
-/* Mobile navigation list */
-.mobile-nav .nav-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.mobile-nav .nav-list li a {
-  display: block;
-  color: var(--neutral-text-dark);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  padding: var(--space-4) var(--space-5);
-  border-radius: var(--radius-lg);
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-size: 0.9rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.mobile-nav .nav-list li a::before {
-  content: '';
-  position: absolute;
-  left: -100%;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--primary-green-05);
-  transition: left 0.3s ease;
-  z-index: -1;
-}
-
-.mobile-nav .nav-list li a:hover::before,
-.mobile-nav .nav-list li a.active::before {
-  left: 0;
-}
-
-.mobile-nav .nav-list li a:hover,
-.mobile-nav .nav-list li a.active {
-  color: var(--primary-green);
-  border-left: 3px solid var(--primary-green);
-  padding-left: var(--space-6);
-  transform: translateX(4px);
-}
-
-/* Add subtle animation when menu opens */
-.mobile-nav .nav-list li {
-  opacity: 0;
-  transform: translateX(20px);
-  transition: all 0.3s ease;
-}
-
-.mobile-menu-toggle:checked ~ .mobile-nav .nav-list li {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.mobile-menu-toggle:checked ~ .mobile-nav .nav-list li:nth-child(1) { transition-delay: 0.1s; }
-.mobile-menu-toggle:checked ~ .mobile-nav .nav-list li:nth-child(2) { transition-delay: 0.15s; }
-.mobile-menu-toggle:checked ~ .mobile-nav .nav-list li:nth-child(3) { transition-delay: 0.2s; }
-.mobile-menu-toggle:checked ~ .mobile-nav .nav-list li:nth-child(4) { transition-delay: 0.25s; }
-.mobile-menu-toggle:checked ~ .mobile-nav .nav-list li:nth-child(5) { transition-delay: 0.3s; }
-
-/* =============================================================================
-   RESPONSIVE DESIGN FOR HAMBURGER NAVIGATION
-============================================================================= */
-
-@media (max-width: 768px) {
-  /* Show hamburger button, hide desktop nav */
-  .hamburger-btn {
-    display: flex;
-  }
-  
-  .main-nav {
-    display: none;
-  }
-  
-  /* Reset header layout for mobile */
-  .header-container {
-    padding: var(--space-3) var(--space-5);
-    position: relative;
-    flex-direction: row; /* Override responsive styles */
-    gap: 0; /* Override responsive styles */
-  }
-  
-  .logo span {
-    font-size: 1.2rem;
-  }
-  
-  .logo img {
-    height: 48px;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-container {
-    padding: var(--space-3) var(--space-4);
-  }
-  
-  .logo span {
-    font-size: 1.1rem;
-  }
-  
-  .logo img {
-    height: 44px;
-  }
-  
-  /* Full width mobile menu on very small screens */
-  .mobile-nav {
-    width: 100%;
-    right: -100%;
-    padding: var(--space-5);
-  }
-  
-  .mobile-menu-toggle:checked ~ .mobile-nav {
-    right: 0;
-  }
-}
-
-/* =============================================================================
    ACCESSIBILITY & REDUCED MOTION
 ============================================================================= */
 
@@ -890,27 +628,4 @@ footer::after {
 .social-link:focus-visible {
   outline: 2px solid var(--accent-gold);
   outline-offset: 2px;
-}
-
-/* Focus states for hamburger button */
-.hamburger-btn:focus-visible {
-  outline: 2px solid var(--primary-green);
-  outline-offset: 2px;
-  border-radius: var(--radius-md);
-}
-
-/* Focus states for mobile nav links */
-.mobile-nav .nav-list li a:focus-visible {
-  outline: 2px solid var(--primary-green);
-  outline-offset: 2px;
-}
-
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce) {
-  .hamburger-btn span,
-  .mobile-nav-overlay,
-  .mobile-nav,
-  .mobile-nav .nav-list li a {
-    transition: none;
-  }
 }
