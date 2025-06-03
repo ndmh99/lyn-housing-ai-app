@@ -41,7 +41,7 @@ function App() {
       <header className="main-header">
         <div className="container header-container">
           <div className="logo">
-            <Link to="/"><img src="https://raw.githubusercontent.com/ndmh99/lyonplatform/refs/heads/main/img/logo.png" alt="LYON AI Logo" /></Link>
+            <Link to="/"><img src="./src/assets/images/logo.png" alt="LYON AI Logo" /></Link>
             <span>LYN AI Housing Investment</span>
           </div>
           <Navigation />
