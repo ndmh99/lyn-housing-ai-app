@@ -5,6 +5,7 @@ import PropertiesPage from './pages/PropertiesPage';
 import AboutPage from './pages/AboutPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import PropertyDetailPage from './pages/PropertyDetailPage';
 import './App.css';
 
 // Navigation component for the main navigation bar
@@ -45,7 +46,7 @@ function App() {
       <header className="main-header">
         <div className="container header-container">
           <div className="logo">
-            <Link to="/"><img src="./logo.png" alt="LYN AI Logo" /></Link>
+            <Link to="/"><img src="/logo.png" alt="LYN AI Logo" /></Link>
             <span>LYN AI Housing Investment</span>
           </div>
           <Navigation />
@@ -56,6 +57,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/properties" element={<PropertiesPage />} />
+        <Route path="/properties/:id" element={<PropertyDetailPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

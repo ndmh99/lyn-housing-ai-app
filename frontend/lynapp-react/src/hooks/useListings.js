@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
-import { getListings, searchListings } from '../services/api';
+import { searchListings, listingsAPI } from '../services/api';
 
 /**
  * Custom hook to manage listings data fetching and state
  * 
+ * @param {string|number} param - City name (string) to filter listings or listing ID (number) to fetch specific listing
  * @returns {Object} Object containing listings, loading state, and error state
- * @returns {Array} returns.listings - Array of listing objects
+ * @returns {Array|Object} returns.listings - Array of listing objects or single listing object
  * @returns {boolean} returns.loading - Loading state indicator
  * @returns {string|null} returns.error - Error message or null
  */
-export const useListings = (city = '') => {
+export const useListings = (param = '') => {
   // This creates a box to store our house listings (starts empty)
   const [listings, setListings] = useState([]);
   
@@ -25,8 +26,16 @@ export const useListings = (city = '') => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // Use searchListings if city is provided, else get all
-        const data = await searchListings(city);
+        let data;
+        
+        // Check if param is a number (listing ID) or string (city)
+        if (typeof param === 'number') {
+          data = await listingsAPI.getListing(param).then(res => res.data); // Fetch specific listing by ID
+        } else {
+          // Use searchListings if city is provided, else get all
+          data = await searchListings(param);
+        }
+        
         // Put the house listings in our storage box
         setListings(data);
         setError(null); // Clear any previous errors
@@ -46,7 +55,7 @@ export const useListings = (city = '') => {
 
     // Actually run the function to get house data
     fetchData();
-  }, [city]); // The empty [] means "only run this once when hook loads"
+  }, [param]); // Re-run when param changes
 
   // Return the data so components can use it
   return {

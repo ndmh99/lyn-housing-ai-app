@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './ListingCard.css';
 
 const ListingCard = ({ listing }) => {
+
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-CA', {
       style: 'currency',
@@ -49,7 +50,7 @@ const ListingCard = ({ listing }) => {
           {listing.description?.length > 120 ? '...' : ''}
         </p>
         
-        <Link to={`/property/${listing.id}`}>
+        <Link to={`/properties/${listing.id}`}>
           <button className="view-details-btn">
             View Details
           </button>
