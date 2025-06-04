@@ -1,0 +1,7 @@
+.price-history-chart{}
+
+
+.price-history-chart .chart-wrap {
+  height: 300px;
+  margin-top: 1rem;
+}

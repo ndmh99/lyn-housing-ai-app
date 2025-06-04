@@ -1,0 +1,102 @@
+/* ScoreBadge.css */
+.score-badge {
+  width: 300px;
+  border: 1px solid #999;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.score-badge-content {
+  padding: 11px 9px 0;
+}
+
+.score-badge-address {
+  font: 15px/19px 'Arial Black', Gadget, sans-serif;
+  font-weight: normal;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.score-badge-subtitle {
+  font: 12px/14px Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #666;
+  margin: 2px 0 4px 0;
+  padding: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.score-badges-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 30%;
+  margin-bottom: 8px;
+}
+
+.score-images {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.score-link {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+}
+
+.score-image {
+  border-radius: 0;
+  box-shadow: none;
+  outline: 0;
+  color: transparent;
+  margin: 0 0 0 2%;
+  float: left;
+  padding: 0;
+  width: 30.666667%;
+  background: none;
+  border: 0;
+  height: auto;
+}
+
+.score-badge-footer {
+  color: #999;
+  font-size: 11px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  line-height: 13px;
+  clear: both;
+  padding: 8px 0;
+  margin: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.score-badge-link {
+  color: #999;
+  font-size: 11px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  line-height: 13px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.score-badge-link:hover {
+  text-decoration: underline;
+}
+
+/* Handle image loading errors gracefully */
+.score-image[style*="display: none"] {
+  display: none !important;
+}
