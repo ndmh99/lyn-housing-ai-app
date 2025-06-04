@@ -310,7 +310,6 @@
 .properties-page .property-grid {
   display: grid;
   place-items: center; /* Center items in grid */
-  gap: var(--space-8);
   transition: all 0.3s ease;
 }
 
