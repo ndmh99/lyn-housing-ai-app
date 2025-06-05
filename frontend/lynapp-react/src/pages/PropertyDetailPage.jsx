@@ -1,8 +1,10 @@
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useListings } from '../hooks/useListings';
 import PropertyMap from '../components/PropertyMap';
 import PriceHistoryChart from '../components/PriceHistoryChart';
 import ScoreBadge from '../components/ScoreBadge';
+import ImageGallery from '../components/ImageGallery';
 import './styles/PropertyDetailPage.css';
 
 const PropertyDetailPage = () => {
@@ -16,6 +18,9 @@ const PropertyDetailPage = () => {
   if (error) return <div className="error">{error}</div>;
   if (!property) return <div className="error">Property not found</div>;
 
+  // create an array to store the image URLs
+  const imageUrls = [property.image_url, property.image_url, property.image_url].filter(Boolean);
+
   return (
     <div className="property-detail-page">
       <button className="back-button" onClick={() => navigate(-1)}>
@@ -24,7 +29,10 @@ const PropertyDetailPage = () => {
       
       <div className="property-detail-container">
         <div className="property-images">
-          <img src={property.image_url} alt={property.title} className="main-image" />
+          <ImageGallery
+            images={imageUrls}
+            alt={property.title}
+          />
         </div>
         
         <div className="property-info">
