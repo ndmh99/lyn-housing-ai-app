@@ -22,8 +22,6 @@ const ScoreBadge = ({ streetAddress, city, province }) => {
   return (
     <div className="score-badge">
       <div className="score-badge-content">
-        <h2 className="score-badge-address">{streetAddress}</h2>
-        <h3 className="score-badge-subtitle">Walker's Paradise</h3>
         
         <div className="score-badges-container">
           <div className="score-images">
@@ -60,17 +58,6 @@ const ScoreBadge = ({ streetAddress, city, province }) => {
             </a>
           </div>
         </div>
-
-        <p className="score-badge-footer">
-          <a 
-            rel="nofollow"
-            className="score-badge-link"
-            target="_blank"
-            href={exploreUrl}
-          >
-            Explore {city} on Walk Score
-          </a>
-        </p>
       </div>
     </div>
   );

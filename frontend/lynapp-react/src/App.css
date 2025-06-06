@@ -14,14 +14,6 @@
    APP LAYOUT & GLOBAL STYLES
 ============================================================================= */
 
-#root {
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 .container {
   max-width: 1200px;
   margin: 0 auto;

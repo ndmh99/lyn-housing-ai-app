@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HomePage from './pages/HomePage';
 import PropertiesPage from './pages/PropertiesPage';
 import AboutPage from './pages/AboutPage';
@@ -35,7 +35,36 @@ function Navigation() {
 
 // Main App component
 function App() {
-  const location = useLocation(); // Get current location
+  const location = useLocation();
+
+  // Add useEffect to load GTranslate
+  useEffect(() => {
+    // Set up GTranslate configuration
+    window.gtranslateSettings = {
+      "default_language": "en",
+      "languages": ["en", "fr", "zh-CN", "vi"],
+      "wrapper_selector": ".gtranslate_wrapper",
+      "flag_style": "2d",
+      "flag_size": 24,
+      "widget_look": "flags_name",
+      "alt_flags": {
+        "en": "canada",
+      }
+    };
+
+    // Load GTranslate script dynamically
+    const script = document.createElement('script');
+    script.src = 'https://cdn.gtranslate.net/widgets/latest/float.js';
+    script.defer = true;
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup on unmount
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
 
   // List of paths where the footer should be hidden
   const hideFooter = ['/login', '/register', '/about'].includes(location.pathname);
@@ -52,6 +81,9 @@ function App() {
           <Navigation />
         </div>
       </header>
+
+      {/* GTranslate Wrapper Div - Move to better location */}
+      <div className="gtranslate_wrapper"></div>
 
       {/* Define routes for different pages */}
       <Routes>
