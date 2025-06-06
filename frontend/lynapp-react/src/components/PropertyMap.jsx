@@ -55,7 +55,7 @@ const PropertyMap = ({ property }) => {
   }
 
   return (
-    <div className="property-map" style={{ height: '300px', width: '100%' }}>
+    <div className="property-map" style={{ height: '100%', width: '100%' }}>
       <MapContainer
         center={[coords.lat, coords.lng]}
         zoom={15}
