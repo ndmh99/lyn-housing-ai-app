@@ -1,14 +1,9 @@
-/* Import centralized color system */
-@import url('../../styles/colors.css');
+/* filepath: c:\Users\Hieu\Desktop\Simple Web Project\In Developing\Lyn Housing AI App\frontend\lynapp-react\src\pages\guest\styles\HomePage.css */
+@import url('../../../styles/colors.css');
 
-/* =============================================================================
-   HOME PAGE STYLES - UPDATED WITH COLOR SYSTEM
-============================================================================= */
-
-/* Hero Section */
 .home-page .hero {
     height: 90vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/images/hero-bg.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../../assets/images/hero-bg.png');
     background-size: cover;
     background-position: center;
     color: var(--neutral-white);
@@ -59,71 +54,12 @@
     box-shadow: var(--shadow-primary-lg);
 }
 
-/* Search Form */
-/* .home-page .search-form {
-    background: var(--card-bg);
-    padding: var(--space-8);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lg);
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 10;
-    transition: all 0.3s ease;
-    border: 2px solid var(--primary-green);
-}
-
-.home-page .search-form:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-xl);
-}
-
-.home-page .form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-}
-
-.home-page .form-group {
-    flex: 1 1 200px;
-}
-
-.home-page .form-group label {
-    display: block;
-    margin-bottom: var(--space-2);
-    font-weight: 600;
-    color: var(--neutral-text-dark);
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.home-page .form-group input,
-.home-page .form-group select {
-    width: 100%;
-    padding: var(--space-3) var(--space-4);
-    border: 2px solid var(--input-border);
-    border-radius: var(--radius-lg);
-    font-size: 1rem;
-    background-color: var(--input-bg);
-    color: var(--input-text);
-    transition: all 0.3s ease;
-}
-
-.home-page .form-group input:focus,
-.home-page .form-group select:focus {
-    outline: none;
-    border-color: var(--input-border-focus);
-    box-shadow: 0 0 0 3px var(--input-focus-ring);
-} */
-
-/* Features Section */
 .home-page .features {
     padding: var(--space-10) 0;
-    background-color: var(--neutral-soft); /* updated from #f0efef */
-    border-radius: var(--radius-lg); /* updated from 10px */
+    background-color: var(--neutral-soft);
+    border-radius: var(--radius-lg);
     padding-top: 0;
-    margin-top: var(--space-8); /* updated from 30px */
+    margin-top: var(--space-8);
 }
 
 .home-page .features-grid {
@@ -175,7 +111,6 @@
     line-height: 1.6;
 }
 
-/* Properties Section */
 .home-page .section-header {
     text-align: center;
     padding-top: var(--space-8);
@@ -206,7 +141,6 @@
     padding: 0 var(--space-5);
 }
 
-/* Autocomplete dropdown */
 .home-page .autocomplete-suggestions {
     position: absolute;
     top: 100%;
@@ -242,11 +176,10 @@
     border-bottom: none;
 }
 
-/* Scroll Down Arrow */
 .home-page .scroll-down-arrow {
     text-align: center;
     font-size: 3.5rem;
-    color: #009C3F; /* updated from #007bff to brand color */
+    color: #009C3F;
     animation: bounce 1.5s infinite;
     cursor: pointer;
     display: flex;
@@ -267,7 +200,6 @@
     }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .home-page .hero {
         height: 90vh;

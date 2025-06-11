@@ -1,12 +1,13 @@
+// filepath: c:\Users\Hieu\Desktop\Simple Web Project\In Developing\Lyn Housing AI App\frontend\lynapp-react\src\pages\guest\PropertyDetailPage.jsx
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useListings } from '../hooks/useListings';
-import PropertyMap from '../components/PropertyMap';
-import PriceHistoryChart from '../components/PriceHistoryChart';
-import ScoreBadge from '../components/ScoreBadge';
-import ImageGallery from '../components/ImageGallery';
-import RealtorInfo from '../components/RealtorInfo';
-import SimpleToast from '../components/SimpleToast';
+import { useListings } from '../../hooks/useListings';
+import PropertyMap from '../../components/PropertyMap';
+import PriceHistoryChart from '../../components/PriceHistoryChart';
+import ScoreBadge from '../../components/ScoreBadge';
+import ImageGallery from '../../components/ImageGallery';
+import RealtorInfo from '../../components/RealtorInfo';
+import SimpleToast from '../../components/SimpleToast';
 import './styles/PropertyDetailPage.css';
 
 const PropertyDetailPage = () => {

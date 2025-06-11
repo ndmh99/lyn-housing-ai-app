@@ -1,0 +1,36 @@
+@import url('../../../styles/colors.css');
+
+.user-dashboard-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: var(--space-8);
+  background-color: var(--neutral-bg-light);
+  text-align: center;
+}
+
+.user-dashboard-page .dashboard-container {
+  background-color: var(--neutral-white);
+  padding: var(--space-10);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  max-width: 800px;
+  width: 100%;
+}
+
+.user-dashboard-page .dashboard-container h1 {
+  color: var(--primary-green);
+  font-size: 2.5rem;
+  margin-bottom: var(--space-4);
+}
+
+.user-dashboard-page .dashboard-container p {
+  color: var(--neutral-text-medium);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-6);
+}
+
+/* Add more specific styles for dashboard components as needed */

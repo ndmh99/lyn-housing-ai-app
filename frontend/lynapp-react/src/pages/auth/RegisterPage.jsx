@@ -1,3 +1,4 @@
+// filepath: c:\Users\Hieu\Desktop\Simple Web Project\In Developing\Lyn Housing AI App\frontend\lynapp-react\src\pages\auth\RegisterPage.jsx
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/RegisterPage.css'; // We'll create this CSS file next
