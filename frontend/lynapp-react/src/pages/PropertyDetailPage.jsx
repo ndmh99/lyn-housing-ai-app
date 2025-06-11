@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useListings } from '../hooks/useListings';
 import PropertyMap from '../components/PropertyMap';
 import PriceHistoryChart from '../components/PriceHistoryChart';
 import ScoreBadge from '../components/ScoreBadge';
 import ImageGallery from '../components/ImageGallery';
+import RealtorInfo from '../components/RealtorInfo';
+import SimpleToast from '../components/SimpleToast';
 import './styles/PropertyDetailPage.css';
 
 const PropertyDetailPage = () => {
@@ -12,6 +14,13 @@ const PropertyDetailPage = () => {
   const navigate = useNavigate();
 
   const { listings: property, loading, error } = useListings(parseInt(id));
+
+  // State for our simple toast
+  const [toastMessage, setToastMessage] = useState('');
+
+  const handleActionClick = () => {
+    setToastMessage('Please log in or register to use this feature.');
+  };
 
   if (loading) return <div className="loading">Loading property details...</div>;
   if (error) return <div className="error">{error}</div>;
@@ -28,16 +37,16 @@ const PropertyDetailPage = () => {
       <div className="property-detail-container">
         {/* Left Column*/}
         <div className="property-left-section">
-          {/* Image Gallery */}
-          <div className="property-images">
-            <ImageGallery
-              images={imageUrls}
-              alt={property.title}
-            />
-          </div>
 
           {/* Property Info Container */}
           <div className="property-info-container">
+            {/* Image Gallery */}
+            <div className="property-images">
+              <ImageGallery
+                images={imageUrls}
+                alt={property.title}
+              />
+            </div>
             {/* Header Information */}
             <div className="property-header">
               <h1>{property.title}</h1>
@@ -54,6 +63,23 @@ const PropertyDetailPage = () => {
               <p>{property.description}</p>
             </div>
           </div>
+
+          <div className="realtor-info-separator"></div>
+
+          {/* Realtor Info Section */}
+          {(() => {
+            const mockRealtor = {
+              name: 'Jane Doe',
+              phone: '123-456-7890',
+              email: 'jane.doe@lynrealty.com',
+              propertiesListed: 124,
+              experience: 8,
+              degree: 'B.Com, Real Estate',
+              rating: 4.8,
+              imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+            };
+            return <RealtorInfo realtor={mockRealtor} />;
+          })()}
         </div>
 
         {/* Right Column */}
@@ -85,12 +111,20 @@ const PropertyDetailPage = () => {
 
           {/* Action Buttons */}
           <div className="contact-section">
-            <button className="ai-analysis">Magic LynAI</button>
-            <button className="schedule-button">Schedule Viewing</button>
-            <button className="favorite-button"> ♥ Add to Favorites</button>
+            <button className="ai-analysis" onClick={handleActionClick}>Magic LynAI</button>
+            <button className="schedule-button" onClick={handleActionClick}>Schedule Viewing</button>
+            <button className="favorite-button" onClick={handleActionClick}>♥ Add to Favorites</button>
           </div>
         </div>
       </div>
+      
+      {/* Conditionally render the toast */}
+      {toastMessage && (
+        <SimpleToast 
+          message={toastMessage} 
+          onClose={(() => setToastMessage(''))} 
+        />
+      )}
     </div>
   );
 };

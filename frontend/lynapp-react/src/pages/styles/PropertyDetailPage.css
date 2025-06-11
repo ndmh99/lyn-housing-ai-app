@@ -32,6 +32,7 @@
     & .property-left-section {
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         gap: var(--space-6);
     }
 
@@ -101,6 +102,25 @@
             line-height: 1.6;
             margin: 0;
         }
+    }
+
+    & .realtor-info-separator {
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--accent-navy), transparent);
+        margin: var(--space-4) 0;
+        position: relative;
+    }
+
+    & .realtor-info-separator::after {
+        content: '◆'; /* A diamond shape */
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--neutral-soft); 
+        color: var(--accent-navy);
+        padding: 0 var(--space-2);
+        font-size: 1rem;
     }
 
     /* Location Section */

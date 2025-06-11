@@ -1,5 +1,3 @@
-/* ListingCard styles - add your CSS here when ready */
-
 .listing-card {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
@@ -15,20 +13,20 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.listing-image {
+.listing-card .listing-image {
   position: relative;
   width: 100%;
   height: 250px;
   overflow: hidden;
 }
 
-.listing-image img {
+.listing-card .listing-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.price-tag {
+.listing-card .price-tag {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -41,31 +39,31 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.listing-content {
+.listing-card .listing-content {
   padding: 20px;
 }
 
-.listing-title {
+.listing-card .listing-title {
   font-size: 20px;
   font-weight: 600;
   margin: 0 0 12px 0;
   color: #333;
 }
 
-.listing-address {
+.listing-card .listing-address {
   color: #666;
   margin: 0 0 16px 0;
   font-size: 14px;
 }
 
-.listing-details {
+.listing-card .listing-details {
   display: flex;
   gap: 8px;
   margin: 16px 0;
   flex-wrap: wrap;
 }
 
-.detail-item {
+.listing-card .detail-item {
   background: #f8f9fa;
   padding: 6px 12px;
   border-radius: 16px;
@@ -74,14 +72,14 @@
   border: 1px solid #e9ecef;
 }
 
-.listing-description {
+.listing-card .listing-description {
   color: #666;
   line-height: 1.5;
   margin: 16px 0 20px 0;
   font-size: 14px;
 }
 
-.view-details-btn {
+.listing-card .view-details-btn {
   width: 100%;
   background: #007bff;
   color: white;
@@ -94,7 +92,7 @@
   transition: background-color 0.3s ease;
 }
 
-.view-details-btn:hover {
+.listing-card .view-details-btn:hover {
   background: #0056b3;
 }
 
@@ -105,12 +103,12 @@
     max-width: 100%;
   }
   
-  .listing-details {
+  .listing-card .listing-details {
     flex-direction: column;
     gap: 6px;
   }
   
-  .detail-item {
+  .listing-card .detail-item {
     text-align: center;
   }
 }

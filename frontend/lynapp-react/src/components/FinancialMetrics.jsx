@@ -7,24 +7,27 @@ const FinancialMetrics = ({ historyData }) => {
 
     const prices = historyData.map(item => item.price);
     const [firstPrice, lastPrice] = [prices[0], prices[prices.length - 1]];
-    
+
     // Calculate all metrics once
     const averagePrice = prices.reduce((sum, price) => sum + price, 0) / prices.length;
     const maxPrice = Math.max(...prices);
     const minPrice = Math.min(...prices);
-    
+
     // Volatility calculation
     const variance = prices.reduce((sum, price) => sum + Math.pow(price - averagePrice, 2), 0) / prices.length;
     const volatility = (Math.sqrt(variance) / averagePrice) * 100;
-    
+
     // Other calculations
     const totalReturn = ((lastPrice - firstPrice) / firstPrice) * 100;
-    const recentChange = prices.length > 1 
-      ? ((lastPrice - prices[prices.length - 2]) / prices[prices.length - 2]) * 100 
+    const recentChange = prices.length > 1
+      ? ((lastPrice - prices[prices.length - 2]) / prices[prices.length - 2]) * 100
       : 0;
     const currentVsPeak = ((lastPrice - maxPrice) / maxPrice) * 100;
+
+    const trend = currentVsPeak > 5 ? 'UP' : currentVsPeak < -5 ? 'DOWN' : 'FLAT';
+
     
-    const trend = totalReturn > 5 ? 'UP' : totalReturn < -5 ? 'DOWN' : 'FLAT';
+    const yearsSinceBuilt = "n/a";
 
     return {
       totalReturn,
@@ -34,7 +37,8 @@ const FinancialMetrics = ({ historyData }) => {
       volatility,
       minPrice,
       maxPrice,
-      averagePrice
+      averagePrice,
+      yearsSinceBuilt
     };
   }, [historyData]);
 
@@ -52,14 +56,14 @@ const FinancialMetrics = ({ historyData }) => {
   // Metric configuration for cleaner JSX
   const metricItems = [
     {
-      label: 'Total Return',
-      value: `${metrics.totalReturn.toFixed(1)}%`,
-      className: metrics.totalReturn >= 0 ? 'positive' : 'negative'
-    },
-    {
       label: 'Trend',
       value: metrics.trend,
       className: metrics.trend === 'UP' ? 'positive' : metrics.trend === 'DOWN' ? 'negative' : 'neutral'
+    },
+    {
+      label: `Total Return ${new Date().getFullYear() - new Date(historyData[0].date).getFullYear()}Y`,
+      value: `${metrics.totalReturn.toFixed(1)}%`,
+      className: metrics.totalReturn >= 0 ? 'positive' : 'negative'
     },
     {
       label: 'Recent Change',
@@ -85,7 +89,12 @@ const FinancialMetrics = ({ historyData }) => {
       label: 'Average Price',
       value: `$${Math.round(metrics.averagePrice).toLocaleString()}`,
       className: 'default'
-    }
+    },
+    {
+      label: 'Years Since Built',
+      value: `${metrics.yearsSinceBuilt}`,
+      className: 'default'
+    },
   ];
 
   return (
