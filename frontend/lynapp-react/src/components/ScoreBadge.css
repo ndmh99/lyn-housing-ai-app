@@ -9,27 +9,27 @@
   border-radius: var(--radius-md);
 }
 
-.score-badge-content {
+.score-badge .score-badge-content {
   padding: var(--space-2);
 }
 
-.score-badges-container {
+.score-badge .score-badges-container {
   position: relative;
   width: 100%;
   margin: var(--space-3) 0;
 }
 
-.score-images {
+.score-badge .score-images {
   display: flex;
   flex-direction: row;
 }
 
-.score-link {
+.score-badge .score-link {
   display: block;
   text-decoration: none;
 }
 
-.score-image {
+.score-badge .score-image {
   width: 100%;
   height: auto;
   border-radius: var(--radius-sm);
@@ -42,7 +42,7 @@
   border: 0;
 }
 
-.score-badge-footer {
+.score-badge .score-badge-footer {
   color: var(--neutral-text-medium);
   font-size: 11px;
   font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -55,7 +55,7 @@
   white-space: nowrap;
 }
 
-.score-badge-link {
+.score-badge .score-badge-link {
   color: var(--neutral-text-medium);
   font-size: 11px;
   font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -66,25 +66,18 @@
   white-space: nowrap;
 }
 
-.score-badge-link:hover {
+.score-badge .score-badge-link:hover {
   text-decoration: underline;
   color: var(--primary-green);
 }
 
 /* Handle image loading errors gracefully */
-.score-image[style*="display: none"] {
+.score-badge .score-image[style*="display: none"] {
   display: none !important;
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  /* & .score-images {
-    display: block;
-  }
-
-  & .score-image {
-    max-width: auto;
-  } */
 }
 
 @media (max-width: 480px) {

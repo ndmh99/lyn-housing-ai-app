@@ -1,0 +1,126 @@
+.realtor-info-card {
+  background: var(--accent-navy);
+  color: var(--neutral-white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.realtor-info-card .realtor-main-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.realtor-info-card .realtor-image {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-gold);
+  object-fit: cover;
+}
+
+.realtor-info-card .realtor-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.realtor-info-card .realtor-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--neutral-white);
+}
+
+.realtor-info-card .realtor-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--neutral-text-light);
+  margin: var(--space-1) 0 var(--space-3) 0;
+}
+
+.realtor-info-card .star-rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.realtor-info-card .star {
+  font-size: 1.3rem;
+}
+
+.realtor-info-card .star.filled {
+  color: var(--accent-gold);
+}
+
+.realtor-info-card .star.empty {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.realtor-info-card .rating-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--neutral-white);
+  margin-left: var(--space-2);
+}
+
+.realtor-info-card .realtor-contact-info {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.realtor-info-card .contact-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--neutral-white);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  transition: background 0.3s;
+}
+
+.realtor-info-card .contact-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.realtor-info-card .contact-link .icon {
+  font-size: 1.1rem;
+}
+
+.realtor-info-card .realtor-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.realtor-info-card .stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.realtor-info-card .stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+.realtor-info-card .stat-label {
+  font-size: 0.9rem;
+  color: var(--neutral-text-light);
+  margin-top: var(--space-1);
+} 
