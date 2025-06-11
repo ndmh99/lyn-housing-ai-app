@@ -1,8 +1,8 @@
-import { useListings } from '../hooks/useListings';
-import ListingCard from '../components/ListingCard';
+import { useListings } from '../../hooks/useListings';
+import ListingCard from '../../components/ListingCard';
 import './styles/PropertiesPage.css';
 import { useNavigate, useLocation } from 'react-router-dom';
-import PropertySearchBox from '../components/PropertySearchBox';
+import PropertySearchBox from '../../components/PropertySearchBox';
 import { useState } from 'react';
 
 const PropertiesPage = () => {

@@ -1,10 +1,5 @@
-/* =============================================================================
-   PROPERTIES PAGE STYLES
-   Main stylesheet for PropertiesPage component with organized sections
-============================================================================= */
-
 /* Import centralized color system */
-@import url('../../styles/colors.css');
+@import url('../../../styles/colors.css');
 
 /* =============================================================================
    MAIN PAGE CONTAINER

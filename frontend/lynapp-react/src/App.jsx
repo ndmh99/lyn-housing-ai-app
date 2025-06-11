@@ -1,11 +1,12 @@
-import { BrowserRouter as Router, Routes, Route, Link, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import HomePage from './pages/HomePage';
-import PropertiesPage from './pages/PropertiesPage';
-import AboutPage from './pages/AboutPage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import PropertyDetailPage from './pages/PropertyDetailPage';
+import HomePage from './pages/guest/HomePage';
+import PropertiesPage from './pages/guest/PropertiesPage';
+import AboutPage from './pages/guest/AboutPage';
+import LoginPage from './pages/auth/LoginPage';
+import RegisterPage from './pages/auth/RegisterPage';
+import PropertyDetailPage from './pages/guest/PropertyDetailPage';
+import UserDashboardPage from './pages/user/UserDashboardPage';
 import './App.css';
 
 // Navigation component for the main navigation bar
@@ -83,6 +84,7 @@ function AppContent() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/dashboard" element={<UserDashboardPage />} />
       </Routes>
 
       {/* GTranslate Wrapper Div*/}

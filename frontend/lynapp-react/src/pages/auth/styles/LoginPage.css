@@ -1,5 +1,4 @@
-/* Import centralized color system */
-@import url('../../styles/colors.css');
+@import url('../../../styles/colors.css');
 
 /* =============================================================================
    LOGIN PAGE STYLES - UPDATED WITH COLOR SYSTEM

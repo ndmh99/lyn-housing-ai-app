@@ -1,19 +1,18 @@
-import { useListings } from '../hooks/useListings';
-import ListingCard from '../components/ListingCard';
+import { useListings } from '../../hooks/useListings';
+import ListingCard from '../../components/ListingCard';
 import './styles/HomePage.css';
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PropertySearchBox from '../components/PropertySearchBox';
+import PropertySearchBox from '../../components/PropertySearchBox';
 
 const HomePage = () => {
     const { listings, loading, error } = useListings();
     const navigate = useNavigate();
-    const featuresRef = useRef(null); // Ref for features section
+    const featuresRef = useRef(null);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
-    // Handler for scroll-down arrow
     const handleScrollDown = () => {
         if (featuresRef.current) {
             featuresRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -33,7 +32,6 @@ const HomePage = () => {
                             navigate(trimmed ? `/properties/?city=${encodeURIComponent(trimmed)}` : '/properties');
                         }}
                     />
-                    {/* Animated scroll-down arrow */}
                     <div className="scroll-down-arrow" onClick={handleScrollDown} style={{cursor: 'pointer'}}>
                         <i className="fa fa-chevron-down"></i>
                         <i className="fa fa-chevron-down"></i>

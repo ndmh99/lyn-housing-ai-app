@@ -378,3 +378,7 @@
     font-size: 1.05rem;
     margin: 0;
 }
+
+body:has(.property-detail-page) .main-header {
+    position: unset;
+}

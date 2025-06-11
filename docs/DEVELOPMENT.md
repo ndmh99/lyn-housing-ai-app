@@ -1,0 +1,166 @@
+# Development Guide
+
+## Development Workflow
+
+### Git Workflow
+- **main**: Production-ready stable code
+- **develop**: Active development and feature integration  
+- **feature/***: Individual feature development branches
+- **test**: Quality assurance and testing environment
+
+### Branch Strategy
+```bash
+# Create a new feature branch
+git checkout develop
+git pull origin develop
+git checkout -b feature/your-feature-name
+
+# Work on your feature, then merge back
+git checkout develop
+git merge feature/your-feature-name
+```
+
+## Available Scripts
+
+### Frontend (React + Vite)
+```bash
+npm run dev          # Development server with hot reload
+npm run build        # Production build
+npm run preview      # Preview production build locally
+npm run lint         # ESLint code quality check
+```
+
+### Backend (Django)
+```bash
+python manage.py runserver              # Development server
+python manage.py migrate               # Apply database migrations
+python manage.py makemigrations        # Create new migrations
+python manage.py populate_listings     # Load sample data
+python manage.py collectstatic         # Collect static files (production)
+python manage.py createsuperuser       # Create admin user
+```
+
+## Development Environment Setup
+
+### Development URLs
+- **Frontend**: http://localhost:5173
+- **Backend API**: http://127.0.0.1:8000/api
+- **Django Admin**: http://127.0.0.1:8000/admin
+
+### Environment Configuration
+Create a `.env` file in the backend directory:
+```env
+DEBUG=True
+SECRET_KEY=your-secret-key-here
+ALLOWED_HOSTS=localhost,127.0.0.1
+```
+
+## Code Quality Guidelines
+
+### Frontend Standards
+- **ESLint**: Configured with React hooks and refresh rules
+- **Component Structure**: One component per file
+- **CSS Organization**: Component-specific CSS files
+- **State Management**: Use custom hooks when appropriate
+
+### Backend Standards
+- **Django Best Practices**: Follow Django coding style
+- **API Design**: RESTful endpoints with proper HTTP methods
+- **Error Handling**: Consistent error responses
+- **Documentation**: Docstrings for all functions and classes
+
+## Key Development Features
+
+### Hot Reload
+- **Frontend**: Vite provides instant hot module replacement
+- **Backend**: Django development server auto-reloads on file changes
+
+### CORS Configuration
+- Pre-configured for frontend-backend communication
+- Allows requests from http://localhost:5173
+
+### Database Management
+- **Migrations**: Automatic schema management
+- **Admin Interface**: Django admin for data management
+- **Sample Data**: Population script for development
+
+## Testing Strategy
+
+### Frontend Testing (Planned)
+- Unit tests with React Testing Library
+- Component integration tests
+- E2E tests with Playwright
+
+### Backend Testing (Planned)
+- Django test framework
+- API endpoint testing
+- Model and serializer tests
+
+## Performance Optimization
+
+### Frontend Optimizations
+- **Code Splitting**: Vite handles automatic code splitting
+- **Component Lazy Loading**: Load components on demand
+- **Image Optimization**: Optimize property images
+- **Bundle Analysis**: Analyze build output for optimization
+
+### Backend Optimizations
+- **Database Queries**: Optimize Django ORM queries
+- **Caching**: Implement Redis caching for production
+- **API Response**: Minimize data transfer
+
+## Debugging
+
+### Frontend Debugging
+- **React DevTools**: Browser extension for component debugging
+- **Vite DevTools**: Built-in development tools
+- **Console Logging**: Strategic console.log placement
+
+### Backend Debugging
+- **Django Debug Toolbar**: Development debugging interface
+- **Logging**: Python logging for API requests
+- **Database Queries**: Monitor and optimize queries
+
+## External API Integration
+
+### OpenStreetMap Nominatim
+- **Rate Limiting**: Respect API rate limits
+- **Error Handling**: Graceful fallback for geocoding failures
+- **Caching**: Consider caching geocoded results
+
+### Walk Score API
+- **Image Loading**: Handle image loading errors gracefully
+- **Fallback Content**: Show default content if API unavailable
+
+## Common Development Tasks
+
+### Adding a New Component
+1. Create component file in `src/components/`
+2. Create corresponding CSS file
+3. Export component from component file
+4. Import and use in parent components
+
+### Adding a New API Endpoint
+1. Define view function in `listings/views.py`
+2. Create URL pattern in `listings/urls.py`
+3. Add serializer if needed in `listings/serializer.py`
+4. Test endpoint in browser or API client
+
+### Database Schema Changes
+1. Modify models in `listings/models.py`
+2. Create migration: `python manage.py makemigrations`
+3. Apply migration: `python manage.py migrate`
+4. Update admin interface if needed
+
+## Troubleshooting
+
+### Common Issues
+- **CORS Errors**: Check CORS_ALLOWED_ORIGINS in Django settings
+- **Port Conflicts**: Ensure ports 5173 and 8000 are available
+- **Database Locks**: Delete db.sqlite3 and re-migrate if needed
+- **Node Modules**: Delete node_modules and reinstall if dependency issues
+
+### Environment Issues
+- **Python Virtual Environment**: Ensure virtual environment is activated
+- **Node Version**: Verify Node.js version compatibility
+- **Path Issues**: Check that Python and Node are in system PATH
