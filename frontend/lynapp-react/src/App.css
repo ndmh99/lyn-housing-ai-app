@@ -21,6 +21,23 @@
 }
 
 /* =============================================================================
+   HEADER AND FOOTER SETTINGS ON SPECIFIC PAGES
+============================================================================= */
+
+/* Adjust header position on the About page */
+body:has(.about-page) .main-header,
+body:has(.property-detail-page) .main-header {
+  position: unset;
+}
+
+/* Hide footer on specific pages */
+body:has(.login-page) .main-footer,
+body:has(.register-page) .main-footer,
+body:has(.about-page) .main-footer {
+  display: none;
+}
+
+/* =============================================================================
    SIMPLE NICHE HEADER DESIGN
    
    Features:
@@ -130,7 +147,16 @@ header {
 }
 
 /* Active state with clean styling */
-.main-nav ul li a.active {
+body:has(.home-page) .nav-home,
+body:has(.properties-page) .nav-properties,
+body:has(.about-page) .nav-about,
+body:has(.login-page) .nav-login,
+body:has(.register-page) .nav-register,
+body:has(.home-page) .nav-home:hover,
+body:has(.properties-page) .nav-properties:hover,
+body:has(.about-page) .nav-about:hover,
+body:has(.login-page) .nav-login:hover,
+body:has(.register-page) .nav-register:hover {
   color: var(--neutral-white);
   background: var(--primary-green);
   font-weight: 700;

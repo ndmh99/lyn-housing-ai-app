@@ -24,7 +24,7 @@ const FinancialMetrics = ({ historyData }) => {
       : 0;
     const currentVsPeak = ((lastPrice - maxPrice) / maxPrice) * 100;
 
-    const trend = currentVsPeak > 5 ? 'UP' : currentVsPeak < -5 ? 'DOWN' : 'FLAT';
+    const trend = lastPrice > averagePrice*1.05 ? 'UP' : lastPrice < averagePrice/1.05 ? 'DOWN' : 'FLAT';
 
     
     const yearsSinceBuilt = "n/a";
