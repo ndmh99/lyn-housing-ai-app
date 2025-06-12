@@ -4,11 +4,6 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-
-body:has(.about-page) .main-header {
-    position: unset;
-}
-
 /* Hero Section */
 .about-page .hero-section {
     padding: var(--space-20) var(--space-5);
