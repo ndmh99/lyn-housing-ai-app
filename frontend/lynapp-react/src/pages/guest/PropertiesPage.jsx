@@ -86,46 +86,48 @@ const PropertiesPage = () => {
           navigate(trimmed ? `/properties/?city=${encodeURIComponent(trimmed)}` : '/properties');
         }}
       />
-      <div className="filters-section">
-        <div className="container">
-          <div className="filters-header">
-            <h3>Filter & Sort</h3>
-            <span className="results-count">{listings.length} properties found</span>
-          </div>
-          <div className="filters-grid">
-            <div className="filter-group">
-              <label>Price Range</label>
-              <div className="price-range">
-                <input type="number" placeholder="Min price" />
-                <span>to</span>
-                <input type="number" placeholder="Max price" />
+      <div className="filters-section-container">
+        <div className="filters-section">
+          <div className="container">
+            <div className="filters-header">
+              <h3>Filter & Sort</h3>
+              <span className="results-count">{listings.length} properties found</span>
+            </div>
+            <div className="filters-grid">
+              <div className="filter-group">
+                <label>Price Range</label>
+                <div className="price-range">
+                  <input type="number" placeholder="Min price" />
+                  <span>to</span>
+                  <input type="number" placeholder="Max price" />
+                </div>
               </div>
-            </div>
-            <div className="filter-group">
-              <label>Property Type</label>
-              <select>
-                <option value="">All Types</option>
-                <option value="house">House</option>
-                <option value="apartment">Apartment</option>
-                <option value="condo">Condo</option>
-              </select>
-            </div>
-            <div className="filter-group">
-              <label>Bedrooms</label>
-              <div className="bedroom-pills">
-                {[1, 2, 3, 4, '5+'].map(num => (
-                  <button key={num} className="pill-btn">{num}</button>
-                ))}
+              <div className="filter-group">
+                <label>Property Type</label>
+                <select>
+                  <option value="">All Types</option>
+                  <option value="house">House</option>
+                  <option value="apartment">Apartment</option>
+                  <option value="condo">Condo</option>
+                </select>
               </div>
-            </div>
-            <div className="filter-group">
-              <label>Sort By</label>
-              <select>
-                <option value="recommended">AI Recommended</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-                <option value="newest">Newest First</option>
-              </select>
+              <div className="filter-group">
+                <label>Bedrooms</label>
+                <div className="bedroom-pills">
+                  {[1, 2, 3, 4, '5+'].map(num => (
+                    <button key={num} className="pill-btn">{num}</button>
+                  ))}
+                </div>
+              </div>
+              <div className="filter-group">
+                <label>Sort By</label>
+                <select>
+                  <option value="recommended">AI Recommended</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="newest">Newest First</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
