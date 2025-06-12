@@ -135,4 +135,5 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "https://lyn-housing-ai-app.vercel.app/",
     "https://lyn-housing-ai-app-ndmh99s-projects.vercel.app",
+    "https://www.lynaihousing.top",
 ]
