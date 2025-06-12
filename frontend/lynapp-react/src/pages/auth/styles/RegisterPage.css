@@ -1,9 +1,12 @@
-/* filepath: c:\Users\Hieu\Desktop\Simple Web Project\In Developing\Lyn Housing AI App\frontend\lynapp-react\src\pages\auth\styles\RegisterPage.css */
-/* Import centralized color system */
+/* =============================================================================
+  REGISTER PAGE STYLES
+  Organized by component hierarchy and functionality
+============================================================================= */
+
 @import url('../../../styles/colors.css');
 
 /* =============================================================================
-   REGISTER PAGE STYLES - USING COLOR SYSTEM
+  1. PAGE LAYOUT & CONTAINER
 ============================================================================= */
 
 .register-page {
@@ -32,6 +35,10 @@
   border: 1px solid var(--card-border);
 }
 
+/* =============================================================================
+  2. TYPOGRAPHY & HEADERS
+============================================================================= */
+
 .register-page .register-card h2 {
   color: var(--neutral-text-dark);
   margin-bottom: var(--space-4);
@@ -44,6 +51,10 @@
   margin-bottom: var(--space-8);
   line-height: 1.5;
 }
+
+/* =============================================================================
+  3. NOTIFICATION MESSAGES
+============================================================================= */
 
 .register-page .error-message {
   background: var(--error-bg);
@@ -67,6 +78,10 @@
   text-align: left;
 }
 
+/* =============================================================================
+  4. FORM STRUCTURE & LAYOUT
+============================================================================= */
+
 .register-page .register-form {
   text-align: left;
 }
@@ -74,6 +89,10 @@
 .register-page .form-group {
   margin-bottom: var(--space-5);
 }
+
+/* =============================================================================
+  5. FORM INPUTS & LABELS
+============================================================================= */
 
 .register-page .form-group label {
   display: block;
@@ -100,6 +119,10 @@
   color: var(--input-placeholder);
 }
 
+/* =============================================================================
+  6. INPUT STATES & VALIDATION
+============================================================================= */
+
 .register-page .form-group input:focus {
   outline: none;
   border-color: var(--input-border-focus);
@@ -114,6 +137,10 @@
   border-color: var(--error-border);
   box-shadow: 0 0 0 3px var(--error-bg);
 }
+
+/* =============================================================================
+  7. PASSWORD STRENGTH INDICATOR
+============================================================================= */
 
 .register-page .password-strength {
   margin-top: var(--space-2);
@@ -133,32 +160,9 @@
   color: var(--success-green);
 }
 
-.register-page .register-btn {
-  width: 100%;
-  background: var(--btn-primary-bg);
-  color: var(--btn-primary-text);
-  padding: var(--space-4);
-  border: none;
-  border-radius: var(--radius-lg);
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: var(--space-6);
-}
-
-.register-page .register-btn:hover {
-  background: var(--btn-primary-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-primary-lg);
-}
-
-.register-page .register-btn:disabled {
-  background: var(--neutral-text-light);
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
+/* =============================================================================
+  8. TERMS & CONDITIONS CHECKBOX
+============================================================================= */
 
 .register-page .terms-checkbox {
   display: flex;
@@ -195,53 +199,39 @@
   text-decoration: underline;
 }
 
-.register-page .register-footer {
-  margin-top: var(--space-6);
-  text-align: center;
-}
+/* =============================================================================
+  9. BUTTONS & ACTIONS
+============================================================================= */
 
-.register-page .register-footer p {
-  margin-bottom: var(--space-2);
-  color: var(--neutral-text-medium);
-}
-
-.register-page .register-footer a {
-  color: var(--primary-green);
-  text-decoration: none;
+/* Primary Register Button */
+.register-page .register-btn {
+  width: 100%;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  padding: var(--space-4);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
   font-weight: 600;
-  transition: color 0.3s ease;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: var(--space-6);
 }
 
-.register-page .register-footer a:hover {
-  color: var(--cta-green);
-  text-decoration: underline;
+.register-page .register-btn:hover {
+  background: var(--btn-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary-lg);
 }
 
-.register-page .divider {
-  display: flex;
-  align-items: center;
-  margin: var(--space-6) 0;
-  color: var(--neutral-text-light);
-  font-size: 0.875rem;
+.register-page .register-btn:disabled {
+  background: var(--neutral-text-light);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
-.register-page .divider::before,
-.register-page .divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--neutral-divider);
-}
-
-.register-page .divider::before {
-  margin-right: var(--space-4);
-}
-
-.register-page .divider::after {
-  margin-left: var(--space-4);
-}
-
-/* Social Registration Buttons */
+/* Social Register Buttons */
 .register-page .social-register {
   display: flex;
   flex-direction: column;
@@ -270,20 +260,77 @@
   transform: translateY(-1px);
 }
 
-/* Responsive Design */
+/* =============================================================================
+  10. DIVIDERS & SEPARATORS
+============================================================================= */
+
+.register-page .divider {
+  display: flex;
+  align-items: center;
+  margin: var(--space-6) 0;
+  color: var(--neutral-text-light);
+  font-size: 0.875rem;
+}
+
+.register-page .divider::before,
+.register-page .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--neutral-divider);
+}
+
+.register-page .divider::before {
+  margin-right: var(--space-4);
+}
+
+.register-page .divider::after {
+  margin-left: var(--space-4);
+}
+
+/* =============================================================================
+  11. FOOTER & LINKS
+============================================================================= */
+
+.register-page .register-footer {
+  margin-top: var(--space-6);
+  text-align: center;
+}
+
+.register-page .register-footer p {
+  margin-bottom: var(--space-2);
+  color: var(--neutral-text-medium);
+}
+
+.register-page .register-footer a {
+  color: var(--primary-green);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.register-page .register-footer a:hover {
+  color: var(--cta-green);
+  text-decoration: underline;
+}
+
+/* =============================================================================
+  12. RESPONSIVE DESIGN
+============================================================================= */
+
 @media (max-width: 480px) {
   .register-page {
     padding: var(--space-4);
   }
-  
+
   .register-page .register-card {
     padding: var(--space-8);
   }
-  
+
   .register-page .register-card h2 {
     font-size: 1.75rem;
   }
-  
+
   .register-page .register-container {
     max-width: 100%;
   }
