@@ -1,11 +1,13 @@
-/* filepath: c:\Users\Hieu\Desktop\Simple Web Project\In Developing\Lyn Housing AI App\frontend\lynapp-react\src\pages\auth\styles\LoginPage.css */
 /* Import centralized color system */
 @import url('../../../styles/colors.css');
 
 /* =============================================================================
-   LOGIN PAGE STYLES - UPDATED WITH COLOR SYSTEM
+  LOGIN PAGE STYLES
 ============================================================================= */
 
+/* -----------------------------------------------------------------------------
+  MAIN CONTAINER
+----------------------------------------------------------------------------- */
 .login-page {
   min-height: 100vh;
   background: var(--gradient-secondary);
@@ -21,6 +23,9 @@
   max-width: 420px;
 }
 
+/* -----------------------------------------------------------------------------
+  CARD LAYOUT
+----------------------------------------------------------------------------- */
 .login-page .login-card {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
@@ -32,6 +37,9 @@
   border: 1px solid var(--card-border);
 }
 
+/* -----------------------------------------------------------------------------
+  TYPOGRAPHY
+----------------------------------------------------------------------------- */
 .login-page .login-card h2 {
   color: var(--neutral-text-dark);
   margin-bottom: var(--space-4);
@@ -45,6 +53,9 @@
   line-height: 1.5;
 }
 
+/* -----------------------------------------------------------------------------
+  ERROR MESSAGES
+----------------------------------------------------------------------------- */
 .login-page .error-message {
   background: var(--error-bg);
   color: var(--error-coral);
@@ -55,6 +66,9 @@
   font-size: 0.875rem;
 }
 
+/* -----------------------------------------------------------------------------
+  FORM ELEMENTS
+----------------------------------------------------------------------------- */
 .login-page .login-form {
   text-align: left;
 }
@@ -94,6 +108,9 @@
   box-shadow: 0 0 0 3px var(--input-focus-ring);
 }
 
+/* -----------------------------------------------------------------------------
+  BUTTONS
+----------------------------------------------------------------------------- */
 .login-page .login-btn {
   width: 100%;
   background: var(--btn-primary-bg);
@@ -114,6 +131,9 @@
   box-shadow: var(--shadow-primary-lg);
 }
 
+/* -----------------------------------------------------------------------------
+  FOOTER & LINKS
+----------------------------------------------------------------------------- */
 .login-page .login-footer {
   margin-top: var(--space-6);
   text-align: center;
@@ -150,16 +170,18 @@
   color: var(--primary-green);
 }
 
-/* Responsive Design */
+/* -----------------------------------------------------------------------------
+  RESPONSIVE DESIGN
+----------------------------------------------------------------------------- */
 @media (max-width: 480px) {
   .login-page {
     padding: var(--space-4);
   }
-  
+
   .login-page .login-card {
     padding: var(--space-8);
   }
-  
+
   .login-page .login-card h2 {
     font-size: 1.75rem;
   }
