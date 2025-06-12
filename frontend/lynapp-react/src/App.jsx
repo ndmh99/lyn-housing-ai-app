@@ -8,6 +8,7 @@ import RegisterPage from './pages/auth/RegisterPage';
 import PropertyDetailPage from './pages/guest/PropertyDetailPage';
 import UserDashboardPage from './pages/user/UserDashboardPage';
 import './App.css';
+import ScrollToTop from './components/utility/ScrollToTop';
 
 // Navigation component for the main navigation bar
 function Navigation() {
@@ -62,6 +63,7 @@ function AppContent() {
 
   return (
     <>
+      <ScrollToTop />
       {/* Header with logo and navigation */}
       <header className="main-header">
         <div className="container header-container">
