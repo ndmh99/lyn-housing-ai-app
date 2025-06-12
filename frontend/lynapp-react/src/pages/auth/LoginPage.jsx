@@ -1,6 +1,6 @@
 // filepath: c:\Users\Hieu\Desktop\Simple Web Project\In Developing\Lyn Housing AI App\frontend\lynapp-react\src\pages\auth\LoginPage.jsx
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './styles/LoginPage.css';
 
 const LoginPage = () => {
@@ -8,18 +8,28 @@ const LoginPage = () => {
     email: '',
     password: ''
   });
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+    setError('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login attempt:', formData);
-    // Add login logic here
+    // Mock admin login for testing purposes
+    if (formData.email === 'admin@lynai.com' && formData.password === 'admin') {
+      console.log('Admin login successful');
+      navigate('/dashboard');
+    } else {
+      console.log('Login attempt failed:', formData);
+      setError('Invalid credentials. Please try again.');
+      // Keep other login logic if it exists
+    }
   };
 
   return (
@@ -29,6 +39,8 @@ const LoginPage = () => {
           <h2>Welcome Back</h2>
           <p>Sign in to your LYN AI account</p>
           
+          {error && <p className="error-message">{error}</p>}
+
           <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">
               <label htmlFor="email">Email</label>

@@ -68,33 +68,36 @@ AI API (e.g., OpenAI) for insights (On Development)
 ## Project Structure
 ```
 lyn-housing-ai-app/
-├── backend/                                      # Django REST API backend
-│   ├── listings/                                 # Django app for property listings API
-│   ├── lynapp-django/                            # Main Django application
-│   ├── requirements.txt                          # Python dependencies
-│   └── manage.py                                 # Django management script
-├── frontend/                                     # React frontend application
-│   └── lynapp-react/                             # ReactJS app (Vite)
-│       ├── src/                                  # Source code
-│       │   ├── components/                       # Reusable UI components
-│       │   │   ├── ListingCard.jsx
-│       │   │   └── PropertySearchBox.jsx
-│       │   ├── pages/                            # Page components
-│       │   │   ├── styles/                       # Page-specific styles
-│       │   │   ├── HomePage.jsx
-│       │   │   ├── AboutPage.jsx
-│       │   │   └── PropertiesPage.jsx
-│       │   ├── services/                         # API services
-│       │   │   └── api.js                        # Axios API configuration
-│       │   └── hooks/                            # Custom React hooks
-│       │       └── useListings.js
-│       ├── package.json                          # Node.js dependencies
-│       └── index.html                            # Main HTML template
-├── docs/                                         # Documentation
-│   ├── INSTALLATION.md                           # Setup instructions
-│   └── CONTRIBUTING.md                           # Contribution guidelines
-├── LICENSE                                       # MIT License
-└── README.md                                     # README file
+├── backend/                                # Django REST API
+│   ├── listings/                           # Property listings app
+│   │   ├── models.py                       # Database models for properties
+│   │   ├── serializer.py                   # Data serialization for API responses
+│   │   ├── views.py                        # API endpoint logic
+│   │   └── urls.py                         # URL routing for the listings app
+│   ├── lynapp-django/                      # Main Django project
+│   │   ├── settings.py                     # Project settings
+│   │   └── urls.py                         # Root URL configuration
+│   ├── manage.py                           # Django management script
+│   └── requirements.txt                    # Python dependencies
+├── frontend/                               # React Frontend (Vite)
+│   └── lynapp-react/
+│       ├── public/                         # Static assets (images, fonts)
+│       └── src/
+│           ├── assets/                     # Non-public, component-level assets
+│           ├── components/                 # Reusable React components
+│           ├── hooks/                      # Custom React hooks (e.g., useListings)
+│           ├── pages/                      # Page components, organized by role
+│           │   ├── auth/                   # Authentication pages (Login, Register)
+│           │   ├── guest/                  # Public pages (Home, About, Properties)
+│           │   └── user/                   # User-specific pages (Dashboard)
+│           ├── services/                   # API service layer (Axios config)
+│           ├── styles/                     # Global and shared styles
+│           ├── App.jsx                     # Main application component & layout
+│           ├── main.jsx                    # React entry point
+│           └── index.css                   # Global CSS resets and base styles
+├── docs/                                   # Project documentation
+├── LICENSE                                 # Project License
+└── README.md                               # Readme file
 ```
 
 ---
