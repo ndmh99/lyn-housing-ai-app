@@ -1,10 +1,26 @@
+/* ================================
+    BASE STYLES
+    ================================ */
 .about-page {
     min-height: 100vh;
     background: var(--gradient-secondary);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* Hero Section */
+/* ================================
+    SHARED SECTION STYLES
+    ================================ */
+.about-page .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--space-16);
+    color: var(--neutral-white);
+}
+
+/* ================================
+    HERO SECTION
+    ================================ */
 .about-page .hero-section {
     padding: var(--space-20) var(--space-5);
     display: flex;
@@ -42,6 +58,7 @@
     margin-bottom: var(--space-8);
 }
 
+/* Hero Visual & Animation */
 .about-page .hero-visual {
     flex: 1;
     display: flex;
@@ -83,29 +100,9 @@
     animation-delay: 1.4s;
 }
 
-@keyframes pulse {
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    50% {
-        transform: scale(1.2);
-        opacity: 0.7;
-    }
-}
-
-/* Section Titles */
-.about-page .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: var(--space-16);
-    color: var(--neutral-white);
-}
-
-/* Mission Section */
+/* ================================
+    MISSION SECTION
+    ================================ */
 .about-page .mission-section {
     padding: var(--space-20) 0;
     background: rgba(255, 255, 255, 0.1);
@@ -154,7 +151,9 @@
     line-height: 1.6;
 }
 
-/* Technology Section */
+/* ================================
+    TECHNOLOGY SECTION
+    ================================ */
 .about-page .tech-section {
     padding: var(--space-20) 0;
     max-width: 1200px;
@@ -204,7 +203,9 @@
     line-height: 1.6;
 }
 
-/* Stats Section */
+/* ================================
+    STATISTICS SECTION
+    ================================ */
 .about-page .stats-section {
     padding: var(--space-20) 0;
     background: rgba(255, 255, 255, 0.1);
@@ -237,7 +238,9 @@
     font-weight: 500;
 }
 
-/* Team Section */
+/* ================================
+    TEAM SECTION
+    ================================ */
 .about-page .team-section {
     padding: var(--space-20) 0;
 }
@@ -299,7 +302,9 @@
     font-size: 0.95rem;
 }
 
-/* CTA Section */
+/* ================================
+    CALL-TO-ACTION SECTION
+    ================================ */
 .about-page .cta-section {
     padding: var(--space-20) 0;
     background: #1A5C5F;
@@ -326,6 +331,7 @@
     margin-bottom: var(--space-10);
 }
 
+/* CTA Buttons */
 .about-page .cta-buttons {
     display: flex;
     gap: var(--space-5);
@@ -367,7 +373,26 @@
     transform: translateY(-2px);
 }
 
-/* Responsive Design */
+/* ================================
+    ANIMATIONS
+    ================================ */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+}
+
+/* ================================
+    RESPONSIVE DESIGN
+    ================================ */
 @media (max-width: 768px) {
     .about-page .hero-section {
         flex-direction: column;
@@ -381,7 +406,12 @@
 
     .about-page .mission-grid,
     .about-page .team-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .about-page .team-member:nth-child(2) {
+        order: -1;
     }
 
     .about-page .stats-grid {
