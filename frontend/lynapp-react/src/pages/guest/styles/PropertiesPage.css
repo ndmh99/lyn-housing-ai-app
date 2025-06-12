@@ -28,13 +28,20 @@
    Styles for the property filtering interface
 ============================================================================= */
 
+.properties-page .filters-section-container {
+  max-width: 1200px;
+  margin: 0 auto var(--space-10);
+  padding: 0 var(--space-5);
+}
+
 .properties-page .filters-section {
   background: var(--card-bg);
-  border-bottom: 1px solid var(--card-border);
+  border-bottom: 2px solid var(--card-border);
+  border-radius: var(--radius-2xl);
   padding: var(--space-6) 0;
-  margin-bottom: var(--space-10);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-lg);
 }
+
 
 /* Filters Header */
 .properties-page .filters-header {
