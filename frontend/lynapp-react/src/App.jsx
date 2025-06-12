@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import HomePage from './pages/guest/HomePage';
 import PropertiesPage from './pages/guest/PropertiesPage';
@@ -74,9 +74,6 @@ function AppContent() {
           <Navigation />
         </div>
       </header>
-
-      {/* GTranslate Wrapper Div - Move to better location */}
-      <div className="gtranslate_wrapper"></div>
 
       {/* Define routes for different pages */}
       <Routes>
