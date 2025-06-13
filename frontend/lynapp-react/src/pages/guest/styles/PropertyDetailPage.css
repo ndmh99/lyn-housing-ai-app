@@ -12,13 +12,13 @@
 }
 
 /* Common styles for sections */
-.property-detail-page .property-info-container,
-.property-detail-page .description,
 .property-detail-page .property-location,
 .property-detail-page .price-history-section {
     padding: var(--space-4);
     border-radius: var(--radius-xl);
+    border: solid 1.5px var(--neutral-border);
 }
+
 
 /* ===================================
     NAVIGATION
