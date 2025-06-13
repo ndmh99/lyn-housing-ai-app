@@ -29,6 +29,43 @@ PID_FILE="/tmp/lyn_app_pids.tmp"
 # MULTIPLE INSTANCE PROTECTION
 # ============================================================================
 
+# Function to check and stop any running instances
+function check_and_stop_running_instances() {
+    echo -e "${C_CYAN}Checking for running instances...${C_RESET}"
+    
+    # Check for Django on port 8000
+    if lsof -ti:8000 >/dev/null 2>&1; then
+        echo -e "${C_YELLOW}Found Django running on port 8000. Stopping...${C_RESET}"
+        lsof -ti:8000 | xargs kill -9 >/dev/null 2>&1 || true
+        sleep 1
+    fi
+    
+    # Check for React on port 5173
+    if lsof -ti:5173 >/dev/null 2>&1; then
+        echo -e "${C_YELLOW}Found React running on port 5173. Stopping...${C_RESET}"
+        lsof -ti:5173 | xargs kill -9 >/dev/null 2>&1 || true
+        sleep 1
+    fi
+    
+    # Remove any existing lock files
+    if [ -f "$LOCK_FILE" ]; then
+        echo -e "${C_YELLOW}Removing existing lock file...${C_RESET}"
+        rm -f "$LOCK_FILE"
+    fi
+    
+    # Remove any existing PID files
+    if [ -f "$PID_FILE" ]; then
+        echo -e "${C_YELLOW}Removing existing PID file...${C_RESET}"
+        rm -f "$PID_FILE"
+    fi
+    
+    echo -e "${C_GREEN}✅ Cleanup of existing instances complete.${C_RESET}"
+    echo
+}
+
+# Call the function before checking for lock file
+check_and_stop_running_instances
+
 if [ -f "$LOCK_FILE" ]; then
     echo -e "${C_YELLOW}⚠️  Another instance of LYN Housing AI App is already running!${C_RESET}"
     echo -e "${C_CYAN}If you are sure no other instance is running, you can delete the lock file: rm $LOCK_FILE${C_RESET}"
@@ -65,7 +102,6 @@ function do_cleanup() {
             sleep 2
 
             # Check if any processes are still running and kill them forcefully
-            # The 'ps' check is a reliable way to see if any of the PIDs still exist.
             if ps -p $PIDS_TO_KILL > /dev/null; then
                 echo -e "${C_RED}Some services didn't stop, forcing shutdown...${C_RESET}"
                 kill -9 $PIDS_TO_KILL >/dev/null 2>&1 || true
@@ -78,7 +114,27 @@ function do_cleanup() {
     echo -e "${C_YELLOW}Removing log files (django.log, react.log)...${C_RESET}"
     rm -f django.log react.log
 
+    # Remove lock file
+    echo -e "${C_YELLOW}Removing lock file...${C_RESET}"
     rm -f "$LOCK_FILE"
+
+    # Additional cleanup for any stray processes
+    echo -e "${C_YELLOW}Checking for any stray processes...${C_RESET}"
+    # Find and kill any remaining Django processes on port 8000
+    if lsof -ti:8000 >/dev/null 2>&1; then
+        echo -e "${C_YELLOW}Killing any remaining processes on port 8000...${C_RESET}"
+        lsof -ti:8000 | xargs kill -9 >/dev/null 2>&1 || true
+    fi
+    # Find and kill any remaining React processes on port 5173
+    if lsof -ti:5173 >/dev/null 2>&1; then
+        echo -e "${C_YELLOW}Killing any remaining processes on port 5173...${C_RESET}"
+        lsof -ti:5173 | xargs kill -9 >/dev/null 2>&1 || true
+    fi
+
+    # Remove any temporary files that might have been created
+    echo -e "${C_YELLOW}Cleaning up temporary files...${C_RESET}"
+    rm -f /tmp/lyn_app_* 2>/dev/null || true
+
     echo -e "${C_GREEN}Cleanup complete. Goodbye!${C_RESET}"
 }
 
