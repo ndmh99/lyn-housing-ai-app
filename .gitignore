@@ -202,6 +202,7 @@ docs/_build/
 docs/build/
 
 # Deployment
+.vercel/
 .netlify/
 .aws/
 
