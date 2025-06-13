@@ -114,7 +114,7 @@ const AboutPage = () => {
               <p className="member-bio">Implement back-end features and AI integration.</p>
             </div>
             <div className="team-member">
-              <div className="member-avatar">HN</div>
+              <div className="member-avatar">NH</div>
               <h4>Hieu Nguyen</h4>
               <p className="member-role">Front-End Lead</p>
               <p className="member-bio">Work on App UX/UI and System Design.</p>
