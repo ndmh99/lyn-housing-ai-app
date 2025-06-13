@@ -195,13 +195,13 @@ logs/
 *.json
 !package.json
 !package-lock.json
+!vercel.json
 
 # Documentation builds
 docs/_build/
 docs/build/
 
 # Deployment
-.vercel/
 .netlify/
 .aws/
 
