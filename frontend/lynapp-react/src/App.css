@@ -21,7 +21,7 @@
 }
 
 /* =============================================================================
-   HEADER AND FOOTER SETTINGS ON SPECIFIC PAGES
+  SETTINGS ON SPECIFIC PAGES
 ============================================================================= */
 
 /* Adjust header position on the About page */
@@ -35,6 +35,14 @@ body:has(.login-page) .main-footer,
 body:has(.register-page) .main-footer,
 body:has(.about-page) .main-footer {
   display: none;
+}
+
+body:has(.properties-page) .properties-page,
+body:has(.property-detail-page) #root {
+  background: url('../src/assets/images/properypage-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 /* =============================================================================
@@ -197,15 +205,16 @@ body:has(.register-page) .nav-register:hover {
   .hamburger {
     display: block;
   }
-  
+
   .main-nav::before {
     display: none;
   }
-  
+
   .main-nav {
     padding-left: 0;
   }
-    .main-nav ul {
+
+  .main-nav ul {
     display: none;
     position: absolute;
     top: 100%;
@@ -218,22 +227,23 @@ body:has(.register-page) .nav-register:hover {
     min-width: 150px;
     z-index: 1000;
   }
-  
+
   .main-nav ul.nav-open {
     display: flex;
     padding: 5px;
   }
-  
+
   .main-nav ul li {
     width: 100%;
   }
-    .main-nav ul li a {
+
+  .main-nav ul li a {
     padding: 12px 16px;
     border-bottom: 1px solid var(--neutral-divider);
     text-transform: none;
     font-size: 0.9rem;
   }
-  
+
   .main-nav ul li:last-child a {
     border-bottom: none;
   }
@@ -553,15 +563,16 @@ footer::after {
   .header-container {
     padding: var(--space-3) var(--space-5);
   }
-  
+
   .logo span {
     font-size: 1.2rem;
   }
-  
+
   .logo img {
     height: 48px;
   }
-    footer {
+
+  footer {
     padding: var(--space-12) 0 0 0;
   }
 
@@ -596,11 +607,11 @@ footer::after {
   .header-container {
     padding: var(--space-3) var(--space-4);
   }
-  
+
   .logo span {
     font-size: 1.1rem;
   }
-  
+
   .logo img {
     height: 44px;
   }

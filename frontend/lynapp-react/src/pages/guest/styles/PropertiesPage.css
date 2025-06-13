@@ -12,10 +12,15 @@
 ============================================================================= */
 
 .properties-page {
+  position: relative;
   min-height: 100vh;
-  background: var(--neutral-soft);
+  background: url('../../../assets/images/properypage-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
 
 .properties-page .container {
   max-width: 1200px;
