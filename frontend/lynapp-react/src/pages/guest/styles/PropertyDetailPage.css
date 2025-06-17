@@ -17,6 +17,14 @@
     padding: var(--space-4);
     border-radius: var(--radius-xl);
     border: solid 1.5px var(--neutral-border);
+    background: rgba(255, 255, 255, 0.19);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.8px);
+    -webkit-backdrop-filter: blur(5.8px);
+}
+
+.property-detail-page button {
+    outline: none;
 }
 
 
@@ -53,7 +61,22 @@
 .property-detail-page .property-images {
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-md);
+
+}
+
+.property-detail-page .property-left-section .property-header,
+.property-detail-page .property-left-section .property-features,
+.property-detail-page .property-left-section .description {
+    border-left: 0 solid #00ff99;
+    transition: border-left 300ms ease-in-out, padding-left 300ms ease-in-out;
+    padding-left: 1rem;
+}
+
+.property-detail-page .property-left-section .property-header:hover,
+.property-detail-page .property-left-section .property-features:hover,
+.property-detail-page .property-left-section .description:hover {
+    padding-left: 0.5rem;
+    border-left: 0.5rem solid #00ff99;
 }
 
 /* ===================================
@@ -65,8 +88,10 @@
     gap: var(--space-6);
 }
 
+
+
 /* ===================================
-    PROPERTY HEADER SECTION
+    PROPERTY HEADER SECTION - IN LEFT COLUMN
     =================================== */
 .property-detail-page .property-header {
     display: flex;
@@ -81,20 +106,36 @@
 }
 
 .property-detail-page .price {
-    color: var(--accent-gold);
-    font-size: 1.5rem;
+    color: var(--cta-green);
+    font-size: 1.6rem;
     font-weight: 700;
-    margin: 0;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 8px var(--accent-gold-20);
 }
 
 .property-detail-page .location {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
     color: var(--neutral-text-medium);
-    font-size: 1.1rem;
-    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+.property-detail-page .location::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-color: var(--neutral-text-dark);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
 }
 
 /* ===================================
-    PROPERTY FEATURES SECTION
+    PROPERTY FEATURES SECTION - IN LEFT COLUMN
     =================================== */
 .property-detail-page .property-features {
     display: grid;
@@ -110,11 +151,10 @@
 }
 
 /* ===================================
-    DESCRIPTION SECTION
+    DESCRIPTION SECTION - IN LEFT COLUMN
     =================================== */
 .property-detail-page .description {
     background: var(--neutral-white);
-    box-shadow: var(--shadow-sm);
 }
 
 .property-detail-page .description h3 {
@@ -130,7 +170,7 @@
 }
 
 /* ===================================
-    REALTOR INFO SEPARATOR
+    REALTOR INFO SEPARATOR - IN LEFT COLUMN
     =================================== */
 .property-detail-page .realtor-info-separator {
     height: 1px;
@@ -153,12 +193,9 @@
 }
 
 /* ===================================
-    LOCATION SECTION
+    LOCATION SECTION - IN RIGHT COLUMN
     =================================== */
-.property-detail-page .property-location {
-    background: var(--neutral-white);
-    box-shadow: var(--shadow-sm);
-}
+.property-detail-page .property-location {}
 
 .property-detail-page .property-location h3 {
     font-size: 1.2rem;
@@ -202,12 +239,9 @@
 }
 
 /* ===================================
-    PRICE HISTORY SECTION
+    PRICE HISTORY SECTION - IN RIGHT COLUMN
     =================================== */
-.property-detail-page .price-history-section {
-    background: var(--neutral-white);
-    box-shadow: var(--shadow-sm);
-}
+.property-detail-page .price-history-section {}
 
 .property-detail-page .price-history-section h3 {
     font-size: 1.2rem;
@@ -234,11 +268,11 @@
 }
 
 /* ===================================
-    CONTACT SECTION
+    CONTACT SECTION - IN RIGHT COLUMN
     =================================== */
 .property-detail-page .contact-section {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-3);
 }
 
@@ -251,17 +285,12 @@
     transition: all 0.2s ease;
 }
 
-.property-detail-page .ai-analysis {}
-
-.property-detail-page .schedule-button {
-    background: var(--accent-navy);
-    color: var(--neutral-white);
-}
-
-.property-detail-page .favorite-button {
-    background: var(--neutral-soft);
-    color: var(--neutral-text-dark);
-    border: 1px solid var(--neutral-border);
+.property-detail-page .contact-section .roi-calc-btn,
+.property-detail-page .contact-section .favorite-btn {
+    background: rgba(255, 255, 255, 0.19);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.8px);
+    -webkit-backdrop-filter: blur(5.8px);
 }
 
 /* ===================================
@@ -283,12 +312,12 @@
     =================================== */
 .property-info-container {
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lg);
     padding: var(--space-6);
     border: 2px solid darkcyan;
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
+    background-color: white;
 }
 
 /* Enhanced Header */
@@ -298,38 +327,6 @@
     color: var(--neutral-text-dark);
     line-height: 1.2;
     margin: 0;
-}
-
-/* Enhanced Price */
-.property-info-container .price {
-    color: var(--cta-green);
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin: var(--space-1) 0 var(--space-3) 0;
-    letter-spacing: 0.5px;
-    text-shadow: 0 0 8px var(--accent-gold-20);
-}
-
-/* Enhanced Location */
-.property-info-container .location {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    color: var(--neutral-text-medium);
-    font-size: 1.05rem;
-    font-weight: 500;
-}
-
-.property-info-container .location::before {
-    content: '';
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    background-color: var(--neutral-text-dark);
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E");
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    mask-position: center;
 }
 
 /* Enhanced Divider */
@@ -427,4 +424,74 @@
     .property-detail-page .price {
         font-size: 1.3rem;
     }
+}
+
+.sharing-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.share-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.share-button.facebook {
+  background-color: #3b5998;
+
+}
+
+.share-button.facebook:hover {
+  color: #324a7f;
+  background-color: white;
+}
+
+.share-button.twitter {
+  background-color: #1da1f2;
+}
+
+.share-button.twitter:hover {
+  color: #1a8cd8;
+  background-color: white;
+}
+
+.share-button.instagram {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+
+.share-button.instagram:hover {
+  color: red;
+  background: white;
+}
+
+.share-button.tiktok {
+  background-color: #000000;
+}
+
+.share-button.tiktok:hover {
+  color: #333333;
+  background-color: white;
+}
+
+.share-button.copy-link {
+  background-color: #767676;
+}
+
+.share-button.copy-link:hover {
+  background-color: #626262;
 }

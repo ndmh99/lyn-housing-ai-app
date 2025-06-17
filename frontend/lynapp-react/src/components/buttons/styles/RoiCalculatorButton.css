@@ -1,0 +1,30 @@
+.roi-calc-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 50%; /* Makes it circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.roi-calc-btn:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.1);
+}
+
+.roi-calc-btn:active {
+    transform: scale(0.95);
+}
+
+.roi-calc-btn .calculator-icon {
+    width: 24px;
+    height: 24px;
+    fill: #555;
+    transition: all 0.2s ease-in-out;
+}
+
+.roi-calc-btn:hover .calculator-icon {
+    fill: #007bff; /* Change color on hover */
+} 

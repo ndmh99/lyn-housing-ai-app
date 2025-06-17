@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { getCitySuggestions } from '../services/api';
-import './PropertySearchBox.css'; // Ensure this import is present
+import './styles/PropertySearchBox.css';
 
 const PropertySearchBox = ({
   initialValue = '',

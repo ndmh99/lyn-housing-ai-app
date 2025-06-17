@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import './FinancialMetrics.css';
+import './styles/FinancialMetrics.css';
 
 const FinancialMetrics = ({ historyData }) => {
   const metrics = useMemo(() => {
