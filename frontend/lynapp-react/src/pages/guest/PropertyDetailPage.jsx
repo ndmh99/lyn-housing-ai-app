@@ -6,7 +6,11 @@ import PriceHistoryChart from '../../components/PriceHistoryChart';
 import ScoreBadge from '../../components/ScoreBadge';
 import ImageGallery from '../../components/ImageGallery';
 import RealtorInfo from '../../components/RealtorInfo';
-import SimpleToast from '../../components/SimpleToast';
+import SimpleToast from '../../components/utility/SimpleToast';
+import FavoriteButton from '../../components/buttons/FavoriteButton';
+import ScheduleButton from '../../components/buttons/ScheduleButton';
+import AiAnalysisButton from '../../components/buttons/AiAnalysisButton';
+import RoiCalculatorButton from '../../components/buttons/RoiCalculatorButton';
 import './styles/PropertyDetailPage.css';
 
 const PropertyDetailPage = () => {
@@ -187,18 +191,19 @@ const PropertyDetailPage = () => {
 
           {/* Action Buttons */}
           <div className="contact-section">
-            <button className="ai-analysis" onClick={handleActionClick}>Magic LynAI</button>
-            <button className="schedule-button" onClick={handleActionClick}>Schedule Viewing</button>
-            <button className="favorite-button" onClick={handleActionClick}>♥ Add to Favorites</button>
+            <AiAnalysisButton onClick={handleActionClick} />
+            <ScheduleButton onClick={handleActionClick} />
+            <RoiCalculatorButton onClick={handleActionClick} />
+            <FavoriteButton onClick={handleActionClick} />
           </div>
         </div>
       </div>
-      
+
       {/* Conditionally render the toast */}
       {toastMessage && (
-        <SimpleToast 
-          message={toastMessage} 
-          onClose={(() => setToastMessage(''))} 
+        <SimpleToast
+          message={toastMessage}
+          onClose={(() => setToastMessage(''))}
         />
       )}
     </div>

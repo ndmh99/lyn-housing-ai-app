@@ -1,0 +1,34 @@
+.schedule-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Space between icon and text */
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+    flex-grow: 1; /* Allow button to grow */
+    min-width: 180px; /* Ensure a minimum width */
+}
+
+.schedule-btn:hover {
+    background-color: #0056b3;
+}
+
+.schedule-btn:active {
+    transform: scale(0.98);
+}
+
+.schedule-btn__icon {
+    display: flex;
+    align-items: center;
+}
+
+.schedule-btn__text {
+    line-height: 1; /* Aligns text better with the icon */
+} 

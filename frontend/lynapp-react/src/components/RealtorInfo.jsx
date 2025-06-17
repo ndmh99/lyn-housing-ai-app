@@ -1,5 +1,5 @@
 import React from 'react';
-import './RealtorInfo.css';
+import './styles/RealtorInfo.css';
 
 const StarRating = ({ rating }) => {
   const totalStars = 5;

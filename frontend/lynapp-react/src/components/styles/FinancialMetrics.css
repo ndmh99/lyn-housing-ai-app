@@ -9,6 +9,11 @@
     box-shadow: var(--shadow-sm);
     margin-top: var(--space-4);
     border: solid 0.5px var(--neutral-border);
+
+    background: rgba(255, 255, 255, 0.19);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.8px);
+    -webkit-backdrop-filter: blur(5.8px);
 }
 
 .financial-metrics-container .metric-item {
@@ -19,7 +24,7 @@
     flex-direction: column;
     gap: var(--space-2);
     text-align: center;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 2px solid #e5e7eb;
 }
 
 .financial-metrics-container .metric-item strong {

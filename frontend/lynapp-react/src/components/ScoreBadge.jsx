@@ -1,5 +1,5 @@
 import React from 'react';
-import './ScoreBadge.css';
+import './styles/ScoreBadge.css';
 
 const ScoreBadge = ({ streetAddress, city, province }) => {
   // Format address for Walk Score URL
