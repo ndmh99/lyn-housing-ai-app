@@ -13,7 +13,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import FinancialMetrics from './FinancialMetrics';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import './PriceHistoryChart.css'; // Import your CSS styles
+import './styles/PriceHistoryChart.css';
 
 // Register Chart.js components
 ChartJS.register(

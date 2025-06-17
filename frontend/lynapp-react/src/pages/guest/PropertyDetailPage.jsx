@@ -7,7 +7,11 @@ import PriceHistoryChart from '../../components/PriceHistoryChart';
 import ScoreBadge from '../../components/ScoreBadge';
 import ImageGallery from '../../components/ImageGallery';
 import RealtorInfo from '../../components/RealtorInfo';
-import SimpleToast from '../../components/SimpleToast';
+import SimpleToast from '../../components/utility/SimpleToast';
+import FavoriteButton from '../../components/buttons/FavoriteButton';
+import ScheduleButton from '../../components/buttons/ScheduleButton';
+import AiAnalysisButton from '../../components/buttons/AiAnalysisButton';
+import RoiCalculatorButton from '../../components/buttons/RoiCalculatorButton';
 import './styles/PropertyDetailPage.css';
 
 const PropertyDetailPage = () => {
@@ -18,6 +22,7 @@ const PropertyDetailPage = () => {
 
   // State for our simple toast
   const [toastMessage, setToastMessage] = useState('');
+  const propertyUrl = window.location.href;
 
   const handleActionClick = () => {
     setToastMessage('Please log in or register to use this feature.');
@@ -62,6 +67,70 @@ const PropertyDetailPage = () => {
             <div className="description">
               <h3>Description</h3>
               <p>{property.description}</p>
+            </div>
+          </div>
+
+          <div className="sharing-section">
+            <h3>Share this Property</h3>
+            <div className="share-buttons">
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(propertyUrl)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="share-button facebook"
+                aria-label="Share on Facebook"
+              >
+                <i className="fab fa-facebook-f" style={{ paddingLeft: '3px', paddingRight: '2.5px' }}></i>
+              </a>
+              <a
+                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(propertyUrl)}&text=${encodeURIComponent(property.title)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="share-button twitter"
+                aria-label="Share on Twitter"
+              >
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="share-button instagram"
+                aria-label="Share on Instagram"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigator.clipboard.writeText(propertyUrl);
+                  setToastMessage('Link copied! Paste it in your Instagram story.');
+                  window.open('https://www.instagram.com/create/story', '_blank');
+                }}
+              >
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.tiktok.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="share-button tiktok"
+                aria-label="Share on TikTok"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigator.clipboard.writeText(propertyUrl);
+                  setToastMessage('Link copied! Paste it in your TikTok video.');
+                  window.open('https://www.tiktok.com/tiktokstudio/upload', '_blank');
+                }}
+              >
+                <i className="fab fa-tiktok"></i>
+              </a>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(propertyUrl);
+                  setToastMessage('Link copied to clipboard!');
+                }}
+                className="share-button copy-link"
+                aria-label="Copy link"
+              >
+                <i className="fas fa-link"></i>
+              </button>
             </div>
           </div>
 
@@ -112,18 +181,19 @@ const PropertyDetailPage = () => {
 
           {/* Action Buttons */}
           <div className="contact-section">
-            <button className="ai-analysis" onClick={handleActionClick}>Magic LynAI</button>
-            <button className="schedule-button" onClick={handleActionClick}>Schedule Viewing</button>
-            <button className="favorite-button" onClick={handleActionClick}>♥ Add to Favorites</button>
+            <AiAnalysisButton onClick={handleActionClick} />
+            <ScheduleButton onClick={handleActionClick} />
+            <RoiCalculatorButton onClick={handleActionClick} />
+            <FavoriteButton onClick={handleActionClick} />
           </div>
         </div>
       </div>
-      
+
       {/* Conditionally render the toast */}
       {toastMessage && (
-        <SimpleToast 
-          message={toastMessage} 
-          onClose={(() => setToastMessage(''))} 
+        <SimpleToast
+          message={toastMessage}
+          onClose={(() => setToastMessage(''))}
         />
       )}
     </div>
