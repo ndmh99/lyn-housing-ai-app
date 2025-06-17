@@ -314,7 +314,6 @@
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg);
     padding: var(--space-6);
-    border: 2px solid darkcyan;
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
