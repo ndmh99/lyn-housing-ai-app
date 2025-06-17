@@ -53,7 +53,34 @@
 .property-detail-page .property-images {
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-md);
+
+    /* 3D stacking effect*/
+    box-shadow:
+    /* The top layer shadow */
+    0 -1px 1px rgba(0,0,0,0.4),
+    /* The second layer */
+    0 -10px 0 -5px #eee,
+    /* The second layer shadow */
+    0 -10px 1px -4px rgba(0,0,0,0.2),
+     /* The third layer */
+    0 -20px 0 -10px #eee,
+    /* The third layer shadow */
+    0 -20px 1px -9px rgba(0,0,0,0.2);
+}
+
+.property-detail-page .property-left-section .property-header,
+.property-detail-page .property-left-section .property-features,
+.property-detail-page .property-left-section .description {
+    border-left: 0 solid #00ff99;
+    transition: border-left 300ms ease-in-out, padding-left 300ms ease-in-out;
+    padding-left: 1rem;
+}
+
+.property-detail-page .property-left-section .property-header:hover,
+.property-detail-page .property-left-section .property-features:hover,
+.property-detail-page .property-left-section .description:hover {
+    padding-left: 0.5rem;
+    border-left: 0.5rem solid #00ff99;
 }
 
 /* ===================================
@@ -62,6 +89,7 @@
 .property-detail-page .property-right-section {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: var(--space-6);
 }
 
@@ -71,6 +99,7 @@
 .property-detail-page .property-header {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: var(--space-3);
 }
 
@@ -427,4 +456,99 @@
     .property-detail-page .price {
         font-size: 1.3rem;
     }
+}
+
+.social-section {
+    margin:auto;
+}
+
+.social-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.social-button.facebook {
+    background-color: #3b5998;
+}
+
+.social-button.facebook:hover {
+    color: #324a7f;
+    background-color: white;
+}
+
+.social-button.twitter {
+    background-color: #1da1f2;
+}
+
+.social-button.twitter:hover {
+    color: #1a8cd8;
+    background-color: white;
+}
+
+.social-button.instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+}
+
+.social-button.instagram:hover {
+    color: red;
+    background: white;
+}
+
+.social-button.tiktok {
+    background-color: #000000;
+}
+
+.social-button.tiktok:hover {
+    color: #333333;
+    background-color: white;
+}
+
+.social-button.copy-link {
+    background-color: #767676;
+}
+
+.social-button.copy-link:hover {
+    background-color: #626262;
+}
+
+/* Realtor Info Separator */
+.realtor-info-separator {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent-navy), transparent);
+    margin: var(--space-4) 0;
+    position: relative;
+}
+
+.realtor-info-separator::after {
+    content: '◆';
+    /* A diamond shape */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--neutral-soft);
+    color: var(--accent-navy);
+    padding: 0 var(--space-2);
+    font-size: 1rem;
 }

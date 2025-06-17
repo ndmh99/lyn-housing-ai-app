@@ -1,5 +1,4 @@
-// filepath: c:\Users\Hieu\Desktop\Simple Web Project\In Developing\Lyn Housing AI App\frontend\lynapp-react\src\pages\guest\PropertyDetailPage.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useListings } from '../../hooks/useListings';
 import PropertyMap from '../../components/PropertyMap';
@@ -18,6 +17,11 @@ const PropertyDetailPage = () => {
 
   // State for our simple toast
   const [toastMessage, setToastMessage] = useState('');
+  const [propertyUrl, setPropertyUrl] = useState('');
+
+  useEffect(() => {
+    setPropertyUrl(window.location.href);
+  }, []);
 
   const handleActionClick = () => {
     setToastMessage('Please log in or register to use this feature.');
@@ -64,6 +68,77 @@ const PropertyDetailPage = () => {
               <p>{property.description}</p>
             </div>
           </div>
+
+          {property && (
+            <div className="social-section">
+              <h3>Share this Property</h3>
+              <div className="social-buttons">
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(propertyUrl)}`, '_blank', 'noopener,noreferrer');
+                  }}
+                  className="social-button facebook"
+                  aria-label="Share on Facebook"
+                >
+                  <i
+                    className="fab fa-facebook-f"
+                    style={{ paddingLeft: "3px", paddingRight: "2.5px" }}
+                  ></i>
+                </a>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(propertyUrl)}&text=${encodeURIComponent(property.title)}`, '_blank', 'noopener,noreferrer');
+                  }}
+                  className="social-button twitter"
+                  aria-label="Share on Twitter"
+                >
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigator.clipboard.writeText(propertyUrl);
+                    setToastMessage(
+                      "Link copied! Paste it in your Instagram story."
+                    );
+                    window.open("https://www.instagram.com/create/story", "_blank");
+                  }}
+                  className="social-button instagram"
+                  aria-label="Share on Instagram"
+                >
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigator.clipboard.writeText(propertyUrl);
+                    setToastMessage("Link copied! Paste it in your TikTok video.");
+                    window.open("https://www.tiktok.com/tiktokstudio/upload", "_blank");
+                  }}
+                  className="social-button tiktok"
+                  aria-label="Share on TikTok"
+                >
+                  <i className="fab fa-tiktok"></i>
+                </a>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(propertyUrl);
+                    setToastMessage("Link copied to clipboard!");
+                  }}
+                  className="social-button copy-link"
+                  aria-label="Copy link"
+                >
+                  <i className="fas fa-link"></i>
+                </button>
+              </div>
+            </div>
+          )}
 
           <div className="realtor-info-separator"></div>
 
