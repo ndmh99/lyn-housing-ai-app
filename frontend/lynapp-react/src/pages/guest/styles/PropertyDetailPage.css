@@ -327,6 +327,7 @@
 .property-info-container {
     border-radius: var(--radius-xl);
     padding: var(--space-6);
+    border: 2px solid darkcyan;
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
