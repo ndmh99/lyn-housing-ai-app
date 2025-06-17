@@ -1,5 +1,4 @@
 .realtor-info-card {
-  background: var(--accent-navy);
   color: var(--neutral-white);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
@@ -8,6 +7,16 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
+  background: linear-gradient(120deg, var(--accent-navy) 30%, #004c72 38%, #00547e 40%, var(--accent-navy) 48%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  100% {
+    background-position: -100% 0;
+  }
 }
 
 .realtor-info-card .realtor-main-info {
