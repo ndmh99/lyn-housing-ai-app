@@ -33,10 +33,20 @@
     =================================== */
 .property-detail-page .back-button {
     margin-bottom: var(--space-5);
-    /* &:hover {
-          background: var(--neutral-light);
-          border-color: var(--primary-green);
-     } */
+    align-items: center;
+    border-radius: 100px;
+    border: none;
+    background: linear-gradient(180deg, var(--btn-primary-active), var(--btn-primary-bg));
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 600;   
+    font-style: italic;
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.property-detail-page .back-button:hover {
+    background: linear-gradient(180deg, var(--btn-primary-bg), var(--btn-primary-bg));
+    box-shadow: inset 0px 0px 8px 5px rgba(0, 0, 0, 0.15);
 }
 
 /* ===================================

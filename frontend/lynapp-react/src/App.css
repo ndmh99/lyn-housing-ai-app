@@ -40,9 +40,8 @@ body:has(.about-page) .main-footer {
 body:has(.properties-page) .properties-page,
 body:has(.property-detail-page) #root {
   background: url('../src/assets/images/properypage-bg.png');
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
-  background-position: center;
 }
 
 /* =============================================================================
