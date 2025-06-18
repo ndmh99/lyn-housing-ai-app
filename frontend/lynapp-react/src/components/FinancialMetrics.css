@@ -55,13 +55,13 @@
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .financial-metrics-container .metric-item {
         flex-direction: row;
         justify-content: space-between;
-        padding: 5px;
+        align-items: center;
     }
-    
+
     .financial-metrics-container .metric-item:last-child {
         border-bottom: none;
     }

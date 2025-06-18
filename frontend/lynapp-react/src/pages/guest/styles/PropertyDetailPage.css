@@ -456,6 +456,14 @@
     .property-detail-page .price {
         font-size: 1.3rem;
     }
+
+    .property-detail-page .realtor-info-separator::after {
+        content: 'REALTOR INFO';
+        background: var(--accent-navy);
+        color: var(--neutral-white);
+        border-radius: var(--radius-full);
+        padding: 0 var(--space-2);
+    }
 }
 
 .social-section {
