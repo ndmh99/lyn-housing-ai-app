@@ -3,19 +3,30 @@ import ListingCard from '../../components/ListingCard';
 import './styles/PropertiesPage.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PropertySearchBox from '../../components/PropertySearchBox';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const PropertiesPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'map'
-  const [gridLayout, setGridLayout] = useState('two-col'); // 'two-col', 'three-col'
-  const [currentPage, setCurrentPage] = useState(1);
-
+  const [gridLayout, setGridLayout] = useState('three-col'); // 'two-col', 'three-col'
+  
   const params = new URLSearchParams(location.search);
+  const pageParam = parseInt(params.get('page'), 10) || 1;
   const cityParam = params.get('city') || '';
 
+  const [currentPage, setCurrentPage] = useState(pageParam);
+  const listingsSectionRef = useRef(null);
+  const isInitialMount = useRef(true);
+
   const { listings, loading, error } = useListings(cityParam);
+
+  // Sync currentPage state with URL
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('page', currentPage);
+    navigate({ search: searchParams.toString() }, { replace: true });
+  }, [currentPage, navigate]);
 
   // Pagination logic
   const getItemsPerPage = () => {
@@ -27,10 +38,18 @@ const PropertiesPage = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentListings = listings.slice(startIndex, endIndex);
-  // Reset to page 1 when layout changes
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      listingsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [currentPage]);
+
   const handleLayoutChange = (layout) => {
     setGridLayout(layout);
-    setCurrentPage(1);
+    currentPage ? setCurrentPage(currentPage) : setCurrentPage(1);
   };
 
   // Reusable pagination component
@@ -84,6 +103,7 @@ const PropertiesPage = () => {
         onSubmit={city => {
           const trimmed = city.trim();
           navigate(trimmed ? `/properties/?city=${encodeURIComponent(trimmed)}` : '/properties');
+          listingsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }}
       />
       <div className="filters-section-container">
@@ -132,7 +152,7 @@ const PropertiesPage = () => {
           </div>
         </div>
       </div>
-      <section className="properties container">
+      <section className="properties container" ref={listingsSectionRef}>
         <div className="section-header">
           <div className="header-content">
             <h2>Featured Properties {cityParam && `in ${cityParam}`}</h2>
@@ -198,10 +218,9 @@ const PropertiesPage = () => {
             <div className="development-features">
               <p><strong>Upcoming features:</strong></p>
               <ul>
-                <li>Interactive property map with pins</li>
-                <li>Neighborhood insights and boundaries</li>
-                <li>Walkability and transit scores</li>
-                <li>Nearby amenities visualization</li>
+                <li>Interactive property map with pins 📍</li>
+                <li>Neighborhood insights and boundaries 🗺️</li>
+                <li>Nearby amenities visualization ⛪</li>
               </ul>
             </div>
             <button 
@@ -217,17 +236,16 @@ const PropertiesPage = () => {
             {loading ? (
               <div className="loading-container">
                 <div className="loading-spinner"></div>
+                <p className="loading-text">Finding the best properties for you, please wait...</p>
                 <div className="loading-skeleton">
-                  {[...Array(itemsPerPage)].map((_, i) => (
-                    <div key={i} className="skeleton-card">
-                      <div className="skeleton-image"></div>
-                      <div className="skeleton-content">
-                        <div className="skeleton-line"></div>
-                        <div className="skeleton-line short"></div>
-                        <div className="skeleton-line"></div>
-                      </div>
+                  <div className="skeleton-card">
+                    <div className="skeleton-image"></div>
+                    <div className="skeleton-content">
+                      <div className="skeleton-line"></div>
+                      <div className="skeleton-line short"></div>
+                      <div className="skeleton-line"></div>
                     </div>
-                  ))}
+                  </div>
                 </div>
               </div>
             ) :
