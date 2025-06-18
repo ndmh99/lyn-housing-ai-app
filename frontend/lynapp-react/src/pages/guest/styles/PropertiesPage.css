@@ -116,12 +116,10 @@
 }
 
 .properties-page .filters-section {
-  background: rgba(255, 255, 255, 0.19);
+  background: var(--card-bg);
   border-bottom: 2px solid var(--card-border);
   border-radius: var(--radius-2xl);
   padding: var(--space-6) 0;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5.8px);
 }
 
 
