@@ -47,7 +47,7 @@ const PropertySearchBox = ({
       if (!inputRef.current?.contains(document.activeElement)) { // Check if focus is still within search box elements
         setShowSuggestions(false);
       }
-    }, 150); // Increased delay slightly
+    }, 150);
   };
 
   return (

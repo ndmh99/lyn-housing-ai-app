@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { searchListings, listingsAPI } from '../services/api';
+import { listingsAPI } from '../services/api';
 
 /**
  * Custom hook to manage listings data fetching and state
@@ -32,8 +32,7 @@ export const useListings = (param = '') => {
         if (typeof param === 'number') {
           data = await listingsAPI.getListing(param).then(res => res.data); // Fetch specific listing by ID
         } else {
-          // Use searchListings if city is provided, else get all
-          data = await searchListings(param);
+          data = await listingsAPI.searchListings(param).then(res => res.data);
         }
         
         // Put the house listings in our storage box
