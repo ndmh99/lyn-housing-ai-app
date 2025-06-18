@@ -116,12 +116,10 @@
 }
 
 .properties-page .filters-section {
-  background: rgba(255, 255, 255, 0.19);
+  background: var(--card-bg);
   border-bottom: 2px solid var(--card-border);
   border-radius: var(--radius-2xl);
   padding: var(--space-6) 0;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5.8px);
 }
 
 
@@ -255,6 +253,7 @@
   background: var(--card-bg);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-sm);
+  border: .5px solid lightgray;
 }
 
 /* View Toggle Buttons (Grid/Map) */
@@ -460,11 +459,19 @@
   grid-column: 1 / -1;
   text-align: center;
   padding: var(--space-16) 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.properties-page .loading-text {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
 }
 
 .properties-page .loading-spinner {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border: 4px solid var(--neutral-border);
   border-top: 4px solid var(--primary-green);
   border-radius: 50%;
@@ -515,6 +522,8 @@
   background: var(--card-bg);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-lg);
+  margin-bottom: var(--space-8);
+  border: .5px solid lightgray;
 }
 
 .properties-page .error-icon,
@@ -559,13 +568,16 @@
 
 /* Development/Coming Soon State */
 .properties-page .development-message {
-  grid-column: 1 / -1;
   text-align: center;
   padding: var(--space-16) var(--space-8);
-  background: linear-gradient(135deg, var(--card-bg) 0%, var(--neutral-light) 100%);
+  background: rgba(255, 255, 255, 0.19);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-lg);
   border: 2px solid var(--primary-green-soft);
+  margin-bottom: var(--space-8);
+  backdrop-filter: blur(5.8px);
+  -webkit-backdrop-filter: blur(5.8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .properties-page .development-icon {

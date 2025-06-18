@@ -22,10 +22,24 @@ const PropertyDetailPage = () => {
   // State for our simple toast
   const [toastMessage, setToastMessage] = useState('');
   const [propertyUrl, setPropertyUrl] = useState('');
+  const [isInternalNavigation, setIsInternalNavigation] = useState(false);
 
   useEffect(() => {
     setPropertyUrl(window.location.href);
+
+    // Check if the referrer is from the same site.
+    if (document.referrer && new URL(document.referrer).origin === window.location.origin) {
+      setIsInternalNavigation(true);
+    }
   }, []);
+
+  const handleBackClick = () => {
+    if (isInternalNavigation) {
+      navigate(-1); // Go back to the previous page in history
+    } else {
+      navigate('/properties'); // Go to the default properties page
+    }
+  };
 
   const handleActionClick = () => {
     setToastMessage('Please log in or register to use this feature.');
@@ -39,7 +53,7 @@ const PropertyDetailPage = () => {
 
   return (
     <div className="property-detail-page">
-      <button className="back-button" onClick={() => navigate(-1)}>
+      <button className="back-button" onClick={handleBackClick}>
         ← Back to Properties
       </button>
 
