@@ -20,6 +20,13 @@ const PropertiesPage = () => {
 
   const { listings, loading, error } = useListings(cityParam);
 
+  // Sync currentPage state with URL
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('page', currentPage);
+    navigate({ search: searchParams.toString() }, { replace: true });
+  }, [currentPage, navigate]);
+
   // Pagination logic
   const getItemsPerPage = () => {
     return gridLayout === 'two-col' ? 6 : 9; // 3 rows × 2 cols = 6, or 3 rows × 3 cols = 9
