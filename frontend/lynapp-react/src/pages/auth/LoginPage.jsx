@@ -1,33 +1,23 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import './styles/LoginPage.css';
 
 const LoginPage = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-    setError('');
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock admin login for testing purposes
-    if (formData.email === 'admin@lynai.com' && formData.password === 'admin') {
-      console.log('Admin login successful');
+    setError('');
+    try {
+      await login(email, password);
       navigate('/dashboard');
-    } else {
-      console.log('Login attempt failed:', formData);
-      setError('Invalid credentials. Please try again.');
-      // Keep other login logic if it exists
+    } catch {
+      setError('Failed to sign in. Please check your credentials.');
     }
   };
 
@@ -47,8 +37,8 @@ const LoginPage = () => {
                 type="email"
                 id="email"
                 name="email"
-                value={formData.email}
-                onChange={handleChange}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -59,8 +49,8 @@ const LoginPage = () => {
                 type="password"
                 id="password"
                 name="password"
-                value={formData.password}
-                onChange={handleChange}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>

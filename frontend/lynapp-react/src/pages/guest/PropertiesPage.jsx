@@ -3,7 +3,7 @@ import ListingCard from '../../components/ListingCard';
 import './styles/PropertiesPage.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PropertySearchBox from '../../components/PropertySearchBox';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 const PropertiesPage = () => {
   const navigate = useNavigate();
@@ -17,16 +17,8 @@ const PropertiesPage = () => {
 
   const [currentPage, setCurrentPage] = useState(pageParam);
   const listingsSectionRef = useRef(null);
-  const isInitialMount = useRef(true);
 
   const { listings, loading, error } = useListings(cityParam);
-
-  // Sync currentPage state with URL
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    searchParams.set('page', currentPage);
-    navigate({ search: searchParams.toString() }, { replace: true });
-  }, [currentPage, navigate]);
 
   // Pagination logic
   const getItemsPerPage = () => {
@@ -39,20 +31,24 @@ const PropertiesPage = () => {
   const endIndex = startIndex + itemsPerPage;
   const currentListings = listings.slice(startIndex, endIndex);
 
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-    } else {
-      listingsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, [currentPage]);
-
   const handleLayoutChange = (layout) => {
     setGridLayout(layout);
     currentPage ? setCurrentPage(currentPage) : setCurrentPage(1);
   };
 
-  // Reusable pagination component
+  // Handle page change by clicking on the pagination buttons
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages && newPage !== currentPage) {
+      setCurrentPage(newPage);
+
+      // Update the URL with the new page number
+      const searchParams = new URLSearchParams(location.search);
+      searchParams.set('page', String(newPage));
+      navigate({ search: searchParams.toString() }, { replace: true });
+    }
+  };
+
+  // Pagination component
   const PaginationControls = () => (
     !loading && !error && listings.length > 0 && totalPages > 1 && (
       <div className="pagination-container">
@@ -62,7 +58,7 @@ const PropertiesPage = () => {
         <div className="pagination-controls">
           <button 
             className="pagination-btn prev"
-            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
             ← Previous
@@ -75,7 +71,7 @@ const PropertiesPage = () => {
                 <button
                   key={pageNum}
                   className={`page-btn ${currentPage === pageNum ? 'active' : ''}`}
-                  onClick={() => setCurrentPage(pageNum)}
+                  onClick={() => handlePageChange(pageNum)}
                 >
                   {pageNum}
                 </button>
@@ -85,7 +81,7 @@ const PropertiesPage = () => {
           
           <button 
             className="pagination-btn next"
-            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
             Next →

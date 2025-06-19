@@ -71,68 +71,81 @@ backend/
 frontend/lynapp-react/
 ├── src/                     # Source code
 │   ├── components/          # Reusable UI components
-│   ├── pages/              # Page-level components
-│   ├── hooks/              # Custom React hooks
-│   ├── services/           # API integration
-│   ├── styles/             # Global styles
-│   ├── assets/             # Static assets
-│   ├── App.jsx             # Main application component
-│   └── main.jsx            # Application entry point
-├── public/                 # Static public assets
-├── package.json           # Node.js dependencies & scripts
-├── vite.config.js         # Vite build configuration
-├── eslint.config.js       # Code quality rules
-└── index.html             # HTML template
+│   ├── pages/               # Page-level components
+│   ├── contexts/            # Global state management (Context API)
+│   ├── hooks/               # Custom React hooks
+│   ├── services/            # API integration and external services
+│   ├── tools/               # Utility functions and helper scripts
+│   ├── styles/              # Global styles
+│   ├── assets/              # Static assets (images, fonts)
+│   ├── App.jsx              # Main application component with routing
+│   └── main.jsx             # Application entry point
+├── public/                  # Static assets served directly
+├── package.json             # Node.js dependencies & scripts
+├── vite.config.js           # Vite build configuration
+├── eslint.config.js         # Code quality rules
+└── index.html               # Main HTML template for Vite
 ```
 
 ### Components Directory (`src/components/`)
+This directory contains all reusable React components, organized by functionality.
 ```
 components/
-├── ListingCard.jsx + .css        # Property listing card
-├── PropertySearchBox.jsx + .css  # Search interface
-├── PropertyMap.jsx + .css        # Leaflet map integration
-├── PriceHistoryChart.jsx + .css  # Chart.js price analytics
-├── ScoreBadge.jsx + .css         # Walk Score integration
-├── ImageGallery.jsx + .css       # Property image carousel
-├── RealtorInfo.jsx + .css        # Agent information display
-├── SimpleToast.jsx + .css        # Notification system
-└── FinancialMetrics.jsx + .css   # Investment calculations
+├── buttons/                      # Action buttons for user interaction
+│   ├── AiAnalysisButton.jsx
+│   ├── FavoriteButton.jsx
+│   ├── RoiCalculatorButton.jsx
+│   └── ScheduleButton.jsx
+├── utility/                      # Small, general-purpose utility components
+│   └── SimpleToast.jsx
+├── FinancialMetrics.jsx          # Investment calculation display
+├── ImageGallery.jsx              # Property image carousel
+├── ListingCard.jsx               # Property summary card
+├── PriceHistoryChart.jsx         # Chart.js price analytics
+├── PropertyMap.jsx               # Leaflet map integration
+├── PropertySearchBox.jsx         # Search interface
+├── RealtorInfo.jsx               # Agent information display
+└── ScoreBadge.jsx                # Walk Score integration
 ```
-
-#### Component Purposes
-- **ListingCard**: Displays property summary in card format
-- **PropertySearchBox**: Advanced search with filtering capabilities
-- **PropertyMap**: Interactive map with geocoding integration
-- **PriceHistoryChart**: Visual price analytics with trend lines
-- **ScoreBadge**: Walkability and transit score display
-- **ImageGallery**: Property photo carousel with navigation
-- **RealtorInfo**: Agent profiles and contact information
-- **SimpleToast**: User-friendly notification system
-- **FinancialMetrics**: Investment analysis tools
 
 ### Pages Directory (`src/pages/`)
+Contains top-level components that correspond to application routes, organized by user access level.
 ```
 pages/
-├── HomePage.jsx              # Landing page with featured properties
-├── PropertiesPage.jsx        # Property listings with search/filter
-├── PropertyDetailPage.jsx    # Individual property details
-├── AboutPage.jsx             # Company information
-├── LoginPage.jsx             # User authentication
-├── RegisterPage.jsx          # User registration
-└── styles/                   # Page-specific CSS files
+├── guest/                    # Pages accessible to all users
+│   ├── HomePage.jsx
+│   ├── PropertiesPage.jsx
+│   ├── PropertyDetailPage.jsx
+│   └── AboutPage.jsx
+├── auth/                     # Authentication-related pages
+│   ├── LoginPage.jsx
+│   └── RegisterPage.jsx
+└── user/                     # Pages for authenticated users
+    └── UserDashboardPage.jsx
+```
+
+### Contexts Directory (`src/contexts/`)
+Manages global state using React's Context API.
+```
+contexts/
+└── AuthContext.jsx           # Manages Firebase user authentication state
 ```
 
 ### Services Directory (`src/services/`)
+Handles all external API communication.
 ```
 services/
-└── api.js                    # Axios HTTP client and API configuration
+├── api.js                    # Axios client for the Django backend API
+└── firebase.js               # Firebase configuration and initialization
 ```
 
-#### API Service Functions
-- `getListings()`: Fetch all properties
-- `searchListings(city)`: Search properties by city
-- `getListingById(id)`: Get specific property details
-- `listingsAPI`: Object with CRUD operations
+### Tools Directory (`src/tools/`)
+Contains helper functions and utilities that are not React components.
+```
+tools/
+├── InputValidation.js        # Client-side form validation logic
+└── ScrollToTop.js            # Utility to scroll to the top of the page on navigation
+```
 
 ### Hooks Directory (`src/hooks/`)
 ```
@@ -141,7 +154,7 @@ hooks/
 ```
 
 #### useListings Hook
-- Manages property data fetching and state
+- Manages fetching and state for property data.
 - Handles both city search and individual property retrieval
 - Provides loading states and error handling
 - Optimized with dependency arrays for performance

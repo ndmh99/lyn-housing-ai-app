@@ -5,14 +5,17 @@ const FavoriteButton = ({ onClick }) => {
     const [isFavorited, setIsFavorited] = useState(false);
 
     const handleToggleFavorite = (e) => {
-        // If an external onClick handler is provided, call it and do nothing else.
-        // This gives the parent component full control over the action.
+        // Always call the parent's onClick handler if it exists.
         if (onClick) {
             onClick(e);
+        }
+
+        // If the parent called e.preventDefault(), stop right here.
+        if (e.defaultPrevented) {
             return;
         }
 
-        // If no external handler, just toggle the internal state.
+        // Otherwise, go ahead and toggle the internal state.
         setIsFavorited(prev => !prev);
     };
 
