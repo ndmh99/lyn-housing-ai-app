@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Link, NavLink } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, NavLink, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 import HomePage from './pages/guest/HomePage';
 import PropertiesPage from './pages/guest/PropertiesPage';
 import AboutPage from './pages/guest/AboutPage';
@@ -8,11 +8,41 @@ import RegisterPage from './pages/auth/RegisterPage';
 import PropertyDetailPage from './pages/guest/PropertyDetailPage';
 import UserDashboardPage from './pages/user/UserDashboardPage';
 import './App.css';
-import ScrollToTop from './components/utility/ScrollToTop';
+import ScrollToTop from './tools/ScrollToTop';
+import { useAuth } from './contexts/AuthContext';
 
 // Navigation component for the main navigation bar
 function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
+  const dropdownRef = useRef(null);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setIsOpen(false);
+      setIsDropdownOpen(false);
+      window.location.href = '/login';
+    } catch (error) {
+      console.error("Failed to log out", error);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownOpen]);
 
   return (
     <nav className="main-nav">
@@ -23,8 +53,31 @@ function Navigation() {
         <li><NavLink to="/" className="nav-home" onClick={() => setIsOpen(false)}>Home</NavLink></li>
         <li><NavLink to="/properties" className="nav-properties" onClick={() => setIsOpen(false)}>Properties</NavLink></li>
         <li><NavLink to="/about" className="nav-about" onClick={() => setIsOpen(false)}>About</NavLink></li>
-        <li><NavLink to="/login" className="nav-login" onClick={() => setIsOpen(false)}>Login</NavLink></li>
-        <li><NavLink to="/register" className="nav-register" onClick={() => setIsOpen(false)}>Register</NavLink></li>
+
+        {currentUser ? (
+          <li className="nav-user-dropdown" ref={dropdownRef}>
+            <NavLink onClick={() => setIsDropdownOpen(prev => !prev)} className="dropdown-toggle">
+              Hello, {currentUser.email.split('@')[0]} <span className="arrow">▼</span>
+            </NavLink>
+            {isDropdownOpen && (
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink to="/dashboard" onClick={() => { setIsOpen(false); setIsDropdownOpen(false); }}>
+                    Dashboard
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink onClick={handleLogout} className="dropdown-item-button">Logout</NavLink>
+                </li>
+              </ul>
+            )}
+          </li>
+        ) : (
+          <>
+            <li><NavLink to="/login" className="nav-login" onClick={() => setIsOpen(false)}>Login</NavLink></li>
+            <li><NavLink to="/register" className="nav-register" onClick={() => setIsOpen(false)}>Register</NavLink></li>
+          </>
+        )}
       </ul>
     </nav>
   );
@@ -41,7 +94,7 @@ function AppContent() {
       "wrapper_selector": ".gtranslate_wrapper",
       "flag_style": "2d",
       "flag_size": 24,
-      "widget_look": "flags_name",
+      "widget_look": "flags",
       "alt_flags": {
         "en": "canada",
       }

@@ -2,142 +2,142 @@
 
 ## System Overview
 
-Lyn Housing AI follows a modern **full-stack architecture** with clear separation between frontend and backend services, integrated with external APIs for enhanced functionality.
+Lyn Housing AI follows a modern **full-stack architecture** with clear separation between frontend and backend services, integrated with external APIs for enhanced functionality. This document outlines the key components, data flows, and technology choices that power the application.
 
 ## Architecture Diagram
 
 ```
-Frontend (React 19.1.0 + Vite 6.3.5)
+Frontend (React 19 + Vite)
       │
       ├── Components (Reusable UI Components)
-      │   ├── ListingCard, PropertySearchBox
-      │   ├── PropertyMap (Leaflet + Geocoding)
-      │   ├── PriceHistoryChart (Chart.js)
-      │   ├── ScoreBadge (Walk Score API)
-      │   ├── ImageGallery, RealtorInfo
-      │   └── SimpleToast, FinancialMetrics
+      │   ├── Core: ListingCard, PropertySearchBox
+      │   ├── Details: PropertyMap, PriceHistoryChart, ImageGallery
+      │   ├── Buttons: FavoriteButton, ScheduleButton, etc.
+      │   ├── UI: ScoreBadge, RealtorInfo, SimpleToast
       │
-      ├── Pages (Multi-Page Architecture)
-      │   ├── HomePage, PropertiesPage
-      │   ├── PropertyDetailPage (Individual Property)
-      │   ├── AboutPage, LoginPage, RegisterPage
-      │   └── Page-specific CSS Styling
+      ├── Pages (Router-based Page Views)
+      │   ├── Guest: HomePage, PropertiesPage, PropertyDetailPage
+      │   ├── Auth: LoginPage, RegisterPage
+      │   └── User: UserDashboardPage
       │
-      ├── Hooks (Custom State Management)
-      │   └── useListings (Property Data Management)
+      ├── Contexts (Global State Management)
+      │   └── AuthContext (Firebase User State)
       │
-      └── Services (API Integration Layer)
-          └── Axios HTTP Client + API Configuration
+      ├── Hooks (Custom Logic)
+      │   └── useListings (Property Data Fetching)
+      │
+      ├── Services (API Connectors)
+      │   ├── api.js (Django Backend API)
+      │   ├── firebase.js (Authentication)
+      │
+      ├── Tools (Utilities)
+      │   ├── InputValidation.js
+      │   └── ScrollToTop.js
       │
       ▼ (HTTP/REST API Communication)
       │
 Django REST API Backend
       │
       ├── Listings App (Core Property API)
-      │   ├── Models (Listing + PriceHistory)
-      │   ├── Views (CRUD + Search + Price History)
+      │   ├── Models (Listing, PriceHistory)
+      │   ├── Views (CRUD, Search, Price History)
       │   ├── Serializers (JSON Data Formatting)
       │   └── URLs (API Endpoint Routing)
       │
-      ├── Management Commands
-      │   └── Data Population Scripts
-      │
       └── Django Configuration
-          ├── CORS Headers (Frontend Integration)
-          └── REST Framework Settings
+          ├── CORS Headers, REST Framework
+          └── Management Commands (Data Population)
       │
-      ▼ (External API Integration)
+      ▼ (Database & External Services)
       │
-External Services
+Databases & External Services
       │
-      ├── OpenStreetMap Nominatim (Address → Coordinates)
-      ├── Walk Score API (Walkability, Transit, Bike Scores)
-      └── SQLite Database (Development Storage)
+      ├── SQLite (Development Database)
+      ├── Firebase Authentication (User Management)
+      ├── OpenStreetMap Nominatim (Geocoding)
+      └── Walk Score API (Walkability, Transit Scores)
 ```
 
 ## Component Architecture
 
 ### Frontend Components
 
-#### Core Components
-- **ListingCard**: Displays property summary information in card format
-- **PropertySearchBox**: Advanced search interface with city filtering
-- **PropertyMap**: Interactive Leaflet map with automatic geocoding
-- **PriceHistoryChart**: Chart.js visualization for price analytics
+Our frontend is built with a modular, component-based architecture to promote reusability and maintainability.
 
-#### Specialized Components
-- **ScoreBadge**: Walk Score API integration for walkability metrics
-- **ImageGallery**: Property photo carousel with navigation
-- **RealtorInfo**: Real estate agent profiles and contact information
-- **SimpleToast**: User notification system
+#### Core Components
+- **ListingCard**: A summary card for a single property, used on the `PropertiesPage`.
+- **PropertySearchBox**: A form for searching properties by city.
+- **PropertyMap**: An interactive Leaflet map that displays a property's location using geocoding.
+- **PriceHistoryChart**: A Chart.js graph visualizing the price history of a property.
+
+#### UI & Utility Components
+- **ScoreBadge**: Displays Walk Score, Transit Score, and Bike Score.
+- **ImageGallery**: A carousel for viewing property images.
+- **RealtorInfo**: Shows contact information for the listing agent.
+- **SimpleToast**: A non-blocking notification pop-up for user feedback.
+- **Action Buttons**: A suite of buttons (`FavoriteButton`, `ScheduleButton`, `RoiCalculatorButton`, `AiAnalysisButton`) for user interactions on the `PropertyDetailPage`.
 
 ### Backend Architecture
 
-#### Django Apps Structure
-- **listings**: Core property management app
-  - Models: `Listing` and `PriceHistory`
-  - Views: RESTful API endpoints
-  - Serializers: JSON data transformation
-  - URLs: API routing configuration
+The backend is a monolithic Django application that exposes a RESTful API.
 
-#### Key Features
-- **CORS Integration**: Seamless frontend-backend communication
-- **Django REST Framework**: Standardized API responses
-- **Management Commands**: Automated data population
-- **SQLite Database**: Development-friendly storage
+#### Django Apps Structure
+- **listings**: The core application managing all property-related data.
+  - **Models**: `Listing` and `PriceHistory` define the database schema.
+  - **Views**: API endpoints for creating, retrieving, updating, and deleting listings. Includes search functionality.
+  - **Serializers**: Manages the conversion of complex data types (like Django models) to JSON.
+  - **URLs**: Defines the API endpoint routes.
 
 ## Data Flow
 
-### Property Search Flow
-1. User enters search criteria in `PropertySearchBox`
-2. Frontend calls `/api/listings/search/?city={city}`
-3. Django filters listings based on city
-4. Results displayed in `ListingCard` components
+### Property Search & View Flow
+1.  A user on the `PropertiesPage` uses the `PropertySearchBox`.
+2.  The frontend makes a GET request to the `/api/listings/search/?city={city}` endpoint.
+3.  The Django backend filters listings by city and returns the data.
+4.  The results are displayed as a series of `ListingCard` components.
+5.  Clicking a card navigates the user to the `PropertyDetailPage`, passing the property ID in the URL. The previous search page number is preserved in the URL (`?page=2`) for improved navigation.
+6.  The `PropertyDetailPage` fetches detailed data for that property and renders components like `ImageGallery`, `PropertyMap`, and `PriceHistoryChart`.
 
-### Property Details Flow
-1. User clicks on property from listings
-2. Navigate to `PropertyDetailPage` with property ID
-3. `useListings` hook fetches property details
-4. Components render:
-   - Property information and images
-   - Interactive map with geocoded location
-   - Price history chart
-   - Walk Score integration
-
-### External API Integration
-- **Geocoding**: OpenStreetMap Nominatim converts addresses to coordinates
-- **Walkability**: Walk Score provides mobility and transit ratings
-- **No API keys required** for development setup
+### User Authentication Flow
+1.  A new user navigates to the `RegisterPage` and fills out the registration form.
+2.  Client-side validation is performed instantly using the `InputValidation` tool.
+3.  Upon submission, a request is sent to Firebase Authentication to create a new user.
+4.  Once registered, the user's authentication state is managed globally by `AuthContext`.
+5.  Authenticated users can log in via the `LoginPage`.
+6.  The main navigation bar dynamically changes based on the user's auth state, showing either login/register links or a user dashboard/logout menu.
+7.  Protected actions, like favoriting a property, now check the `AuthContext` and prompt unauthenticated users to log in.
 
 ## Technology Decisions
 
 ### Frontend Stack
-- **React 19**: Latest features and performance improvements
-- **Vite**: Fast development server and optimized builds
-- **React Router**: Client-side routing for multi-page experience
-- **Axios**: HTTP client for API communication
+- **React 19**: A modern JavaScript library for building user interfaces.
+- **Vite**: A next-generation frontend tooling for fast development and optimized builds.
+- **React Router**: For client-side routing in a multi-page application.
+- **Axios**: A promise-based HTTP client for communicating with the backend API.
+- **Firebase Authentication**: For user registration, login, and session management.
 
 ### Backend Stack
-- **Django**: Robust web framework with ORM
-- **Django REST Framework**: API development toolkit
-- **SQLite**: Simple development database
+- **Django**: A high-level Python web framework.
+- **Django REST Framework**: A powerful toolkit for building Web APIs.
+- **SQLite**: A lightweight, serverless database ideal for development.
 
-### External Libraries
-- **Leaflet**: Open-source mapping library
-- **Chart.js**: Flexible charting library
-- **CSS Variables**: Maintainable styling system
+### External Libraries & Services
+- **Leaflet**: An open-source library for interactive maps.
+- **Chart.js**: A flexible library for creating charts and graphs.
+- **Font Awesome**: Used for social media and action icons.
 
-## Scalability Considerations
+## Scalability and Future Enhancements
 
-### Performance Optimizations
-- Component-based architecture for reusability
-- Custom hooks for state management
-- Efficient API design with minimal data transfer
-- Optimized build process with Vite
+### Implemented Features
+- **Component-based architecture** for high reusability.
+- **Global state management** with React Context for authentication.
+- **Client-side routing** for a seamless single-page application experience.
+- **User authentication and management** via Firebase.
+- **Efficient API design** with Django REST Framework.
 
-### Future Enhancements
-- PostgreSQL for production database
-- Redis for caching
-- Authentication and user management
-- Advanced search filters
-- Real-time property updates
+### Future Roadmap
+- **Database Migration**: Transition from SQLite to a production-grade database like PostgreSQL.
+- **Caching**: Implement Redis for caching frequent API responses to improve performance.
+- **Advanced Search**: Add more complex search filters (e.g., price range, number of bedrooms).
+- **Real-time Updates**: Use WebSockets for real-time property notifications.
+- **Containerization**: Dockerize the frontend and backend for consistent deployment environments.
