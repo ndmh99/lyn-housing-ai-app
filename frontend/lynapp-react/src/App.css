@@ -124,9 +124,8 @@ header {
 .main-nav ul {
   display: flex;
   gap: var(--space-2);
-  margin: 0;
-  padding: 0;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .main-nav ul li {
@@ -159,6 +158,7 @@ body:has(.properties-page) .nav-properties,
 body:has(.about-page) .nav-about,
 body:has(.login-page) .nav-login,
 body:has(.register-page) .nav-register,
+body:has(.user-dashboard-page) .dropdown-toggle,
 body:has(.home-page) .nav-home:hover,
 body:has(.properties-page) .nav-properties:hover,
 body:has(.about-page) .nav-about:hover,
@@ -184,6 +184,27 @@ body:has(.register-page) .nav-register:hover {
   width: 1px;
   height: 32px;
   background: var(--neutral-divider);
+}
+
+/* User Dropdown Menu */
+.nav-user-dropdown {
+  position: relative;
+}
+
+.dropdown-toggle .arrow {
+  font-size: 0.8em;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  margin-top: 5px;
 }
 
 /* =============================================================================
@@ -225,6 +246,10 @@ body:has(.register-page) .nav-register:hover {
     flex-direction: column;
     min-width: 150px;
     z-index: 1000;
+  }
+
+  .main-nav .dropdown-menu {
+    display: contents;
   }
 
   .main-nav ul.nav-open {

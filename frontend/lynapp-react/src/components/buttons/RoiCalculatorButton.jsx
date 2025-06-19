@@ -2,9 +2,14 @@ import React from 'react';
 import './styles/RoiCalculatorButton.css';
 
 const RoiCalculatorButton = ({ onClick }) => {
-    const handleRedirect = () => {
+    const handleRedirect = (e) => {
+        // Always call the parent's onClick handler if it exists.
         if (onClick) {
-            onClick();
+            onClick(e);
+        }
+
+        // If the parent called e.preventDefault(), stop right here.
+        if (e.defaultPrevented) {
             return;
         }
 
