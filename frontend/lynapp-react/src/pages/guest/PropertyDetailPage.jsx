@@ -12,6 +12,7 @@ import ScheduleButton from '../../components/buttons/ScheduleButton';
 import AiAnalysisButton from '../../components/buttons/AiAnalysisButton';
 import RoiCalculatorButton from '../../components/buttons/RoiCalculatorButton';
 import './styles/PropertyDetailPage.css';
+import { useAuth } from '../../contexts/AuthContext';
 
 const PropertyDetailPage = () => {
   const { id } = useParams();
@@ -23,6 +24,7 @@ const PropertyDetailPage = () => {
   const [toastMessage, setToastMessage] = useState('');
   const [propertyUrl, setPropertyUrl] = useState('');
   const [isInternalNavigation, setIsInternalNavigation] = useState(false);
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     setPropertyUrl(window.location.href);
@@ -41,8 +43,14 @@ const PropertyDetailPage = () => {
     }
   };
 
-  const handleActionClick = () => {
-    setToastMessage('Please log in or register to use this feature.');
+  const handleClick = (e) => {
+    // If the user is NOT logged in...
+    if (!currentUser) {
+      // Stop the button from toggling its state.
+      e.preventDefault(); 
+      setToastMessage('Please log in or register to use this feature.');
+      return;
+    }
   };
 
   if (loading) return <div className="loading">Loading property details...</div>;
@@ -205,10 +213,10 @@ const PropertyDetailPage = () => {
 
           {/* Action Buttons */}
           <div className="contact-section">
-            <AiAnalysisButton onClick={handleActionClick} />
-            <ScheduleButton onClick={handleActionClick} />
-            <RoiCalculatorButton onClick={handleActionClick} />
-            <FavoriteButton onClick={handleActionClick} />
+            <AiAnalysisButton onClick={handleClick} />
+            <ScheduleButton onClick={handleClick} />
+            <RoiCalculatorButton onClick={handleClick} />
+            <FavoriteButton onClick={handleClick} />
           </div>
         </div>
       </div>

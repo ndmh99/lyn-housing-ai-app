@@ -315,7 +315,34 @@
 }
 
 /* =============================================================================
-  12. RESPONSIVE DESIGN
+  12. Special Elements
+============================================================================= */
+
+/* Error Styling */
+.register-page .input-error {
+  border-color: #e74c3c !important;
+}
+
+.register-page .error-text {
+  color: #e74c3c;
+  font-size: 0.875rem;
+  margin-top: 5px;
+  text-align: left;
+  width: 100%;
+}
+
+.register-page .error-message {
+  color: #e74c3c;
+  background-color: #fdd;
+  border: 1px solid #e74c3c;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* =============================================================================
+  13. RESPONSIVE DESIGN
 ============================================================================= */
 
 @media (max-width: 480px) {
