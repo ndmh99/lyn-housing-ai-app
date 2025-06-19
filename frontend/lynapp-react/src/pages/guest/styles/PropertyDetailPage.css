@@ -5,542 +5,550 @@
 /* ===================================
     MAIN CONTAINER & LAYOUT
     =================================== */
-.property-detail-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--space-5);
-}
-
-/* Common styles for sections */
-.property-detail-page .property-location,
-.property-detail-page .price-history-section {
-    padding: var(--space-4);
-    border-radius: var(--radius-xl);
-    border: solid 1.5px var(--neutral-border);
-    background: rgba(255, 255, 255, 0.19);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5.8px);
-    -webkit-backdrop-filter: blur(5.8px);
-}
-
-.property-detail-page button {
-    outline: none;
-}
-
-
-/* ===================================
-    NAVIGATION
-    =================================== */
-.property-detail-page .back-button {
-    margin-bottom: var(--space-5);
-    align-items: center;
-    border-radius: 100px;
-    border: none;
-    background: linear-gradient(180deg, var(--btn-primary-active), var(--btn-primary-bg));
-    color: #ffffff;
-    cursor: pointer;
-    font-weight: 600;   
-    font-style: italic;
-    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.3);
-}
-
-.property-detail-page .back-button:hover {
-    background: linear-gradient(180deg, var(--btn-primary-bg), var(--btn-primary-bg));
-    box-shadow: inset 0px 0px 8px 5px rgba(0, 0, 0, 0.15);
-}
-
-/* ===================================
-    GRID LAYOUT
-    =================================== */
-.property-detail-page .property-detail-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-6);
-}
-
-/* ===================================
-    LEFT COLUMN - VISUAL ELEMENTS
-    =================================== */
-.property-detail-page .property-left-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: var(--space-6);
-}
-
-.property-detail-page .property-images {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-
-    /* 3D stacking effect*/
-    box-shadow:
-    /* The top layer shadow */
-    0 -1px 1px rgba(0,0,0,0.4),
-    /* The second layer */
-    0 -10px 0 -5px #eee,
-    /* The second layer shadow */
-    0 -10px 1px -4px rgba(0,0,0,0.2),
-     /* The third layer */
-    0 -20px 0 -10px #eee,
-    /* The third layer shadow */
-    0 -20px 1px -9px rgba(0,0,0,0.2);
-}
-
-.property-detail-page .property-left-section .property-header,
-.property-detail-page .property-left-section .property-features,
-.property-detail-page .property-left-section .description {
-    border-left: 0 solid #00ff99;
-    transition: border-left 300ms ease-in-out, padding-left 300ms ease-in-out;
-    padding-left: 1rem;
-}
-
-.property-detail-page .property-left-section .property-header:hover,
-.property-detail-page .property-left-section .property-features:hover,
-.property-detail-page .property-left-section .description:hover {
-    padding-left: 0.5rem;
-    border-left: 0.5rem solid #00ff99;
-}
-
-/* ===================================
-    RIGHT COLUMN - INFORMATION
-    =================================== */
-.property-detail-page .property-right-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: var(--space-6);
-}
-
-
-
-/* ===================================
-    PROPERTY HEADER SECTION - IN LEFT COLUMN
-    =================================== */
-.property-detail-page .property-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: var(--space-3);
-}
-
-.property-detail-page .property-header h1 {
-    color: var(--neutral-text-dark);
-    font-size: 2rem;
-    margin: 0;
-}
-
-.property-detail-page .price {
-    color: var(--cta-green);
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-shadow: 0 0 8px var(--accent-gold-20);
-}
-
-.property-detail-page .location {
-    display: flex;
-    align-items: center;
-    gap: var(--space-1);
-    color: var(--neutral-text-medium);
-    font-size: 1.05rem;
-    font-weight: 500;
-}
-
-.property-detail-page .location::before {
-    content: '';
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    background-color: var(--neutral-text-dark);
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E");
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    mask-position: center;
-}
-
-/* ===================================
-    PROPERTY FEATURES SECTION - IN LEFT COLUMN
-    =================================== */
-.property-detail-page .property-features {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-3);
-    background: var(--neutral-soft);
-}
-
-.property-detail-page .property-features span {
-    text-align: center;
-    color: var(--neutral-text-dark);
-    font-weight: 500;
-}
-
-/* ===================================
-    DESCRIPTION SECTION - IN LEFT COLUMN
-    =================================== */
-.property-detail-page .description {
-    background: var(--neutral-white);
-}
-
-.property-detail-page .description h3 {
-    color: var(--neutral-text-dark);
-    margin-bottom: var(--space-2);
-    font-size: 1.2rem;
-}
-
-.property-detail-page .description p {
-    color: var(--neutral-text-medium);
-    line-height: 1.6;
-    margin: 0;
-}
-
-/* ===================================
-    REALTOR INFO SEPARATOR - IN LEFT COLUMN
-    =================================== */
-.property-detail-page .realtor-info-separator {
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--accent-navy), transparent);
-    margin: var(--space-4) 0;
-    position: relative;
-}
-
-.property-detail-page .realtor-info-separator::after {
-    content: '◆';
-    /* A diamond shape */
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--neutral-soft);
-    color: var(--accent-navy);
-    padding: 0 var(--space-2);
-    font-size: 1rem;
-}
-
-/* ===================================
-    LOCATION SECTION - IN RIGHT COLUMN
-    =================================== */
-.property-detail-page .property-location {}
-
-.property-detail-page .property-location h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--neutral-text-dark);
-    margin-bottom: var(--space-4);
-    padding-bottom: var(--space-3);
-    border-bottom: 1px solid var(--neutral-divider);
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-}
-
-.property-detail-page .property-location h3::before {
-    content: '';
-    display: inline-block;
-    width: 1.3em;
-    height: 1.3em;
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    background-color: var(--primary-green);
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E");
-}
-
-.property-detail-page .location-content {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    gap: var(--space-2);
-}
-
-.property-detail-page .walkability-scores {
-    background: var(--neutral-soft);
-    border-radius: var(--radius-md);
-}
-
-.property-detail-page .map-container {
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    height: 100%;
-}
-
-/* ===================================
-    PRICE HISTORY SECTION - IN RIGHT COLUMN
-    =================================== */
-.property-detail-page .price-history-section {}
-
-.property-detail-page .price-history-section h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--neutral-text-dark);
-    margin-bottom: var(--space-4);
-    padding-bottom: var(--space-3);
-    border-bottom: 1px solid var(--neutral-divider);
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-}
-
-.property-detail-page .price-history-section h3::before {
-    content: '';
-    display: inline-block;
-    width: 1.3em;
-    height: 1.3em;
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    background-color: var(--primary-green);
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 17.08l1.5 1.41z'/%3E%3C/svg%3E");
-}
-
-/* ===================================
-    CONTACT SECTION - IN RIGHT COLUMN
-    =================================== */
-.property-detail-page .contact-section {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-3);
-}
-
-.property-detail-page .contact-section button {
-    padding: var(--space-3);
-    border-radius: var(--radius-md);
-    border: none;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.property-detail-page .contact-section .roi-calc-btn,
-.property-detail-page .contact-section .favorite-btn {
-    background: rgba(255, 255, 255, 0.19);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5.8px);
-    -webkit-backdrop-filter: blur(5.8px);
-}
-
-/* ===================================
-    LOADING & ERROR STATES
-    =================================== */
-.property-detail-page .loading,
-.property-detail-page .error {
-    text-align: center;
-    padding: var(--space-8);
-    color: var(--neutral-text-medium);
-}
-
-.property-detail-page .error {
-    color: var(--error-coral);
-}
-
-/* ===================================
-    ENHANCED PROPERTY INFO CONTAINER
-    =================================== */
-.property-info-container {
-    border-radius: var(--radius-xl);
-    padding: var(--space-6);
-    border: 2px solid darkcyan;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    background-color: white;
-}
-
-/* Enhanced Header */
-.property-info-container .property-header h1 {
-    font-size: 2.1rem;
-    font-weight: 700;
-    color: var(--neutral-text-dark);
-    line-height: 1.2;
-    margin: 0;
-}
-
-/* Enhanced Divider */
-.property-info-container .info-divider {
-    display: none;
-}
-
-/* Enhanced Features */
-.property-info-container .property-features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    background: transparent;
-    padding: var(--space-4) 0;
-    margin: var(--space-2) 0;
-    border-top: 1px solid var(--neutral-divider);
-    border-bottom: 1px solid var(--neutral-divider);
-}
-
-.property-info-container .property-features span {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--neutral-text-dark);
-    background: var(--neutral-white);
-    text-align: left;
-    padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--neutral-border);
-    border-radius: var(--radius-full);
-    box-shadow: var(--shadow-xs);
-}
-
-/* Feature Icons */
-.property-info-container .property-features span::before {
-    font-size: 1.2rem;
-    color: var(--primary-green);
-}
-
-.property-info-container .property-features span:nth-child(1)::before {
-    content: '🛏️';
-    /* Bed Icon */
-}
-
-.property-info-container .property-features span:nth-child(2)::before {
-    content: '🛁';
-    /* Bath Icon */
-}
-
-.property-info-container .property-features span:nth-child(3)::before {
-    content: '📐';
-    /* Area Icon */
-}
-
-/* Enhanced Description */
-.property-info-container .description h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--neutral-text-dark);
-    margin-bottom: var(--space-3);
-    border-bottom: 2px solid var(--accent-gold);
-    padding-bottom: var(--space-2);
-    display: inline-block;
-}
-
-.property-info-container .description p {
-    color: var(--neutral-text-medium);
-    line-height: 1.8;
-    font-size: 1.05rem;
-    margin: 0;
-}
-
-/* ===================================
-    RESPONSIVE DESIGN
-    =================================== */
-@media (max-width: 768px) {
+    .property-detail-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--space-5);
+    }
+    
+    /* Common styles for sections */
+    .property-detail-page .property-location,
+    .property-detail-page .price-history-section {
+        padding: var(--space-4);
+        border-radius: var(--radius-xl);
+        border: solid 1.5px var(--neutral-border);
+        background: rgba(255, 255, 255, 0.19);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5.8px);
+        -webkit-backdrop-filter: blur(5.8px);
+    }
+    
+    .property-detail-page button {
+        outline: none;
+    }
+    
+    
+    /* ===================================
+        NAVIGATION
+        =================================== */
+    .property-detail-page .back-button {
+        margin-bottom: var(--space-5);
+        align-items: center;
+        border-radius: 100px;
+        border: none;
+        background: linear-gradient(180deg, var(--btn-primary-active), var(--btn-primary-bg));
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: 600;   
+        font-style: italic;
+        box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.3);
+    }
+    
+    .property-detail-page .back-button:hover {
+        background: linear-gradient(180deg, var(--btn-primary-bg), var(--btn-primary-bg));
+        box-shadow: inset 0px 0px 8px 5px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* ===================================
+        GRID LAYOUT
+        =================================== */
     .property-detail-page .property-detail-container {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-6);
     }
-
-    .property-detail-page .property-features,
-    .property-detail-page .contact-section {
-        grid-template-columns: 1fr;
+    
+    /* ===================================
+        LEFT COLUMN - VISUAL ELEMENTS
+        =================================== */
+    .property-detail-page .property-left-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: var(--space-6);
     }
-
-    .property-detail-page .map-container {
-        min-height: 250px;
+    
+    .property-detail-page .property-images {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+    
+        /* 3D stacking effect*/
+        box-shadow:
+        /* The top layer shadow */
+        0 -1px 1px rgba(0,0,0,0.4),
+        /* The second layer */
+        0 -10px 0 -5px #eee,
+        /* The second layer shadow */
+        0 -10px 1px -4px rgba(0,0,0,0.2),
+         /* The third layer */
+        0 -20px 0 -10px #eee,
+        /* The third layer shadow */
+        0 -20px 1px -9px rgba(0,0,0,0.2);
     }
-
+    
+    .property-detail-page .property-left-section .property-header,
+    .property-detail-page .property-left-section .property-features,
+    .property-detail-page .property-left-section .description {
+        border-left: 0 solid #00ff99;
+        transition: border-left 300ms ease-in-out, padding-left 300ms ease-in-out;
+        padding-left: 1rem;
+    }
+    
+    .property-detail-page .property-left-section .property-header:hover,
+    .property-detail-page .property-left-section .property-features:hover,
+    .property-detail-page .property-left-section .description:hover {
+        padding-left: 0.5rem;
+        border-left: 0.5rem solid #00ff99;
+    }
+    
+    /* ===================================
+        RIGHT COLUMN - INFORMATION
+        =================================== */
+    .property-detail-page .property-right-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: var(--space-6);
+    }
+    
+    
+    
+    /* ===================================
+        PROPERTY HEADER SECTION - IN LEFT COLUMN
+        =================================== */
+    .property-detail-page .property-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: var(--space-3);
+    }
+    
     .property-detail-page .property-header h1 {
-        font-size: 1.5rem;
+        color: var(--neutral-text-dark);
+        font-size: 2rem;
+        margin: 0;
     }
-
+    
     .property-detail-page .price {
-        font-size: 1.3rem;
+        color: var(--cta-green);
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-shadow: 0 0 8px var(--accent-gold-20);
     }
-}
-
-.social-section {
-    margin:auto;
-}
-
-.social-section h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #333;
-    text-align: center;
-}
-
-.social-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.social-button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 0.9rem;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    transition: background-color 0.3s ease;
-    font-size: 1.2rem;
-}
-
-.social-button.facebook {
-    background-color: #3b5998;
-}
-
-.social-button.facebook:hover {
-    color: #324a7f;
-    background-color: white;
-}
-
-.social-button.twitter {
-    background-color: #1da1f2;
-}
-
-.social-button.twitter:hover {
-    color: #1a8cd8;
-    background-color: white;
-}
-
-.social-button.instagram {
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
-}
-
-.social-button.instagram:hover {
-    color: red;
-    background: white;
-}
-
-.social-button.tiktok {
-    background-color: #000000;
-}
-
-.social-button.tiktok:hover {
-    color: #333333;
-    background-color: white;
-}
-
-.social-button.copy-link {
-    background-color: #767676;
-}
-
-.social-button.copy-link:hover {
-    background-color: #626262;
-}
-
-/* Realtor Info Separator */
-.realtor-info-separator {
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--accent-navy), transparent);
-    margin: var(--space-4) 0;
-    position: relative;
-}
-
-.realtor-info-separator::after {
-    content: '◆';
-    /* A diamond shape */
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--neutral-soft);
-    color: var(--accent-navy);
-    padding: 0 var(--space-2);
-    font-size: 1rem;
-}
+    
+    .property-detail-page .location {
+        display: flex;
+        align-items: center;
+        gap: var(--space-1);
+        color: var(--neutral-text-medium);
+        font-size: 1.05rem;
+        font-weight: 500;
+    }
+    
+    .property-detail-page .location::before {
+        content: '';
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        background-color: var(--neutral-text-dark);
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E");
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        mask-position: center;
+    }
+    
+    /* ===================================
+        PROPERTY FEATURES SECTION - IN LEFT COLUMN
+        =================================== */
+    .property-detail-page .property-features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-3);
+        background: var(--neutral-soft);
+    }
+    
+    .property-detail-page .property-features span {
+        text-align: center;
+        color: var(--neutral-text-dark);
+        font-weight: 500;
+    }
+    
+    /* ===================================
+        DESCRIPTION SECTION - IN LEFT COLUMN
+        =================================== */
+    .property-detail-page .description {
+        background: var(--neutral-white);
+    }
+    
+    .property-detail-page .description h3 {
+        color: var(--neutral-text-dark);
+        margin-bottom: var(--space-2);
+        font-size: 1.2rem;
+    }
+    
+    .property-detail-page .description p {
+        color: var(--neutral-text-medium);
+        line-height: 1.6;
+        margin: 0;
+    }
+    
+    /* ===================================
+        REALTOR INFO SEPARATOR - IN LEFT COLUMN
+        =================================== */
+    .property-detail-page .realtor-info-separator {
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--accent-navy), transparent);
+        margin: var(--space-4) 0;
+        position: relative;
+    }
+    
+    .property-detail-page .realtor-info-separator::after {
+        content: '◆';
+        /* A diamond shape */
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--neutral-soft);
+        color: var(--accent-navy);
+        padding: 0 var(--space-2);
+        font-size: 1rem;
+    }
+    
+    /* ===================================
+        LOCATION SECTION - IN RIGHT COLUMN
+        =================================== */
+    .property-detail-page .property-location {}
+    
+    .property-detail-page .property-location h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--neutral-text-dark);
+        margin-bottom: var(--space-4);
+        padding-bottom: var(--space-3);
+        border-bottom: 1px solid var(--neutral-divider);
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+    }
+    
+    .property-detail-page .property-location h3::before {
+        content: '';
+        display: inline-block;
+        width: 1.3em;
+        height: 1.3em;
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        background-color: var(--primary-green);
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E");
+    }
+    
+    .property-detail-page .location-content {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: var(--space-2);
+    }
+    
+    .property-detail-page .walkability-scores {
+        background: var(--neutral-soft);
+        border-radius: var(--radius-md);
+    }
+    
+    .property-detail-page .map-container {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        height: 100%;
+    }
+    
+    /* ===================================
+        PRICE HISTORY SECTION - IN RIGHT COLUMN
+        =================================== */
+    .property-detail-page .price-history-section {}
+    
+    .property-detail-page .price-history-section h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--neutral-text-dark);
+        margin-bottom: var(--space-4);
+        padding-bottom: var(--space-3);
+        border-bottom: 1px solid var(--neutral-divider);
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+    }
+    
+    .property-detail-page .price-history-section h3::before {
+        content: '';
+        display: inline-block;
+        width: 1.3em;
+        height: 1.3em;
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        background-color: var(--primary-green);
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 17.08l1.5 1.41z'/%3E%3C/svg%3E");
+    }
+    
+    /* ===================================
+        CONTACT SECTION - IN RIGHT COLUMN
+        =================================== */
+    .property-detail-page .contact-section {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-3);
+    }
+    
+    .property-detail-page .contact-section button {
+        padding: var(--space-3);
+        border-radius: var(--radius-md);
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+    
+    .property-detail-page .contact-section .roi-calc-btn,
+    .property-detail-page .contact-section .favorite-btn {
+        background: rgba(255, 255, 255, 0.19);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5.8px);
+        -webkit-backdrop-filter: blur(5.8px);
+    }
+    
+    /* ===================================
+        LOADING & ERROR STATES
+        =================================== */
+    .property-detail-page .loading,
+    .property-detail-page .error {
+        text-align: center;
+        padding: var(--space-8);
+        color: var(--neutral-text-medium);
+    }
+    
+    .property-detail-page .error {
+        color: var(--error-coral);
+    }
+    
+    /* ===================================
+        ENHANCED PROPERTY INFO CONTAINER
+        =================================== */
+    .property-info-container {
+        border-radius: var(--radius-xl);
+        padding: var(--space-6);
+        border: 2px solid darkcyan;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+        background-color: white;
+    }
+    
+    /* Enhanced Header */
+    .property-info-container .property-header h1 {
+        font-size: 2.1rem;
+        font-weight: 700;
+        color: var(--neutral-text-dark);
+        line-height: 1.2;
+        margin: 0;
+    }
+    
+    /* Enhanced Divider */
+    .property-info-container .info-divider {
+        display: none;
+    }
+    
+    /* Enhanced Features */
+    .property-info-container .property-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+        background: transparent;
+        padding: var(--space-4) 0;
+        margin: var(--space-2) 0;
+        border-top: 1px solid var(--neutral-divider);
+        border-bottom: 1px solid var(--neutral-divider);
+    }
+    
+    .property-info-container .property-features span {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--neutral-text-dark);
+        background: var(--neutral-white);
+        text-align: left;
+        padding: var(--space-2) var(--space-4);
+        border: 1px solid var(--neutral-border);
+        border-radius: var(--radius-full);
+        box-shadow: var(--shadow-xs);
+    }
+    
+    /* Feature Icons */
+    .property-info-container .property-features span::before {
+        font-size: 1.2rem;
+        color: var(--primary-green);
+    }
+    
+    .property-info-container .property-features span:nth-child(1)::before {
+        content: '🛏️';
+        /* Bed Icon */
+    }
+    
+    .property-info-container .property-features span:nth-child(2)::before {
+        content: '🛁';
+        /* Bath Icon */
+    }
+    
+    .property-info-container .property-features span:nth-child(3)::before {
+        content: '📐';
+        /* Area Icon */
+    }
+    
+    /* Enhanced Description */
+    .property-info-container .description h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--neutral-text-dark);
+        margin-bottom: var(--space-3);
+        border-bottom: 2px solid var(--accent-gold);
+        padding-bottom: var(--space-2);
+        display: inline-block;
+    }
+    
+    .property-info-container .description p {
+        color: var(--neutral-text-medium);
+        line-height: 1.8;
+        font-size: 1.05rem;
+        margin: 0;
+    }
+    
+    /* ===================================
+        RESPONSIVE DESIGN
+        =================================== */
+    @media (max-width: 768px) {
+        .property-detail-page .property-detail-container {
+            grid-template-columns: 1fr;
+        }
+    
+        .property-detail-page .property-features,
+        .property-detail-page .contact-section {
+            grid-template-columns: 1fr;
+        }
+    
+        .property-detail-page .map-container {
+            min-height: 250px;
+        }
+    
+        .property-detail-page .property-header h1 {
+            font-size: 1.5rem;
+        }
+    
+        .property-detail-page .price {
+            font-size: 1.3rem;
+        }
+    
+        .property-detail-page .realtor-info-separator::after {
+            content: 'REALTOR INFO';
+            background: var(--accent-navy);
+            color: var(--neutral-white);
+            border-radius: var(--radius-full);
+            padding: 0 var(--space-2);
+        }
+    }
+    
+    .social-section {
+        margin:auto;
+    }
+    
+    .social-section h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: #333;
+        text-align: center;
+    }
+    
+    .social-buttons {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .social-button {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 0.9rem;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        transition: background-color 0.3s ease;
+        font-size: 1.2rem;
+    }
+    
+    .social-button.facebook {
+        background-color: #3b5998;
+    }
+    
+    .social-button.facebook:hover {
+        color: #324a7f;
+        background-color: white;
+    }
+    
+    .social-button.twitter {
+        background-color: #1da1f2;
+    }
+    
+    .social-button.twitter:hover {
+        color: #1a8cd8;
+        background-color: white;
+    }
+    
+    .social-button.instagram {
+        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+    }
+    
+    .social-button.instagram:hover {
+        color: red;
+        background: white;
+    }
+    
+    .social-button.tiktok {
+        background-color: #000000;
+    }
+    
+    .social-button.tiktok:hover {
+        color: #333333;
+        background-color: white;
+    }
+    
+    .social-button.copy-link {
+        background-color: #767676;
+    }
+    
+    .social-button.copy-link:hover {
+        background-color: #626262;
+    }
+    
+    /* Realtor Info Separator */
+    .realtor-info-separator {
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--accent-navy), transparent);
+        margin: var(--space-4) 0;
+        position: relative;
+    }
+    
+    .realtor-info-separator::after {
+        content: '◆';
+        /* A diamond shape */
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--neutral-soft);
+        color: var(--accent-navy);
+        padding: 0 var(--space-2);
+        font-size: 1rem;
+    }
