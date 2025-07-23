@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ListingListView, ListingCreateView, ListingUpdateView, ListingDeleteView, ListingDetailView, search_listings
+from .views import ListingListView, ListingCreateView, ListingUpdateView, ListingDeleteView, ListingDetailView, search_listings, OpenAIProxyAPIView
 
 urlpatterns = [
     path('', ListingListView.as_view(), name='listing-list'),
@@ -10,4 +10,5 @@ urlpatterns = [
 
 # Format: /api/listings/search/?city=CityName. For example, /api/listings/search/?city=Halifax
     path('search/', search_listings, name='listing-search'),
+    path('analyze-housing/', OpenAIProxyAPIView.as_view(), name='analyze-housing'),
 ]

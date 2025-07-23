@@ -35,4 +35,28 @@
 
 .ai-analysis-btn:hover .magic-icon {
     transform: rotate(15deg) scale(1.1);
+}
+
+.ai-analysis-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.ai-analysis-btn.loading {
+    background: linear-gradient(45deg, #888, #555);
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 } 
