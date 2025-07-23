@@ -94,3 +94,20 @@ class PriceHistory(models.Model):
             str: A formatted string showing the listing title followed by "- Price History".
         """
         return f"{self.listing.title} - Price History"
+
+class AnalysisCache(models.Model):
+    """
+    Model to cache AI analysis requests and results.
+    Fields:
+        timestamp: When the request was made (auto_now_add)
+        listing: ForeignKey to Listing (indexed)
+        input_data: The input data sent to the AI (JSONField)
+        analysis_result: The AI's response (TextField)
+    """
+    timestamp = models.DateTimeField(auto_now_add=True)
+    listing = models.ForeignKey('Listing', on_delete=models.CASCADE, related_name='analysis_caches')
+    price_history = models.ForeignKey('PriceHistory', on_delete=models.SET_NULL, null=True, blank=True, related_name='analysis_caches')
+    analysis_result = models.TextField()
+
+    def __str__(self):
+        return f"AnalysisCache for listing {self.listing_id} at {self.timestamp}"
