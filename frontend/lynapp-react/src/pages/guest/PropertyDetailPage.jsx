@@ -87,28 +87,50 @@ const PropertyDetailPage = () => {
 
     try {
       const startTime = Date.now();
-      const response = await fetch('/api/listings/analyze-housing/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          listing_id: property.id
-        }),
-      });
+      let response;
+
+      // Try localhost first, then fallback to production
+      try {
+        // First attempt: localhost (development)
+        response = await fetch('/api/listings/analyze-housing/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            listing_id: property.id
+          }),
+        });
+
+        // Check if localhost request was successful
+        if (!response.ok) {
+          throw new Error('Localhost request failed');
+        }
+      } catch (localhostError) {
+        // Fallback: production backend
+        console.log('Localhost failed, trying production backend...');
+        response = await fetch('https://lyn-housing-ai-app-backend.onrender.com/api/listings/analyze-housing/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            listing_id: property.id
+          }),
+        });
+      }
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to get AI analysis');
-      }
-
       // Calculate elapsed time and add minimum delay for better UX
       const elapsedTime = Date.now() - startTime;
-      const minDelay = 1000; // 1 second minimum
+      const minDelay = 1000; // 1 second minimum for cool animation
       const additionalDelay = Math.max(0, minDelay - elapsedTime);
 
-      // Add the delay before showing results
       await new Promise(resolve => setTimeout(resolve, additionalDelay));
 
       setAiAnalysis(data.analysis);
@@ -137,13 +159,13 @@ const PropertyDetailPage = () => {
   const generateTimeSlots = () => {
     const slots = [];
     const times = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'];
-    
+
     for (let i = 0; i < 7; i++) {
       const date = new Date();
       date.setDate(date.getDate() + i + 1);
       const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
       const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-      
+
       times.forEach(time => {
         slots.push({
           id: `${date.toISOString().split('T')[0]}-${time}`,
@@ -162,7 +184,7 @@ const PropertyDetailPage = () => {
     const timeSlots = generateTimeSlots();
     const dates = [];
     const dateMap = new Map();
-    
+
     timeSlots.forEach(slot => {
       if (!dateMap.has(slot.fullDate)) {
         dateMap.set(slot.fullDate, {
@@ -173,14 +195,14 @@ const PropertyDetailPage = () => {
         });
       }
     });
-    
+
     return Array.from(dateMap.values()).filter(date => date.hasAvailable);
   };
 
   const getAvailableTimesForDate = (selectedFullDate) => {
     const timeSlots = generateTimeSlots();
     return timeSlots.filter(slot => slot.fullDate === selectedFullDate && slot.available);
-  };  if (loading) return <div className="loading">Loading property details...</div>;
+  }; if (loading) return <div className="loading">Loading property details...</div>;
   if (error) return <div className="error">{error}</div>;
   if (!property) return <div className="error">Property not found</div>;
 
@@ -360,7 +382,7 @@ const PropertyDetailPage = () => {
                   <button
                     key={slot.id}
                     className={`time-slot ${!slot.available ? 'unavailable' :
-                        selectedDate === slot.fullDate && selectedTime === slot.time ? 'selected' : 'available'
+                      selectedDate === slot.fullDate && selectedTime === slot.time ? 'selected' : 'available'
                       }`}
                     disabled={!slot.available}
                     onClick={() => {
