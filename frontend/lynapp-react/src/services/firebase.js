@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAJbGG75xcaXzdEm3loh2DGYqXlygu28jY",
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
     authDomain: "lynai-housing-app.firebaseapp.com",
     projectId: "lynai-housing-app",
     storageBucket: "lynai-housing-app.firebasestorage.app",
