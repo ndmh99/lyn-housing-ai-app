@@ -11,9 +11,13 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables
+load_dotenv()
 
 
 # Quick-start development settings - unsuitable for production
@@ -129,11 +133,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Allow React frontend to connect
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:3000",
-    "http://localhost:5173",
-    "https://lyn-housing-ai-app.vercel.app/",
-    "https://lyn-housing-ai-app-ndmh99s-projects.vercel.app",
-    "https://www.lynaihousing.top",
-]
+# Allow React frontend to connect (update with your frontend URL)
+CORS_ALLOW_ALL_ORIGINS = True
+
+# OpenAI Configuration
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')

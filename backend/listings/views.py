@@ -1,4 +1,5 @@
 import os
+from django.conf import settings  # Add this import
 from rest_framework import generics, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -127,19 +128,22 @@ class OpenAIProxyAPIView(APIView):
             listing = Listing.objects.get(id=listing_id)
         except Listing.DoesNotExist:
             return Response({"error": "Listing not found."}, status=status.HTTP_400_BAD_REQUEST)
+        
         # Get the latest price history for the listing (if any)
         price_history = listing.pricehistory_set.order_by('-date_recorded').first()
+        
         # Check cache
         cached = AnalysisCache.objects.filter(listing=listing, price_history=price_history).first()
         if cached:
             return Response({"analysis": cached.analysis_result, "cached": True})
+        
         # Generate prompt using listing and price_history
         prompt = self._generate_prompt(listing, price_history)
-        # Call OpenAI
+        
+        # Call OpenAI - Updated to use Django settings
         try:
-            api_key = os.environ.get("OPENAI_API_KEY","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")
-            print("OPENAI_API_KEY in view:", api_key)
-            client = OpenAI(api_key=api_key)
+            # Use settings.OPENAI_API_KEY instead of os.getenv directly
+            client = OpenAI(api_key=settings.OPENAI_API_KEY)
             response = client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
@@ -150,6 +154,7 @@ class OpenAIProxyAPIView(APIView):
                 temperature=0.7,
             )
             analysis = response.choices[0].message.content.strip()
+            
             # Cache the result
             AnalysisCache.objects.create(
                 listing=listing,
