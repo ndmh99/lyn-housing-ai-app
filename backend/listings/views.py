@@ -123,11 +123,23 @@ def search_listings(request):
 
 class OpenAIProxyAPIView(APIView):
     def post(self, request):
+        # Debug: Print request data
+        print(f"DEBUG: Request data: {request.data}")
+        
         listing_id = request.data.get('listing_id')
+        
+        # Validate listing_id
+        if not listing_id:
+            return Response({"error": "listing_id is required."}, status=status.HTTP_400_BAD_REQUEST)
+        
         try:
             listing = Listing.objects.get(id=listing_id)
         except Listing.DoesNotExist:
-            return Response({"error": "Listing not found."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": f"Listing with id {listing_id} not found."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Check if OpenAI API key is available
+        if not settings.OPENAI_API_KEY:
+            return Response({"error": "OpenAI API key not configured."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
         # Get the latest price history for the listing (if any)
         price_history = listing.pricehistory_set.order_by('-date_recorded').first()
