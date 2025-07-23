@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY, // Set the key in the /.env file
     authDomain: "lynai-housing-app.firebaseapp.com",
     projectId: "lynai-housing-app",
     storageBucket: "lynai-housing-app.firebasestorage.app",
