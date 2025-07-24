@@ -38,6 +38,19 @@ python manage.py makemigrations        # Create new migrations
 python manage.py populate_listings     # Load sample data
 python manage.py collectstatic         # Collect static files (production)
 python manage.py createsuperuser       # Create admin user
+python manage.py test                  # Run tests
+```
+
+### Docker (Optional)
+```bash
+# Build and run all services
+docker-compose up --build
+
+# Run backend only
+cd backend && docker-compose up
+
+# Run frontend only
+cd frontend/lynapp-react && docker-compose up
 ```
 
 ## Development Environment Setup
@@ -51,8 +64,14 @@ python manage.py createsuperuser       # Create admin user
 Create a `.env` file in the backend directory:
 ```env
 DEBUG=True
-SECRET_KEY=your-secret-key-here
-ALLOWED_HOSTS=localhost,127.0.0.1
+SECRET_KEY_NAME=your-secret-key-here
+OPENAI_API_KEY=your-openai-api-key-here
+```
+
+Create a `.env` file in the frontend/lynapp-react directory:
+```env
+VITE_FIREBASE_API_KEY=your-firebase-api-key
+
 ```
 
 ## Code Quality Guidelines
@@ -106,8 +125,8 @@ ALLOWED_HOSTS=localhost,127.0.0.1
 
 ### Backend Optimizations
 - **Database Queries**: Optimize Django ORM queries
-- **Caching**: Implement Redis caching for production
-- **API Response**: Minimize data transfer
+- **AI Analysis Caching**: AnalysisCache model reduces OpenAI API calls
+- **API Response**: Minimize data transfer with efficient serializers
 
 ## Debugging
 
@@ -123,10 +142,20 @@ ALLOWED_HOSTS=localhost,127.0.0.1
 
 ## External API Integration
 
-### OpenStreetMap Nominatim
+### OpenAI API
+- **API Key**: Required in backend .env file for AI analysis features
+- **Rate Limiting**: Implemented caching to minimize API calls
+- **Error Handling**: Graceful fallback when AI analysis fails
+
+### Firebase Authentication
+- **Configuration**: Required in frontend .env file
+- **Error Handling**: User-friendly authentication error messages
+- **Session Management**: Automatic token refresh and logout
+
+### Leaflet Maps
+- **OpenStreetMap**: Free geocoding and mapping service
 - **Rate Limiting**: Respect API rate limits
 - **Error Handling**: Graceful fallback for geocoding failures
-- **Caching**: Consider caching geocoded results
 
 ### Walk Score API
 - **Image Loading**: Handle image loading errors gracefully
@@ -144,13 +173,21 @@ ALLOWED_HOSTS=localhost,127.0.0.1
 1. Define view function in `listings/views.py`
 2. Create URL pattern in `listings/urls.py`
 3. Add serializer if needed in `listings/serializer.py`
-4. Test endpoint in browser or API client
+4. Update CORS settings if needed
+5. Test endpoint in browser or API client
+
+### Working with AI Features
+1. Ensure OpenAI API key is set in backend .env
+2. Check AnalysisCache model for existing analysis
+3. Use OpenAIProxyAPIView for new AI integrations
+4. Handle API errors gracefully with try/catch blocks
 
 ### Database Schema Changes
 1. Modify models in `listings/models.py`
 2. Create migration: `python manage.py makemigrations`
 3. Apply migration: `python manage.py migrate`
 4. Update admin interface if needed
+5. Update serializers if model fields changed
 
 ## Troubleshooting
 
@@ -159,8 +196,13 @@ ALLOWED_HOSTS=localhost,127.0.0.1
 - **Port Conflicts**: Ensure ports 5173 and 8000 are available
 - **Database Locks**: Delete db.sqlite3 and re-migrate if needed
 - **Node Modules**: Delete node_modules and reinstall if dependency issues
+- **OpenAI API Errors**: Verify API key is set correctly in backend .env
+- **Firebase Auth Errors**: Check Firebase configuration in frontend .env
+- **AI Analysis 401 Errors**: Usually indicates incorrect or expired OpenAI API key
 
 ### Environment Issues
 - **Python Virtual Environment**: Ensure virtual environment is activated
-- **Node Version**: Verify Node.js version compatibility
-- **Path Issues**: Check that Python and Node are in system PATH
+- **Node Version**: Verify Node.js version compatibility (16+)
+- **Python Version**: Verify Python version compatibility (3.8+)
+- **Environment Variables**: Check .env files are not committed to git
+- **API Keys**: Ensure all required API keys are configured
