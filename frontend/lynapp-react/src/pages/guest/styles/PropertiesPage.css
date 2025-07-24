@@ -382,7 +382,7 @@
   padding-right: var(--space-10);
 }
 
-/* Previous/Next Buttons */
+/* Previous/Next/First/Last Buttons */
 .properties-page .pagination-btn {
   padding: var(--space-3) var(--space-4);
   background: var(--btn-secondary-bg);
@@ -394,6 +394,13 @@
   cursor: pointer;
   /* transition: all 0.3s ease; */
   min-width: 80px;
+}
+
+/* First and Last buttons styling */
+.properties-page .pagination-btn.first,
+.properties-page .pagination-btn.last {
+  min-width: 70px;
+  font-size: 0.8rem;
 }
 
 .properties-page .pagination-btn:hover:not(:disabled) {
@@ -411,10 +418,25 @@
   border-color: var(--neutral-border);
 }
 
-/* Page Number Buttons */
+/* Page Number Buttons and Ellipsis */
 .properties-page .page-numbers {
   display: flex;
   gap: var(--space-2);
+  align-items: center;
+}
+
+/* Ellipsis styling */
+.properties-page .pagination-ellipsis {
+  padding: 0 var(--space-2);
+  color: var(--neutral-text-medium);
+  font-weight: 600;
+  font-size: 0.875rem;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
 }
 
 .properties-page .page-btn {
@@ -748,12 +770,27 @@
   .properties-page .pagination-controls {
     flex-wrap: wrap;
     gap: var(--space-1);
+    justify-content: center;
   }
 
   .properties-page .pagination-btn {
     padding: var(--space-2) var(--space-3);
     font-size: 0.75rem;
-    min-width: 70px;
+    min-width: 65px;
+  }
+
+  /* First/Last buttons on mobile */
+  .properties-page .pagination-btn.first,
+  .properties-page .pagination-btn.last {
+    min-width: 60px;
+    font-size: 0.7rem;
+    padding: var(--space-2) var(--space-2);
+  }
+
+  /* Hide ellipsis text on very small screens */
+  .properties-page .pagination-ellipsis {
+    min-width: 30px;
+    font-size: 0.8rem;
   }
 
   .properties-page .page-btn {
