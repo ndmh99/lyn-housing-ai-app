@@ -5,10 +5,11 @@ services:
     build: ./backend
     ports:
       - "8000:8000"
+    env_file:
+      - .env.docker
     environment:
-      - DEBUG=True
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
       - PYTHONPATH=/app
+      - OPENAI_API_KEY=${OPENAI_API_KEY}  # Read from system environment variable
     volumes:
       - ./backend:/app
     working_dir: /app
