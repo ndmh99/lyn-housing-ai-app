@@ -92,7 +92,7 @@ const PropertyDetailPage = () => {
       // Try localhost first, then fallback to production
       try {
         // First attempt: localhost (development)
-        response = await fetch('/api/listings/analyze-housing/', {
+        response = await fetch('http://localhost:8000/api/listings/analyze-housing/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
