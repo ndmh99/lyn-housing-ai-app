@@ -48,48 +48,108 @@ const PropertiesPage = () => {
     }
   };
 
-  // Pagination component
-  const PaginationControls = () => (
-    !loading && !error && listings.length > 0 && totalPages > 1 && (
-      <div className="pagination-container">
-        <div className="pagination-info">
-          Showing {startIndex + 1}-{Math.min(endIndex, listings.length)} of {listings.length} properties
-        </div>
-        <div className="pagination-controls">
-          <button 
-            className="pagination-btn prev"
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            ← Previous
-          </button>
-          
-          <div className="page-numbers">
-            {[...Array(totalPages)].map((_, index) => {
-              const pageNum = index + 1;
-              return (
-                <button
-                  key={pageNum}
-                  className={`page-btn ${currentPage === pageNum ? 'active' : ''}`}
-                  onClick={() => handlePageChange(pageNum)}
-                >
-                  {pageNum}
-                </button>
-              );
-            })}
+  // Enhanced Pagination component with smart page display
+  const PaginationControls = () => {
+    // Generate smart page numbers with ellipsis
+    const generatePageNumbers = () => {
+      const pageNumbers = [];
+      
+      if (totalPages <= 5) {
+        // Show all pages if 5 or fewer
+        for (let i = 1; i <= totalPages; i++) {
+          pageNumbers.push(i);
+        }
+      } else {
+        // Smart pagination logic
+        if (currentPage <= 3) {
+          // Show first 3 pages, ellipsis, and last page
+          pageNumbers.push(1, 2, 3, '...', totalPages);
+        } else if (currentPage >= totalPages - 2) {
+          // Show first page, ellipsis, and last 3 pages
+          pageNumbers.push(1, '...', totalPages - 2, totalPages - 1, totalPages);
+        } else {
+          // Show first page, ellipsis, current page and neighbors, ellipsis, last page
+          pageNumbers.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+        }
+      }
+      
+      return pageNumbers;
+    };
+
+    const pageNumbers = generatePageNumbers();
+
+    return (
+      !loading && !error && listings.length > 0 && totalPages > 1 && (
+        <div className="pagination-container">
+          <div className="pagination-info">
+            Showing {startIndex + 1}-{Math.min(endIndex, listings.length)} of {listings.length} properties
           </div>
-          
-          <button 
-            className="pagination-btn next"
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          >
-            Next →
-          </button>
+          <div className="pagination-controls">
+            {/* First Page Button */}
+            <button 
+              className="pagination-btn first"
+              onClick={() => handlePageChange(1)}
+              disabled={currentPage === 1}
+              title="Go to first page"
+            >
+              ⇤ First
+            </button>
+            
+            {/* Previous Button */}
+            <button 
+              className="pagination-btn prev"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              ← Previous
+            </button>
+            
+            {/* Smart Page Numbers */}
+            <div className="page-numbers">
+              {pageNumbers.map((pageNum, index) => {
+                if (pageNum === '...') {
+                  return (
+                    <span key={`ellipsis-${index}`} className="pagination-ellipsis">
+                      ...
+                    </span>
+                  );
+                }
+                
+                return (
+                  <button
+                    key={pageNum}
+                    className={`page-btn ${currentPage === pageNum ? 'active' : ''}`}
+                    onClick={() => handlePageChange(pageNum)}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+            </div>
+            
+            {/* Next Button */}
+            <button 
+              className="pagination-btn next"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Next →
+            </button>
+            
+            {/* Last Page Button */}
+            <button 
+              className="pagination-btn last"
+              onClick={() => handlePageChange(totalPages)}
+              disabled={currentPage === totalPages}
+              title="Go to last page"
+            >
+              Last ⇥
+            </button>
+          </div>
         </div>
-      </div>
-    )
-  );
+      )
+    );
+  };
 
   // -------------------- Properties Page Render Section Start --------------------
   return (
