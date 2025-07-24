@@ -3,8 +3,9 @@ name: Publish Docker Images to GitHub Packages
 on:
   push:
     branches:
-      - main
       - master
+      - develop
+      - test
       - deployment
     paths:
       - 'backend/**'
